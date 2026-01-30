@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plataforma Académica - Validación de Cursos</title>
 
-  <!-- ✅ FAVICON -->
+  <!-- FAVICON -->
   <link rel="icon" href="https://i.imgur.com/YUJ7rzx.png">
   <link rel="shortcut icon" href="https://i.imgur.com/YUJ7rzx.png">
 
@@ -18,17 +18,17 @@
       --verde-osc:#6b734f;
       --fondo:#f4f6f4;
       --borde:#d0d8c0;
-      --gris-linea:#e5e5e5;
+      --gris:#f2f2f2;
       --footer:#2b2b2b;
       --footer2:#1f1f1f;
     }
 
     *{box-sizing:border-box}
     html,body{margin:0;max-width:100%;overflow-x:hidden}
-    body{font-family:Arial,Helvetica,sans-serif;background:#f2f2f2;color:#222;line-height:1.5}
+    body{font-family:Arial,Helvetica,sans-serif;background:var(--gris);color:#222;line-height:1.5}
     img{max-width:100%;display:block}
 
-    /* Marco central con márgenes tipo portal */
+    /* Marco central */
     .site-frame{
       max-width:1400px;
       margin:0 auto;
@@ -36,7 +36,6 @@
       min-height:100vh;
     }
 
-    /* Top bar */
     .top-bar{
       background:#fff;
       border-bottom:1px solid #ddd;
@@ -56,7 +55,6 @@
     }
     .top-bar a:hover{text-decoration:underline}
 
-    /* Header */
     header{
       background:#fff;
       border-bottom:5px solid var(--verde);
@@ -74,7 +72,6 @@
     .brand strong{display:block;font-size:16px;color:var(--verde-osc)}
     .brand span{font-size:13px;color:#666}
 
-    /* Menú */
     nav{background:var(--verde)}
     nav ul{
       list-style:none;
@@ -95,7 +92,6 @@
     }
     nav a:hover{background:var(--verde-osc)}
 
-    /* Layout 3 columnas */
     .container{
       max-width:1200px;
       margin:20px auto;
@@ -131,29 +127,32 @@
     }
     .list a:hover{color:var(--verde)}
 
-    /* Swiper */
+    /* ✅ SWIPER: evita blanco aunque falle carga */
     .swiper{
       border-radius:8px;
       overflow:hidden;
-      margin-bottom:25px;
+      margin-bottom:18px;
       box-shadow:0 4px 15px rgba(0,0,0,.1);
-      background:#fff;
-      max-width:100%;
+      background:#ddd;              /* si no carga imagen, no se ve blanco */
+      height:240px;                 /* fuerza altura */
     }
-    .swiper, .swiper-wrapper, .swiper-slide{max-width:100%;overflow:hidden}
-    .swiper-slide{position:relative}
+    .swiper-slide{
+      position:relative;
+      height:240px;                 /* fuerza altura */
+      background:#ddd;              /* respaldo */
+    }
     .swiper-slide img{
       width:100%;
       height:240px;
       object-fit:cover;
-      background:#eee;
+      display:block;
     }
     .slide-caption{
       position:absolute;
       bottom:0;left:0;right:0;
       background:rgba(0,0,0,.6);
       color:#fff;
-      padding:14px;
+      padding:12px;
       text-align:center;
       font-weight:bold;
       font-size:14px;
@@ -164,7 +163,7 @@
       border:1px solid var(--borde);
       border-radius:6px;
       padding:20px;
-      margin-bottom:25px;
+      margin-bottom:18px;
     }
     .search-panel label{font-weight:bold;font-size:14px}
     .search-panel input{
@@ -188,60 +187,73 @@
     .search-panel button:hover{background:var(--verde-osc)}
     .mini-note{font-size:12px;color:#666;margin-top:8px}
 
-    /* ===== Footer institucional con redes ===== */
+    /* ✅ Noticias como el ejemplo (links) */
+    .news-list{
+      padding:0;
+      margin:0;
+      list-style:none;
+      border:1px solid #ddd;
+      border-top:none;
+    }
+    .news-list li{
+      border-top:1px solid #ddd;
+    }
+    .news-list a{
+      display:block;
+      padding:10px 12px;
+      color:#333;
+      text-decoration:none;
+      font-size:13px;
+      background:#f7f7f7;
+    }
+    .news-list a:hover{
+      background:#ececec;
+      text-decoration:underline;
+    }
+
+    /* ✅ Recuadro negro de YouTube como el sitio */
+    .youtube-box{
+      background:#000;
+      height:220px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+    }
+    .youtube-box a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      height:100%;
+      text-decoration:none;
+    }
+    .youtube-play{
+      width:110px;
+      height:72px;
+      border-radius:16px;
+      background:#ff0000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 8px 20px rgba(0,0,0,.35);
+    }
+    .youtube-play:before{
+      content:"";
+      display:block;
+      width:0;height:0;
+      border-left:22px solid #fff;
+      border-top:14px solid transparent;
+      border-bottom:14px solid transparent;
+      margin-left:6px;
+    }
+
+    /* Footer */
     .inst-footer{
       background:var(--footer);
       color:#eee;
       margin-top:40px;
     }
-    .inst-footer .wrap{
-      max-width:1200px;
-      margin:0 auto;
-      padding:26px 15px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:18px;
-    }
-    .footer-title{
-      font-weight:bold;
-      letter-spacing:.3px;
-      font-size:13px;
-      opacity:.95;
-      margin-bottom:10px;
-      text-transform:uppercase;
-    }
-    .social-row{
-      display:flex;
-      gap:24px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .social-link{
-      display:inline-flex;
-      align-items:center;
-      gap:12px;
-      color:#eee;
-      text-decoration:none;
-      font-size:12px;
-      font-weight:bold;
-      letter-spacing:.2px;
-      text-transform:uppercase;
-    }
-    .social-icon{
-      width:42px;
-      height:42px;
-      border-radius:50%;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      flex:0 0 auto;
-    }
-    .fb{background:#3b5998;}
-    .yt{background:#d9483b;}
-    .social-link:hover{opacity:.9}
-
-    .social-icon svg{width:22px;height:22px;fill:#fff}
-
     .inst-footer-bottom{
       background:var(--footer2);
       border-top:1px solid rgba(255,255,255,.08);
@@ -254,12 +266,12 @@
     @media(max-width:1024px){
       .container{grid-template-columns:1fr}
       .logo img{height:60px}
-      .swiper-slide img{height:200px}
+      .swiper,.swiper-slide,.swiper-slide img{height:200px}
     }
     @media(max-width:600px){
       nav ul{flex-direction:column;text-align:center}
       nav a{padding:12px}
-      .swiper-slide img{height:180px}
+      .swiper,.swiper-slide,.swiper-slide img{height:180px}
     }
   </style>
 </head>
@@ -316,7 +328,7 @@
     <!-- CENTRO -->
     <main>
 
-      <!-- ✅ SWIPER CON 3 IMÁGENES (LAS 3 QUE ME DISTE) -->
+      <!-- SWIPER (si imágenes externas fallan, ya no se ve blanco) -->
       <div class="swiper" id="mySwiper">
         <div class="swiper-wrapper">
 
@@ -345,7 +357,7 @@
       <div class="search-panel">
         <label>Validación de cursos / constancias por CURP</label>
         <input type="text" id="curpInput" placeholder="Ingresa tu CURP (18 caracteres)" maxlength="18" autocomplete="off">
-        <button onclick="alert('Aquí va tu búsqueda por CURP (puedo conectarlo a tu base de datos como antes).')">Buscar</button>
+        <button onclick="alert('Aquí conectamos tu búsqueda por CURP como ya lo tenías antes.')">Buscar</button>
         <div class="mini-note">Tip: también puede funcionar por QR con <b>?curp=TU_CURP</b></div>
       </div>
 
@@ -360,61 +372,47 @@
 
     </main>
 
-    <!-- DERECHA -->
+    <!-- DERECHA (exacto como tu recuadro rojo) -->
     <aside>
+
+      <!-- Últimas Noticias (clickeables) -->
       <div class="box">
         <h3>Últimas Noticias »</h3>
-        <div class="content">
-          Participan docentes en jornadas de formación.<br><br>
-          Se publica calendario académico.<br><br>
-          Actualización de lineamientos.
+
+        <ul class="news-list">
+          <li>
+            <a href="https://iebem.edu.mx/noticias/participan-docentes-en-talleres-sobre-desarrollo-educativo" target="_blank" rel="noopener">
+              Participan docentes en talleres sobre desarrollo educativo
+            </a>
+          </li>
+          <li>
+            <a href="https://iebem.edu.mx/noticias/convocan-estudiantes-concurso-de-interpretacion-del-himno-nacional" target="_blank" rel="noopener">
+              Convocan a estudiantes a concurso de interpretación del Himno Nacional
+            </a>
+          </li>
+          <li>
+            <a href="https://iebem.edu.mx/noticias/arranca-entrega-de-materiales-escolares-escuelas-afectadas-por-el-sismo-19s" target="_blank" rel="noopener">
+              Arranca entrega de materiales escolares a escuelas afectadas por el sismo 19S
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Cuadro negro YouTube (clickeable) -->
+      <div class="box" style="margin-top:18px;">
+        <h3>Video institucional</h3>
+        <div class="youtube-box">
+          <a href="https://www.youtube.com/user/IEBEMTV" target="_blank" rel="noopener" aria-label="Canal de YouTube">
+            <div class="youtube-play"></div>
+          </a>
         </div>
       </div>
 
-      <div class="box" style="margin-top:25px;">
-        <h3>Video institucional</h3>
-        <div class="content">
-          <iframe width="100%" height="220"
-            src="https://www.youtube.com/embed/5MgBikgcWnY"
-            title="YouTube video" frameborder="0" allowfullscreen></iframe>
-        </div>
-      </div>
     </aside>
 
   </div>
 
-  <!-- ✅ FOOTER INSTITUCIONAL CON REDES -->
   <footer class="inst-footer">
-    <div class="wrap">
-      <div>
-        <div class="footer-title">REDES SOCIALES</div>
-
-        <div class="social-row">
-          <!-- FACEBOOK -->
-          <a class="social-link" href="https://www.facebook.com/iebem/?fref=ts#" target="_blank" rel="noopener">
-            <span class="social-icon fb" aria-hidden="true">
-              <!-- Icono Facebook (SVG) -->
-              <svg viewBox="0 0 24 24">
-                <path d="M22 12a10 10 0 1 0-11.56 9.87v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.25c-1.23 0-1.61.76-1.61 1.54V12h2.74l-.44 2.88h-2.3v6.99A10 10 0 0 0 22 12z"/>
-              </svg>
-            </span>
-            HAZTE FAN EN FACEBOOK
-          </a>
-
-          <!-- YOUTUBE -->
-          <a class="social-link" href="https://www.youtube.com/user/IEBEMTV" target="_blank" rel="noopener">
-            <span class="social-icon yt" aria-hidden="true">
-              <!-- Icono YouTube (SVG) -->
-              <svg viewBox="0 0 24 24">
-                <path d="M21.6 7.2a3 3 0 0 0-2.11-2.12C17.8 4.6 12 4.6 12 4.6s-5.8 0-7.49.48A3 3 0 0 0 2.4 7.2 31.6 31.6 0 0 0 2 12a31.6 31.6 0 0 0 .4 4.8 3 3 0 0 0 2.11 2.12c1.69.48 7.49.48 7.49.48s5.8 0 7.49-.48a3 3 0 0 0 2.11-2.12A31.6 31.6 0 0 0 22 12a31.6 31.6 0 0 0-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/>
-              </svg>
-            </span>
-            CANAL EN YOUTUBE
-          </a>
-        </div>
-      </div>
-    </div>
-
     <div class="inst-footer-bottom">
       © 2026. Todos los derechos reservados.
     </div>
