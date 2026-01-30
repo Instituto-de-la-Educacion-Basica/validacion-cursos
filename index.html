@@ -7,8 +7,11 @@
 <style>
 body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f4f6f4;color:#222}
 
+/* Imagen superior más delgada */
 .top-image{
   width:100%;
+  height:140px;
+  object-fit:cover;
   display:block;
 }
 
@@ -53,14 +56,12 @@ nav a:hover{background:#6b734f}
 </head>
 <body>
 
-<!-- Imagen superior -->
 <img src="https://i.imgur.com/g3QP0r7.png" class="top-image" alt="Encabezado institucional">
 
 <header>
   <div class="header-wrap">
     <div class="logo">
-      <!-- IMPORTANTE: usa tu propio logo -->
-      <img src="https://dummyimage.com/200x80/7a8457/ffffff&text=TU+LOGO" alt="Logo">
+      <img src="https://dummyimage.com/200x80/7a8457/ffffff" alt="Logo">
       <h1>Portal Académico de Validación de Cursos</h1>
     </div>
     <div class="top-links">
@@ -83,7 +84,6 @@ nav a:hover{background:#6b734f}
 
 <div class="container">
 
-  <!-- COLUMNA IZQUIERDA -->
   <aside class="box">
     <h3>Servicios para docentes</h3>
     <div class="content list">
@@ -95,7 +95,6 @@ nav a:hover{background:#6b734f}
     </div>
   </aside>
 
-  <!-- COLUMNA CENTRAL -->
   <main>
 
     <div class="main-banner">
@@ -109,7 +108,6 @@ nav a:hover{background:#6b734f}
       <label>Validación de cursos por CURP</label>
       <input type="text" id="curpInput" placeholder="Ingresa tu CURP">
       <button onclick="buscar()">Buscar</button>
-
       <div id="resultado" class="result"></div>
     </div>
 
@@ -129,13 +127,14 @@ nav a:hover{background:#6b734f}
     <div class="box">
       <h3>Video institucional</h3>
       <div class="content">
-        <iframe width="100%" height="240" src="https://www.youtube.com/embed/5MgBikgcWnY" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+        <iframe width="100%" height="240"
+          src="https://www.youtube.com/embed/5MgBikgcWnY"
+          title="YouTube video" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
 
   </main>
 
-  <!-- COLUMNA DERECHA -->
   <aside>
 
     <div class="box">
@@ -167,7 +166,6 @@ nav a:hover{background:#6b734f}
 </div>
 
 <script>
-// Base de datos de ejemplo (solo para pruebas)
 const baseCursos = [
   {
     curp: "BIDD971230HASRZM02",
@@ -212,7 +210,6 @@ function buscar(){
   res.innerHTML = html;
 }
 
-// Soporte para QR: ?curp=XXXXXXXX
 const params = new URLSearchParams(window.location.search);
 const curpQR = params.get('curp');
 if(curpQR){
@@ -223,3 +220,4 @@ if(curpQR){
 
 </body>
 </html>
+
