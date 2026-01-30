@@ -3,253 +3,214 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Académico de Validación - Cursos</title>
+  <title>Plataforma Académica - Validación</title>
 
-  <!-- ✅ ICONO EN LA PESTAÑA (FAVICON) -->
-  <link rel="icon" type="image/png" href="https://i.imgur.com/YUJ7rzx.png">
+  <!-- ✅ FAVICON (ICONO EN LA PESTAÑA) -->
+  <link rel="icon" href="https://i.imgur.com/YUJ7rzx.png">
+  <link rel="shortcut icon" href="https://i.imgur.com/YUJ7rzx.png">
 
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
 
   <style>
     :root {
-      --verde-ie: #7a8457;
-      --verde-osc: #6b734f;
-      --gris-fondo: #f4f6f4;
-      --borde-suave: #d0d8c0;
+      --verde-ie:#7a8457;
+      --verde-osc:#6b734f;
+      --gris-fondo:#f4f6f4;
+      --borde-suave:#d0d8c0;
       --gris-linea:#e5e5e5;
     }
 
-    * { box-sizing: border-box; }
+    *{box-sizing:border-box}
+    html, body{max-width:100%; overflow-x:hidden}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:#f2f2f2; /* fondo exterior */
+      color:#222;
+      line-height:1.5;
+    }
+    img{max-width:100%; height:auto; display:block}
 
-    /* ✅ EVITA SCROLL HORIZONTAL (BARRA INFERIOR) */
-    html, body{
-      max-width:100%;
-      overflow-x:hidden;
+    /* ===== MARCO CENTRAL (MÁRGENES COMO PORTAL OFICIAL) ===== */
+    .site-frame{
+      max-width:1400px;
+      margin:0 auto;
+      background:var(--gris-fondo);
+      min-height:100vh;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--gris-fondo);
-      color: #222;
-      line-height: 1.5;
+    /* Barra superior */
+    .top-bar{
+      background:#fff;
+      font-size:13px;
+      padding:8px 0;
+      border-bottom:1px solid #ddd;
+      text-align:right;
     }
+    .top-bar .wrap{
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 15px;
+    }
+    .top-bar a{
+      color:#555;
+      margin-left:20px;
+      text-decoration:none;
+    }
+    .top-bar a:hover{text-decoration:underline}
 
-    img { max-width: 100%; height: auto; display: block; }
-
-    /* Barra superior pequeña */
-    .top-bar {
-      background: white;
-      font-size: 13px;
-      padding: 8px 0;
-      border-bottom: 1px solid #ddd;
-      text-align: right;
+    /* Header */
+    header{
+      background:#fff;
+      border-bottom:5px solid var(--verde-ie);
+      padding:15px 0;
     }
-    .top-bar .wrap {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-    .top-bar a {
-      color: #555;
-      margin-left: 20px;
-      text-decoration: none;
-    }
-    .top-bar a:hover { text-decoration: underline; }
-
-    /* Header con logo SOLO a la izquierda */
-    header {
-      background: white;
-      border-bottom: 5px solid var(--verde-ie);
-      padding: 15px 0;
-    }
-    .header-wrap {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      padding: 0 15px;
+    .header-wrap{
+      max-width:1200px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      padding:0 15px;
       gap:14px;
+      justify-content:space-between;
     }
-    .logo {
-      display: flex;
-      align-items: center;
+    .logo{
+      display:flex;
+      align-items:center;
       gap:14px;
+      min-width:260px;
     }
-    .logo img {
-      height: 70px;
-      width:auto;
-    }
+    .logo img{height:70px; width:auto}
     .brand{
       display:flex;
       flex-direction:column;
       gap:2px;
     }
-    .brand strong{
-      font-size:16px;
-      color:var(--verde-osc);
-    }
-    .brand span{
-      font-size:13px;
-      color:#666;
-    }
+    .brand strong{font-size:16px; color:var(--verde-osc)}
+    .brand span{font-size:13px; color:#666}
 
-    /* Menú principal */
-    nav {
-      background: var(--verde-ie);
+    /* Menú */
+    nav{background:var(--verde-ie)}
+    nav ul{
+      list-style:none;
+      margin:0 auto;
+      padding:0;
+      max-width:1200px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
     }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    nav a {
-      display: block;
-      padding: 14px 18px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
+    nav a{
+      display:block;
+      padding:14px 18px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+      transition:background .25s;
       white-space:nowrap;
     }
-    nav a:hover { background: var(--verde-osc); }
+    nav a:hover{background:var(--verde-osc)}
 
-    /* ✅ Contenedor principal (ARREGLADO PARA MONITOR) */
-    .container {
-      max-width: 1200px;
-      width: 100%;
-      margin: 20px auto;
-      display: grid;
-      grid-template-columns: minmax(240px, 280px) 1fr minmax(240px, 280px);
-      gap: 20px;
-      padding: 0 15px;
-    }
-
-    .box {
-      background: white;
-      border: 1px solid var(--borde-suave);
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      transition: all 0.25s ease;
-      max-width:100%;
-    }
-    .box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    }
-    .box h3 {
-      margin: 0;
-      background: var(--verde-ie);
-      color: white;
-      padding: 12px 16px;
-      font-size: 16px;
-    }
-    .box .content { padding: 16px; }
-
-    .list a {
-      display: block;
-      color: #5c6b3f;
-      text-decoration: none;
-      padding: 8px 0;
-      border-bottom: 1px dotted #ccc;
-      transition: all 0.2s;
-    }
-    .list a:hover {
-      color: var(--verde-ie);
-      padding-left: 10px;
+    /* ✅ CONTENEDOR 3 COLUMNAS (RESTAURADO) */
+    .container{
+      max-width:1200px;
+      width:100%;
+      margin:20px auto;
+      display:grid;
+      grid-template-columns: 280px minmax(0, 1fr) 280px; /* minmax(0,1fr) evita desbordes */
+      gap:20px;
+      padding:0 15px;
+      align-items:start;
     }
 
-    /* ✅ Swiper carrusel (ARREGLADO PARA NO ROMPER ANCHO) */
-    .swiper {
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      margin-bottom: 25px;
-      max-width:100%;
-    }
-    .swiper,
-    .swiper-wrapper,
-    .swiper-slide{
-      max-width:100%;
+    .box{
+      background:#fff;
+      border:1px solid var(--borde-suave);
+      border-radius:6px;
       overflow:hidden;
+      box-shadow:0 3px 10px rgba(0,0,0,.08);
+      max-width:100%;
     }
-    .swiper-slide {
-      position: relative;
+    .box h3{
+      margin:0;
+      background:var(--verde-ie);
+      color:#fff;
+      padding:12px 16px;
+      font-size:16px;
     }
-    .swiper-slide img {
-      width: 100%;
-      max-width: 100%;
-      height: 220px;
-      object-fit: cover;
+    .box .content{padding:16px}
+
+    .list a{
+      display:block;
+      color:#5c6b3f;
+      text-decoration:none;
+      padding:8px 0;
+      border-bottom:1px dotted #ccc;
     }
-    .slide-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0,0,0,0.65);
-      color: white;
-      padding: 18px;
-      text-align: center;
-      font-size: 15px;
-      font-weight: bold;
+    .list a:hover{color:var(--verde-ie)}
+
+    /* ✅ Swiper (nada gris / nada gigante) */
+    .swiper{
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:0 4px 15px rgba(0,0,0,.1);
+      margin-bottom:25px;
+      max-width:100%;
+      background:#fff;
+    }
+    .swiper, .swiper-wrapper, .swiper-slide{max-width:100%; overflow:hidden}
+    .swiper-slide{position:relative}
+    .swiper-slide img{
+      width:100%;
+      height:240px;
+      object-fit:cover;
+      background:#eee;
+    }
+    .slide-caption{
+      position:absolute;
+      bottom:0; left:0; right:0;
+      background:rgba(0,0,0,.65);
+      color:#fff;
+      padding:14px 16px;
+      text-align:center;
+      font-size:14px;
+      font-weight:bold;
     }
 
     /* Buscador */
-    .search-panel {
-      background: #f9faf7;
-      border: 1px solid var(--borde-suave);
-      padding: 20px;
-      border-radius: 6px;
-      margin-bottom: 25px;
-      max-width:100%;
+    .search-panel{
+      background:#f9faf7;
+      border:1px solid var(--borde-suave);
+      padding:20px;
+      border-radius:6px;
+      margin-bottom:25px;
     }
-    .search-panel input {
-      width: 100%;
-      padding: 12px;
-      margin: 12px 0;
-      border: 1px solid #999;
-      border-radius: 4px;
-      font-size: 16px;
+    .search-panel label{font-weight:bold; font-size:14px}
+    .search-panel input{
+      width:100%;
+      padding:12px;
+      margin:12px 0;
+      border:1px solid #999;
+      border-radius:4px;
+      font-size:16px;
     }
-    .search-panel button {
-      width: 100%;
-      padding: 14px;
-      background: var(--verde-ie);
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
+    .search-panel button{
+      width:100%;
+      padding:14px;
+      background:var(--verde-ie);
+      color:#fff;
+      border:none;
+      border-radius:4px;
+      font-size:16px;
+      cursor:pointer;
     }
-    .search-panel button:hover { background: var(--verde-osc); }
+    .search-panel button:hover{background:var(--verde-osc)}
+    .mini-note{font-size:12px; color:#666}
 
-    .result {
-      margin-top: 15px;
-      padding: 15px;
-      background: #e8f0da;
-      border-radius: 6px;
-      line-height: 1.6;
-      display:none; /* se oculta en inicio; iremos a pantalla 2 */
-    }
-
-    /* ✅ Pantalla 2 (Consulta tu QR) */
-    .page{
-      display:none;
-      max-width:980px;
-      margin:22px auto;
-      padding:0 15px;
-    }
-    .page.active{display:block;}
-
+    /* Página 2 (consulta QR) - igual que te gustó */
+    .page{display:none; max-width:980px; margin:22px auto; padding:0 15px}
+    .page.active{display:block}
     .qr-header{
       background:#fff;
       border:1px solid var(--gris-linea);
@@ -266,19 +227,10 @@
       gap:12px;
       flex-wrap:wrap;
     }
-    .qr-title{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-    }
-    .qr-title strong{font-size:18px;color:#111}
-    .qr-title span{font-size:13px;color:#666}
-
-    .qr-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+    .qr-title{display:flex; flex-direction:column; gap:2px}
+    .qr-title strong{font-size:18px; color:#111}
+    .qr-title span{font-size:13px; color:#666}
+    .qr-actions{display:flex; gap:10px; flex-wrap:wrap}
     .btn{
       padding:10px 12px;
       border-radius:8px;
@@ -293,43 +245,29 @@
       border-color:var(--verde-ie);
       color:#fff;
     }
-    .btn.primary:hover{background:var(--verde-osc);border-color:var(--verde-osc)}
-    .btn:hover{filter:brightness(.98)}
-
+    .btn.primary:hover{background:var(--verde-osc); border-color:var(--verde-osc)}
     .qr-body{
       padding:18px;
       display:grid;
       grid-template-columns:1fr 280px;
       gap:18px;
     }
-
     .card{
       background:#fff;
       border:1px solid var(--gris-linea);
       border-radius:10px;
       padding:14px;
     }
-    .section-title{
-      font-weight:bold;
-      margin:0 0 10px;
-      font-size:14px;
-      color:#222;
-    }
+    .section-title{font-weight:bold; margin:0 0 10px; font-size:14px}
     .kv{
       display:grid;
       grid-template-columns:180px 1fr;
       gap:8px 10px;
       font-size:14px;
     }
-    .kv .k{color:#333;font-weight:bold}
-    .kv .v{color:#222}
-    .hr{height:1px;background:var(--gris-linea);margin:12px 0}
-
-    .courses{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
+    .kv .k{font-weight:bold; color:#333}
+    .hr{height:1px; background:var(--gris-linea); margin:12px 0}
+    .courses{display:flex; flex-direction:column; gap:10px}
     .course-item{
       border:1px solid var(--gris-linea);
       border-radius:10px;
@@ -337,19 +275,11 @@
       background:#fafafa;
       font-size:14px;
     }
-    .course-item strong{display:block;margin-bottom:6px}
-    .muted{color:#666;font-size:12px;margin-top:8px}
-
-    .qr-box{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      align-items:center;
-      justify-content:flex-start;
-    }
+    .course-item strong{display:block; margin-bottom:6px}
+    .muted{color:#666; font-size:12px; margin-top:8px}
+    .qr-box{display:flex; flex-direction:column; gap:10px; align-items:center}
     .qr-img{
-      width:220px;
-      height:220px;
+      width:220px; height:220px;
       border:1px solid var(--gris-linea);
       border-radius:12px;
       background:#fff;
@@ -368,33 +298,34 @@
       text-align:center;
     }
 
-    /* Footer */
-    footer {
-      background: var(--verde-osc);
-      color: white;
-      text-align: center;
-      padding: 25px;
-      margin-top: 40px;
-      font-size: 14px;
+    footer{
+      background:var(--verde-osc);
+      color:#fff;
+      text-align:center;
+      padding:25px;
+      margin-top:40px;
+      font-size:14px;
     }
 
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .container { grid-template-columns: 1fr; }
-      .logo img { height: 60px; }
+    /* ✅ Responsive */
+    @media(max-width:1024px){
+      .container{grid-template-columns:1fr}
       .qr-body{grid-template-columns:1fr}
-      .qr-img{width:200px;height:200px}
+      .qr-img{width:200px; height:200px}
+      .logo img{height:60px}
     }
-    @media (max-width: 600px) {
-      nav ul { flex-direction: column; text-align: center; }
-      nav a { padding: 12px; }
-      .swiper-slide img { height: 180px; }
-      .logo img { height: 54px; }
+    @media(max-width:600px){
+      nav ul{flex-direction:column; text-align:center}
+      nav a{padding:12px}
+      .swiper-slide img{height:180px}
+      .logo img{height:54px}
       .kv{grid-template-columns:1fr}
     }
   </style>
 </head>
+
 <body>
+<div class="site-frame">
 
   <div class="top-bar">
     <div class="wrap">
@@ -407,7 +338,7 @@
   <header>
     <div class="header-wrap">
       <div class="logo">
-        <!-- ✅ PON AQUÍ TU LOGO (puedes usar Imgur) -->
+        <!-- Tu logo -->
         <img src="https://i.imgur.com/g3QP0r7.png" alt="Logo de la plataforma">
         <div class="brand">
           <strong>Plataforma Académica</strong>
@@ -428,10 +359,11 @@
     </ul>
   </nav>
 
-  <!-- =================== PÁGINA 1 (INICIO) =================== -->
+  <!-- PÁGINA 1 -->
   <div id="pageHome" class="page active">
     <div class="container">
 
+      <!-- IZQUIERDA -->
       <aside class="box">
         <h3>Trámites y Servicios</h3>
         <div class="content list">
@@ -444,21 +376,22 @@
         </div>
       </aside>
 
+      <!-- CENTRO -->
       <main>
 
         <div class="swiper" id="mySwiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img src="https://i.imgur.com/g3QP0r7.png" alt="Aviso">
-              <div class="slide-caption">Aviso académico • Información para docentes</div>
+              <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=1600&auto=format&fit=crop" alt="Aviso 1">
+              <div class="slide-caption">Avisos académicos • Información para docentes</div>
             </div>
             <div class="swiper-slide">
-              <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1600&auto=format&fit=crop" alt="Talleres">
-              <div class="slide-caption">Participación docente en talleres de formación</div>
+              <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1600&auto=format&fit=crop" alt="Aviso 2">
+              <div class="slide-caption">Cursos y talleres • Actualización docente</div>
             </div>
             <div class="swiper-slide">
-              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600&auto=format&fit=crop" alt="Convocatorias">
-              <div class="slide-caption">Convocatorias y actividades académicas</div>
+              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600&auto=format&fit=crop" alt="Aviso 3">
+              <div class="slide-caption">Convocatorias • Información general</div>
             </div>
           </div>
           <div class="swiper-button-prev"></div>
@@ -471,7 +404,6 @@
           <input type="text" id="curpInput" placeholder="Ingresa tu CURP (18 caracteres)" maxlength="18" autocomplete="off">
           <button onclick="buscar()">Buscar</button>
           <div class="mini-note">Tip: también funciona por QR con: <b>?curp=TU_CURP</b></div>
-          <div id="resultado" class="result"></div>
         </div>
 
         <div class="box">
@@ -495,6 +427,7 @@
 
       </main>
 
+      <!-- DERECHA ✅ (LO QUE TE FALTABA) -->
       <aside>
         <div class="box">
           <h3>Últimas Noticias »</h3>
@@ -518,7 +451,7 @@
     </div>
   </div>
 
-  <!-- =================== PÁGINA 2 (CONSULTA QR) =================== -->
+  <!-- PÁGINA 2 -->
   <div id="pageQR" class="page">
     <div class="qr-header">
       <div class="qr-header-top">
@@ -545,7 +478,7 @@
             <div id="listaCursos" class="courses"></div>
 
             <div class="muted">
-              *Esta información es de consulta. Para dudas o aclaraciones, contacta al soporte de la plataforma.
+              *Esta información es de consulta.
             </div>
           </div>
         </div>
@@ -562,167 +495,129 @@
     Plataforma de validación académica © 2026 • Prototipo
   </footer>
 
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+</div><!-- /site-frame -->
 
-  <script>
-    // Inicializar Swiper
-    const swiper = new Swiper('#mySwiper', {
-      loop: true,
-      autoplay: { delay: 5000, disableOnInteraction: false },
-      pagination: { el: '.swiper-pagination', clickable: true },
-      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-      effect: 'fade',
-      fadeEffect: { crossFade: true }
-    });
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper('#mySwiper', {
+    loop:true,
+    autoplay:{delay:5000, disableOnInteraction:false},
+    pagination:{el:'.swiper-pagination', clickable:true},
+    navigation:{nextEl:'.swiper-button-next', prevEl:'.swiper-button-prev'},
+    effect:'fade',
+    fadeEffect:{crossFade:true}
+  });
 
-    // ======= BASE DE DATOS (AQUÍ AGREGAS PERSONAS) =======
-    const baseCursos = [
-      {
-        curp: "BIDD971230HASRZM02",
-        primerApellido: "BRIONES",
-        segundoApellido: "DÍAZ",
-        nombres: "DAMIÁN",
-        email: "damian.brionesdiaz@iea.edu.mx",
-        institucionFormadora: "Centro de Actualización del Magisterio",
-        cursos: [
-          { folio:"ACD1029384", nombre:"Nueva Escuela Mexicana", tipo:"Taller", duracion:"60 hrs", estatus:"CONCLUIDO", fecha:"2025-10-12" },
-          { folio:"ACD3948572", nombre:"Planeación didáctica", tipo:"Curso", duracion:"40 hrs", estatus:"CONCLUIDO", fecha:"2025-11-03" }
-        ]
-      },
-      {
-        curp: "AAAA000000HDFXXX00",
-        primerApellido: "EJEMPLO",
-        segundoApellido: "DOCENTE",
-        nombres: "PRUEBA",
-        email: "correo@ejemplo.com",
-        institucionFormadora: "Plataforma Académica",
-        cursos: [
-          { folio:"ACD5588221", nombre:"Evaluación formativa", tipo:"Curso", duracion:"20 hrs", estatus:"CONCLUIDO", fecha:"2025-09-01" }
-        ]
-      }
-    ];
-
-    function mostrarPagina(id){
-      document.getElementById('pageHome').classList.remove('active');
-      document.getElementById('pageQR').classList.remove('active');
-      document.getElementById(id).classList.add('active');
-      window.scrollTo({top:0, behavior:'smooth'});
+  const baseCursos = [
+    {
+      curp:"BIDD971230HASRZM02",
+      primerApellido:"BRIONES",
+      segundoApellido:"DÍAZ",
+      nombres:"DAMIÁN",
+      email:"damian.brionesdiaz@iea.edu.mx",
+      institucionFormadora:"Centro de Actualización del Magisterio",
+      cursos:[
+        {folio:"ACD1029384", nombre:"Nueva Escuela Mexicana", tipo:"Taller", duracion:"60 hrs", estatus:"CONCLUIDO", fecha:"2025-10-12"},
+        {folio:"ACD3948572", nombre:"Planeación didáctica", tipo:"Curso", duracion:"40 hrs", estatus:"CONCLUIDO", fecha:"2025-11-03"}
+      ]
     }
+  ];
 
-    function volverInicio(e){
-      if(e) e.preventDefault();
-      mostrarPagina('pageHome');
-      const input = document.getElementById('curpInput');
-      if(input) input.focus();
+  function mostrarPagina(id){
+    document.getElementById('pageHome').classList.remove('active');
+    document.getElementById('pageQR').classList.remove('active');
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
 
-      // limpia URL (quita ?curp=...)
-      if(history.replaceState){
-        const clean = window.location.origin + window.location.pathname;
-        history.replaceState({}, document.title, clean);
-      }
+  function volverInicio(e){
+    if(e) e.preventDefault();
+    mostrarPagina('pageHome');
+    const clean = window.location.origin + window.location.pathname;
+    history.replaceState({}, document.title, clean);
+  }
+
+  function buscar(){
+    const curp = (document.getElementById('curpInput').value || "").trim().toUpperCase();
+    if(curp.length !== 18){
+      alert("La CURP debe tener exactamente 18 caracteres.");
+      return;
     }
-
-    function buscar(){
-      const curp = document.getElementById('curpInput').value.trim().toUpperCase();
-
-      if(curp.length !== 18){
-        alert("La CURP debe tener exactamente 18 caracteres.");
-        return;
-      }
-
-      const persona = baseCursos.find(p => p.curp === curp);
-
-      if(!persona){
-        alert("No aparece en el sistema.");
-        return;
-      }
-
-      renderResultado(persona);
-
-      // actualiza URL para QR
-      const newUrl = window.location.origin + window.location.pathname + "?curp=" + encodeURIComponent(curp);
-      if(history.replaceState){
-        history.replaceState({}, document.title, newUrl);
-      }
-
-      mostrarPagina('pageQR');
+    const persona = baseCursos.find(p => p.curp === curp);
+    if(!persona){
+      alert("No aparece en el sistema.");
+      return;
     }
+    renderResultado(persona);
+    const newUrl = window.location.origin + window.location.pathname + "?curp=" + encodeURIComponent(curp);
+    history.replaceState({}, document.title, newUrl);
+    mostrarPagina('pageQR');
+  }
 
-    function renderResultado(p){
-      const datos = document.getElementById('datosParticipante');
-      const cursos = document.getElementById('listaCursos');
-
-      datos.innerHTML = `
-        <div class="k">Primer Apellido:</div><div class="v">${escapeHtml(p.primerApellido || "")}</div>
-        <div class="k">Segundo Apellido:</div><div class="v">${escapeHtml(p.segundoApellido || "")}</div>
-        <div class="k">Nombre(s):</div><div class="v">${escapeHtml(p.nombres || "")}</div>
-        <div class="k">CURP:</div><div class="v">${escapeHtml(p.curp || "")}</div>
-        <div class="k">Correo:</div><div class="v">${escapeHtml(p.email || "")}</div>
-        <div class="k">Institución formadora:</div><div class="v">${escapeHtml(p.institucionFormadora || "")}</div>
+  function renderResultado(p){
+    document.getElementById('datosParticipante').innerHTML = `
+      <div class="k">Primer Apellido:</div><div class="v">${escapeHtml(p.primerApellido)}</div>
+      <div class="k">Segundo Apellido:</div><div class="v">${escapeHtml(p.segundoApellido)}</div>
+      <div class="k">Nombre(s):</div><div class="v">${escapeHtml(p.nombres)}</div>
+      <div class="k">CURP:</div><div class="v">${escapeHtml(p.curp)}</div>
+      <div class="k">Correo:</div><div class="v">${escapeHtml(p.email)}</div>
+      <div class="k">Institución formadora:</div><div class="v">${escapeHtml(p.institucionFormadora)}</div>
+    `;
+    const lista = document.getElementById('listaCursos');
+    lista.innerHTML = "";
+    p.cursos.forEach(c=>{
+      const div = document.createElement('div');
+      div.className = "course-item";
+      div.innerHTML = `
+        <strong>${escapeHtml(c.nombre)}</strong>
+        <div><b>Folio:</b> ${escapeHtml(c.folio)}</div>
+        <div><b>Tipo:</b> ${escapeHtml(c.tipo)}</div>
+        <div><b>Duración:</b> ${escapeHtml(c.duracion)}</div>
+        <div><b>Estatus:</b> ${escapeHtml(c.estatus)}</div>
+        <div><b>Fecha:</b> ${escapeHtml(c.fecha)}</div>
       `;
-
-      cursos.innerHTML = "";
-      (p.cursos || []).forEach(c => {
-        const div = document.createElement('div');
-        div.className = "course-item";
-        div.innerHTML = `
-          <strong>${escapeHtml(c.nombre || "")}</strong>
-          <div><b>Folio:</b> ${escapeHtml(c.folio || "")}</div>
-          <div><b>Tipo:</b> ${escapeHtml(c.tipo || "")}</div>
-          <div><b>Duración:</b> ${escapeHtml(c.duracion || "")}</div>
-          <div><b>Estatus:</b> ${escapeHtml(c.estatus || "")}</div>
-          <div><b>Fecha:</b> ${escapeHtml(c.fecha || "")}</div>
-        `;
-        cursos.appendChild(div);
-      });
-
-      const url = window.location.origin + window.location.pathname + "?curp=" + encodeURIComponent(p.curp);
-      document.getElementById('qrLinkText').textContent = url;
-      document.getElementById('qrBox').innerHTML = "Consulta<br>por CURP<br><br>" + escapeHtml(p.curp);
-    }
-
-    function copiarEnlace(){
-      const link = document.getElementById('qrLinkText').textContent;
-      if(!link) return;
-
-      navigator.clipboard.writeText(link)
-        .then(()=> alert("Enlace copiado."))
-        .catch(()=> alert("No se pudo copiar. Copia manualmente el enlace."));
-    }
-
-    // Enter para buscar
-    document.getElementById('curpInput').addEventListener('keydown', function(e){
-      if(e.key === 'Enter'){
-        e.preventDefault();
-        buscar();
-      }
+      lista.appendChild(div);
     });
 
-    // Soporte QR: ?curp=XXXX
-    const params = new URLSearchParams(window.location.search);
-    const curpQR = params.get('curp');
-    if(curpQR){
-      const curp = (curpQR || "").toUpperCase();
-      const persona = baseCursos.find(p => p.curp === curp);
-      if(persona){
-        renderResultado(persona);
-        mostrarPagina('pageQR');
-      }else{
-        mostrarPagina('pageHome');
-        document.getElementById('curpInput').value = curp;
-      }
-    }
+    const url = window.location.origin + window.location.pathname + "?curp=" + encodeURIComponent(p.curp);
+    document.getElementById('qrLinkText').textContent = url;
+    document.getElementById('qrBox').innerHTML = "Consulta<br>por CURP<br><br>" + escapeHtml(p.curp);
+  }
 
-    function escapeHtml(str){
-      return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll("\"","&quot;")
-        .replaceAll("'","&#039;");
-    }
-  </script>
+  function copiarEnlace(){
+    const link = document.getElementById('qrLinkText').textContent;
+    navigator.clipboard.writeText(link)
+      .then(()=>alert("Enlace copiado."))
+      .catch(()=>alert("No se pudo copiar. Copia manualmente el enlace."));
+  }
 
+  document.getElementById('curpInput').addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter'){ e.preventDefault(); buscar(); }
+  });
+
+  const params = new URLSearchParams(window.location.search);
+  const curpQR = params.get('curp');
+  if(curpQR){
+    const curp = (curpQR || "").toUpperCase();
+    const persona = baseCursos.find(p => p.curp === curp);
+    if(persona){
+      renderResultado(persona);
+      mostrarPagina('pageQR');
+    }else{
+      document.getElementById('curpInput').value = curp;
+      mostrarPagina('pageHome');
+    }
+  }
+
+  function escapeHtml(str){
+    return String(str)
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll("\"","&quot;")
+      .replaceAll("'","&#039;");
+  }
+</script>
 </body>
 </html>
