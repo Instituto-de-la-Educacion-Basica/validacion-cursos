@@ -1,1 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Portal Académico de Validación de Cursos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f4f6f4;color:#222}
+header{background:#ffffff;border-bottom:4px solid #7a8457}
+.header-wrap{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo img{height:48px}
+.logo h1{font-size:18px;margin:0;color:#6b734f}
+.top-links a{font-size:13px;color:#666;text-decoration:none;margin-left:12px}
+nav{background:#7a8457}
+nav ul{list-style:none;margin:0;padding:0;max-width:1200px;margin:auto;display:flex}
+nav a{display:block;padding:12px 16px;color:white;text-decoration:none;font-size:14px}
+nav a:hover{background:#6b734f}
+
+.container{max-width:1200px;margin:auto;display:grid;grid-template-columns:260px 1fr 260px;gap:14px;padding:14px}
+
+.box{background:white;border:1px solid #ddd;border-radius:4px;overflow:hidden}
+.box h3{margin:0;background:#7a8457;color:white;padding:8px 12px;font-size:15px}
+.box .content{padding:10px}
+
+.list a{display:block;color:#5c6b3f;text-decoration:none;font-size:14px;padding:6px 0;border-bottom:1px dotted #ccc}
+
+.main-banner{background:#eee;border:1px solid #ddd;padding:10px;text-align:center}
+
+.notice{font-size:14px;margin-bottom:8px}
+
+.search-panel{background:#f9faf7;border:1px solid #cfd6b6;padding:14px;border-radius:4px}
+.search-panel label{font-size:14px;font-weight:600}
+.search-panel input{width:100%;padding:8px;margin-top:6px;margin-bottom:8px}
+.search-panel button{padding:8px 14px;background:#7a8457;color:white;border:none;cursor:pointer}
+
+.result{margin-top:10px;font-size:14px}
+.course{border-bottom:1px solid #ddd;padding:6px 0}
+
+.footer{background:#6b734f;color:white;text-align:center;padding:14px;font-size:13px}
+
+@media(max-width:900px){
+.container{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-wrap">
+    <div class="logo">
+      <!-- IMPORTANTE: usa tu propio logo, no uno institucional oficial -->
+      <img src="https://dummyimage.com/200x80/7a8457/ffffff&text=TU+LOGO" alt="Logo">
+      <h1>Portal Académico de Validación de Cursos</h1>
+    </div>
+    <div class="top-links">
+      <a href="#">Portal docente</a>
+      <a href="#">Directorio</a>
+      <a href="#">Contacto</a>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Trámites y servicios</a></li>
+    <li><a href="#">Convocatorias</a></li>
+    <li><a href="#">Cursos</a></li>
+    <li><a href="#">Transparencia</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- COLUMNA IZQUIERDA -->
+  <aside class="box">
+    <h3>Servicios para docentes</h3>
+    <div class="content list">
+      <a href="#">Validación de cursos</a>
+      <a href="#">Constancias</a>
+      <a href="#">Convocatorias vigentes</a>
+      <a href="#">Asesoría académica</a>
+      <a href="#">Soporte técnico</a>
+    </div>
+  </aside>
+
+  <!-- COLUMNA CENTRAL -->
+  <main>
+
+    <div class="main-banner">
+      <strong>Aviso importante</strong><br>
+      Plataforma académica para consulta y validación de cursos.
+    </div>
+
+    <br>
+
+    <div class="search-panel">
+      <label>Validación de cursos por CURP</label>
+      <input type="text" id="curpInput" placeholder="Ingresa tu CURP">
+      <button onclick="buscar()">Buscar</button>
+
+      <div id="resultado" class="result"></div>
+    </div>
+
+    <br>
+
+    <div class="box">
+      <h3>Anuncios para docentes</h3>
+      <div class="content">
+        <div class="notice">• Taller de planeación didáctica – inscripción abierta.</div>
+        <div class="notice">• Curso: Evaluación formativa en educación básica.</div>
+        <div class="notice">• Seminario virtual: Nueva Escuela Mexicana.</div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="box">
+      <h3>Video institucional</h3>
+      <div class="content">
+        <iframe width="100%" height="240" src="https://www.youtube.com/embed/5MgBikgcWnY" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- COLUMNA DERECHA -->
+  <aside>
+
+    <div class="box">
+      <h3>Últimas noticias</h3>
+      <div class="content">
+        <div class="notice">Participan docentes en jornadas de formación.</div>
+        <div class="notice">Se publica calendario de cursos 2026.</div>
+        <div class="notice">Actualización de lineamientos académicos.</div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="box">
+      <h3>Enlaces rápidos</h3>
+      <div class="content list">
+        <a href="#">Convocatorias</a>
+        <a href="#">Mesa de ayuda</a>
+        <a href="#">Descargas</a>
+      </div>
+    </div>
+
+  </aside>
+
+</div>
+
+<div class="footer">
+  Plataforma académica privada – Ejemplo para cursos propios
+</div>
+
+<script>
+// Base de datos de ejemplo (solo para pruebas)
+const baseCursos = [
+  {
+    curp: "BIDD971230HASRZM02",
+    nombre: "Damián Briones Díaz",
+    cursos: [
+      {nombre:"Nueva Escuela Mexicana", fecha:"2025-10-12", folio:"ACD1029384"},
+      {nombre:"Planeación didáctica", fecha:"2025-11-03", folio:"ACD3948572"}
+    ]
+  },
+  {
+    curp: "AAAA000000HDFXXX00",
+    nombre: "Ejemplo Docente",
+    cursos: [
+      {nombre:"Evaluación formativa", fecha:"2025-09-01", folio:"ACD5588221"}
+    ]
+  }
+];
+
+function buscar(){
+  const curp = document.getElementById('curpInput').value.trim().toUpperCase();
+  const res = document.getElementById('resultado');
+  res.innerHTML = "";
+
+  if(!curp){
+    res.innerHTML = "Ingresa una CURP.";
+    return;
+  }
+
+  const persona = baseCursos.find(p => p.curp === curp);
+
+  if(!persona){
+    res.innerHTML = "No se encontraron registros.";
+    return;
+  }
+
+  let html = `<strong>${persona.nombre}</strong><br><br>`;
+
+  persona.cursos.forEach(c => {
+    html += `<div class='course'>Curso: ${c.nombre}<br>Fecha: ${c.fecha}<br>Folio: ${c.folio}</div>`;
+  });
+
+  res.innerHTML = html;
+}
+
+// Permite que un QR redirija así:
+// https://tusitio.github.io/tu-repo/?curp=CURP
+const params = new URLSearchParams(window.location.search);
+const curpQR = params.get('curp');
+if(curpQR){
+  document.getElementById('curpInput').value = curpQR.toUpperCase();
+  buscar();
+}
+</script>
+
+</body>
+</html>
 
