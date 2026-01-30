@@ -1,385 +1,445 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Instituto de la Educación Básica del Estado de Morelos - IEEBEM</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f6f4;
-    color: #222;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instituto de la Educación Básica del Estado de Morelos - IEEBEM</title>
 
-  /* Imagen superior institucional */
-  .top-banner {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    display: block;
-  }
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
 
-  /* Barra superior pequeña */
-  .top-bar {
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    font-size: 13px;
-    padding: 6px 0;
-  }
-  .top-bar .wrap {
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    justify-content: flex-end;
-    gap: 18px;
-    padding: 0 15px;
-  }
-  .top-bar a {
-    color: #555;
-    text-decoration: none;
-  }
-  .top-bar a:hover { text-decoration: underline; }
-
-  /* Header con logo */
-  header {
-    background: #fff;
-    border-bottom: 4px solid #7a8457;
-  }
-  .header-wrap {
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 15px;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .logo img { height: 55px; }
-  .logo h1 {
-    font-size: 19px;
-    margin: 0;
-    color: #6b734f;
-    font-weight: bold;
-  }
-
-  /* Menú principal */
-  nav {
-    background: #7a8457;
-  }
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  nav a {
-    display: block;
-    padding: 12px 18px;
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-  }
-  nav a:hover {
-    background: #6b734f;
-  }
-
-  /* Contenedor 3 columnas */
-  .container {
-    max-width: 1200px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 280px 1fr 280px;
-    gap: 16px;
-    padding: 16px 15px;
-  }
-
-  .box {
-    background: white;
-    border: 1px solid #d0d8c0;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .box h3 {
-    margin: 0;
-    background: #7a8457;
-    color: white;
-    padding: 10px 14px;
-    font-size: 15px;
-  }
-  .box .content {
-    padding: 12px;
-  }
-
-  .list a {
-    display: block;
-    color: #5c6b3f;
-    text-decoration: none;
-    padding: 7px 0;
-    border-bottom: 1px dotted #ccc;
-    font-size: 14px;
-  }
-  .list a:hover { color: #7a8457; }
-
-  /* Banner central destacado */
-  .featured-banner {
-    background: #e8f0e0;
-    border: 1px solid #b0c4a8;
-    padding: 0;
-    margin-bottom: 16px;
-    text-align: center;
-    position: relative;
-  }
-  .featured-banner img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .banner-text {
-    position: absolute;
-    bottom: 15px;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    padding: 10px;
-    font-size: 15px;
-    font-weight: bold;
-  }
-
-  .notice {
-    font-size: 14px;
-    margin: 8px 0;
-    line-height: 1.4;
-  }
-
-  /* Buscador */
-  .search-panel {
-    background: #f9faf7;
-    border: 1px solid #cfd6b6;
-    padding: 16px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-  }
-  .search-panel label {
-    font-weight: bold;
-    font-size: 14px;
-  }
-  .search-panel input {
-    width: 100%;
-    padding: 9px;
-    margin: 8px 0;
-    box-sizing: border-box;
-  }
-  .search-panel button {
-    padding: 9px 16px;
-    background: #7a8457;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  .search-panel button:hover { background: #6b734f; }
-
-  .result {
-    margin-top: 12px;
-    font-size: 14px;
-    line-height: 1.5;
-  }
-  .course {
-    border-bottom: 1px solid #eee;
-    padding: 8px 0;
-  }
-
-  /* Footer */
-  .footer {
-    background: #6b734f;
-    color: white;
-    text-align: center;
-    padding: 16px;
-    font-size: 13px;
-    margin-top: 20px;
-  }
-
-  @media (max-width: 980px) {
-    .container {
-      grid-template-columns: 1fr;
+  <style>
+    :root {
+      --verde-ie: #7a8457;
+      --verde-osc: #6b734f;
+      --gris-fondo: #f4f6f4;
+      --borde-suave: #d0d8c0;
     }
-    nav ul { justify-content: center; }
-  }
-</style>
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--gris-fondo);
+      color: #222;
+    }
+
+    img { max-width: 100%; height: auto; }
+
+    /* Barra superior pequeña */
+    .top-bar {
+      background: white;
+      font-size: 13px;
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
+      text-align: right;
+    }
+    .top-bar .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    .top-bar a {
+      color: #555;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+    .top-bar a:hover { text-decoration: underline; }
+
+    /* Header con logo */
+    header {
+      background: white;
+      border-bottom: 5px solid var(--verde-ie);
+    }
+    .header-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .logo img { height: 65px; }
+    .logo h1 {
+      font-size: 21px;
+      margin: 0;
+      color: var(--verde-osc);
+      line-height: 1.2;
+    }
+
+    /* Menú principal */
+    nav {
+      background: var(--verde-ie);
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    nav a {
+      display: block;
+      padding: 14px 22px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    nav a:hover { background: var(--verde-osc); }
+
+    /* Contenedor 3 columnas */
+    .container {
+      max-width: 1220px;
+      margin: 20px auto;
+      display: grid;
+      grid-template-columns: 300px 1fr 300px;
+      gap: 20px;
+      padding: 0 15px;
+    }
+
+    .box {
+      background: white;
+      border: 1px solid var(--borde-suave);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      transition: all 0.25s ease;
+    }
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+    .box h3 {
+      margin: 0;
+      background: var(--verde-ie);
+      color: white;
+      padding: 12px 16px;
+      font-size: 16px;
+    }
+    .box .content { padding: 16px; }
+
+    .list a {
+      display: block;
+      color: #5c6b3f;
+      text-decoration: none;
+      padding: 8px 0;
+      border-bottom: 1px dotted #ccc;
+      transition: all 0.2s;
+    }
+    .list a:hover {
+      color: var(--verde-ie);
+      padding-left: 10px;
+    }
+
+    /* Swiper carrusel */
+    .swiper {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
+    }
+    .swiper-slide {
+      position: relative;
+    }
+    .swiper-slide img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+    .slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.65);
+      color: white;
+      padding: 18px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    /* Buscador */
+    .search-panel {
+      background: #f9faf7;
+      border: 1px solid var(--borde-suave);
+      padding: 20px;
+      border-radius: 6px;
+      margin-bottom: 25px;
+    }
+    .search-panel input {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    .search-panel button {
+      width: 100%;
+      padding: 14px;
+      background: var(--verde-ie);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .search-panel button:hover { background: var(--verde-osc); }
+
+    .result {
+      margin-top: 15px;
+      padding: 15px;
+      background: #e8f0da;
+      border-radius: 6px;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--verde-osc);
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 1024px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<img src="https://i.imgur.com/g3QP0r7.png" alt="Encabezado IEEBEM" class="top-banner">
-
-<div class="top-bar">
-  <div class="wrap">
-    <a href="#">Portal Ciudadano</a>
-    <a href="#">Directorio</a>
-    <a href="#">Sitios del Gobierno de Morelos</a>
-  </div>
-</div>
-
-<header>
-  <div class="header-wrap">
-    <div class="logo">
-      <img src="https://iebem.morelos.gob.mx/sites/default/files/logo_iebem_0.png" alt="Logo IEEBEM">
-      <h1>Instituto de la Educación Básica<br>del Estado de Morelos</h1>
+  <!-- Barra superior -->
+  <div class="top-bar">
+    <div class="wrap">
+      <a href="#">Portal Ciudadano</a>
+      <a href="#">Directorio</a>
+      <a href="#">Sitios del Gobierno de Morelos</a>
     </div>
   </div>
-</header>
 
-<nav>
-  <ul>
-    <li><a href="#">INICIO</a></li>
-    <li><a href="#">TRÁMITES Y SERVICIOS</a></li>
-    <li><a href="#">ESTRUCTURA</a></li>
-    <li><a href="#">NOTICIAS</a></li>
-    <li><a href="#">TRANSPARENCIA</a></li>
-    <li><a href="#">CONTACTO</a></li>
-  </ul>
-</nav>
-
-<div class="container">
-
-  <!-- Columna izquierda -->
-  <aside class="box">
-    <h3>Trámites y Servicios</h3>
-    <div class="content list">
-      <a href="#">→ Cheques Prontos a Caducar. ¡Aviso!</a>
-      <a href="#">→ Trámite de Becas en Escuelas Particulares.</a>
-      <a href="#">→ Emisión de Certificaciones de Estudio.</a>
-      <a href="#">→ Constancias de Servicio.</a>
-      <a href="#">→ Sistema de control de pago</a>
-      <a href="#">→ Trámite de revalidación de estudios</a>
-      <a href="#">→ Ver más...</a>
-    </div>
-  </aside>
-
-  <!-- Columna central -->
-  <main>
-
-    <!-- Banner destacado (simulando el de la captura) -->
-    <div class="featured-banner">
-      <img src="https://i.imgur.com/EXAMPLE-contraloria-morelos.jpg" alt="Declaración Patrimonial">
-      <div class="banner-text">
-        No olvides realizar tu DECLARACIÓN DE SITUACIÓN PATRIMONIAL Y DE INTERESES<br>
-        en su modalidad de MODIFICACIÓN 2025<br>
-        01 al 31 de mayo • declaracionet.morelos.gob.mx
+  <!-- Header -->
+  <header>
+    <div class="header-wrap">
+      <div class="logo">
+        <img src="https://iebem.morelos.gob.mx/sites/default/files/logo_iebem_0.png" alt="Logo IEEBEM">
+        <h1>Instituto de la Educación Básica<br>del Estado de Morelos</h1>
       </div>
     </div>
+  </header>
 
-    <div class="search-panel">
-      <label>Validación de cursos / constancias por CURP</label>
-      <input type="text" id="curpInput" placeholder="Ingresa tu CURP (18 caracteres)">
-      <button onclick="buscar()">Buscar</button>
-      <div id="resultado" class="result"></div>
-    </div>
+  <!-- Menú -->
+  <nav>
+    <ul>
+      <li><a href="#">INICIO</a></li>
+      <li><a href="#">TRÁMITES Y SERVICIOS</a></li>
+      <li><a href="#">ESTRUCTURA</a></li>
+      <li><a href="#">NOTICIAS</a></li>
+      <li><a href="#">TRANSPARENCIA</a></li>
+      <li><a href="#">CONTACTO</a></li>
+    </ul>
+  </nav>
 
-    <div class="box">
-      <h3>Buzón Ciudadano en Línea</h3>
-      <div class="content">
-        <p>Envía tus comentarios, quejas, sugerencias o felicitaciones de forma sencilla.</p>
-        <p style="text-align:center; margin:15px 0;">
-          <strong>BUZÓN CIUDADANO EN LÍNEA</strong>
-        </p>
-      </div>
-    </div>
+  <!-- Contenido principal -->
+  <div class="container">
 
-    <div class="box">
-      <h3>Oficina Virtual</h3>
-      <div class="content" style="text-align:center;">
-        <p>Consulta en línea trámites y servicios</p>
-        <p><strong>OFICINA VIRTUAL • CONSULTA</strong></p>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- Columna derecha -->
-  <aside>
-
-    <div class="box">
-      <h3>Últimas Noticias »</h3>
-      <div class="content">
-        <div class="notice">Participan docentes en talleres sobre desarrollo educativo</div>
-        <div class="notice">Convocan a estudiantes a concurso de interpretación del Himno Nacional</div>
-        <div class="notice">Arranca entrega de materiales escolares a escuelas afectadas por el sismo 19S</div>
-      </div>
-    </div>
-
-    <div class="box" style="margin-top:16px;">
-      <h3>Programas</h3>
+    <!-- Columna izquierda -->
+    <aside class="box">
+      <h3>Trámites y Servicios</h3>
       <div class="content list">
-        <a href="#">Programa para la Inclusión y Equidad Educativa - Educación Elemental</a>
+        <a href="#">→ Cheques Prontos a Caducar. ¡Aviso!</a>
+        <a href="#">→ Trámite de Becas en Escuelas Particulares.</a>
+        <a href="#">→ Emisión de Certificaciones de Estudio.</a>
+        <a href="#">→ Constancias de Servicio.</a>
+        <a href="#">→ Sistema de control de pago</a>
+        <a href="#">→ Trámite de revalidación de estudios</a>
+        <a href="#">→ Trámite de revalidación de educación básica</a>
+        <a href="#">→ Ver más...</a>
       </div>
-    </div>
+    </aside>
 
-  </aside>
+    <!-- Columna central -->
+    <main>
 
-</div>
+      <!-- Carrusel con Swiper -->
+      <div class="swiper" id="mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="https://i.imgur.com/example-declaracion-patrimonial.jpg" alt="Declaración">
+            <div class="slide-caption">
+              No olvides realizar tu DECLARACIÓN DE SITUACIÓN PATRIMONIAL Y DE INTERESES<br>
+              Modalidad MODIFICACIÓN 2025 • 01 al 31 de mayo • declaracionet.morelos.gob.mx
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="https://i.imgur.com/example-talleres-docentes.jpg" alt="Talleres">
+            <div class="slide-caption">
+              Participan docentes en talleres sobre desarrollo educativo
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="https://i.imgur.com/example-materiales-escolares.jpg" alt="Materiales">
+            <div class="slide-caption">
+              Arranca entrega de materiales escolares a escuelas afectadas
+            </div>
+          </div>
+        </div>
+        <!-- Botones de navegación -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <!-- Paginación -->
+        <div class="swiper-pagination"></div>
+      </div>
 
-<div class="footer">
-  Instituto de la Educación Básica del Estado de Morelos © 2026 • Plataforma de ejemplo para GitHub Pages
-</div>
+      <!-- Buscador CURP -->
+      <div class="search-panel">
+        <label>Validación de cursos / constancias por CURP</label>
+        <input type="text" id="curpInput" placeholder="Ingresa tu CURP (18 caracteres)" maxlength="18">
+        <button onclick="buscar()">Buscar</button>
+        <div id="resultado" class="result"></div>
+      </div>
 
-<script>
-// Tu script de búsqueda por CURP (lo mantengo igual)
-const baseCursos = [
-  { curp: "BIDD971230HASRZM02", nombre: "Damián Briones Díaz", cursos: [
-    {nombre:"Nueva Escuela Mexicana", fecha:"2025-10-12", folio:"ACD1029384"},
-    {nombre:"Planeación didáctica", fecha:"2025-11-03", folio:"ACD3948572"}
-  ]},
-  { curp: "AAAA000000HDFXXX00", nombre: "Ejemplo Docente", cursos: [
-    {nombre:"Evaluación formativa", fecha:"2025-09-01", folio:"ACD5588221"}
-  ]}
-];
+      <div class="box">
+        <h3>Buzón Ciudadano en Línea</h3>
+        <div class="content">
+          <p>Envía tus comentarios, quejas, sugerencias o felicitaciones de forma sencilla.</p>
+          <p style="text-align:center; font-weight:bold; font-size:17px; margin:20px 0;">
+            BUZÓN CIUDADANO EN LÍNEA
+          </p>
+        </div>
+      </div>
 
-function buscar(){
-  const curp = document.getElementById('curpInput').value.trim().toUpperCase();
-  const res = document.getElementById('resultado');
-  res.innerHTML = "";
+      <div class="box">
+        <h3>Oficina Virtual</h3>
+        <div class="content" style="text-align:center;">
+          <p>Consulta en línea trámites y servicios</p>
+          <p style="font-weight:bold; font-size:17px; margin:20px 0;">
+            OFICINA VIRTUAL • CONSULTA
+          </p>
+        </div>
+      </div>
 
-  if(!curp){
-    res.innerHTML = "Ingresa una CURP válida (18 caracteres).";
-    return;
-  }
+    </main>
 
-  if(curp.length !== 18){
-    res.innerHTML = "La CURP debe tener exactamente 18 caracteres.";
-    return;
-  }
+    <!-- Columna derecha -->
+    <aside>
 
-  const persona = baseCursos.find(p => p.curp === curp);
+      <div class="box">
+        <h3>Últimas Noticias »</h3>
+        <div class="content">
+          <div style="margin:12px 0;">Participan docentes en talleres sobre desarrollo educativo</div>
+          <div style="margin:12px 0;">Convocan a estudiantes a concurso de interpretación del Himno Nacional</div>
+          <div style="margin:12px 0;">Arranca entrega de materiales escolares a escuelas afectadas por el sismo 19S</div>
+        </div>
+      </div>
 
-  if(!persona){
-    res.innerHTML = "No se encontraron registros para esta CURP.";
-    return;
-  }
+      <div class="box" style="margin-top:25px;">
+        <h3>Programas</h3>
+        <div class="content list">
+          <a href="#">Programa para la Inclusión y Equidad Educativa - Educación Elemental</a>
+        </div>
+      </div>
 
-  let html = `<strong>${persona.nombre}</strong><br><br>Cursos validados:<br>`;
-  persona.cursos.forEach(c => {
-    html += `<div class='course'>• ${c.nombre} - ${c.fecha} - Folio: ${c.folio}</div>`;
-  });
-  res.innerHTML = html;
-}
+    </aside>
 
-// Soporte para CURP por URL (?curp=XXXX)
-const params = new URLSearchParams(window.location.search);
-const curpQR = params.get('curp');
-if(curpQR){
-  document.getElementById('curpInput').value = curpQR.toUpperCase();
-  buscar();
-}
-</script>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    Instituto de la Educación Básica del Estado de Morelos © 2026 • Ejemplo educativo para GitHub Pages
+  </footer>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+  <!-- Inicializar Swiper -->
+  <script>
+    const swiper = new Swiper('#mySwiper', {
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      effect: 'fade',          // puedes cambiar a 'slide', 'cube', 'coverflow', etc.
+      fadeEffect: { crossFade: true },
+    });
+  </script>
+
+  <!-- Tu script de búsqueda por CURP -->
+  <script>
+    const baseCursos = [
+      {
+        curp: "BIDD971230HASRZM02",
+        nombre: "Damián Briones Díaz",
+        cursos: [
+          {nombre:"Nueva Escuela Mexicana", fecha:"2025-10-12", folio:"ACD1029384"},
+          {nombre:"Planeación didáctica", fecha:"2025-11-03", folio:"ACD3948572"}
+        ]
+      },
+      {
+        curp: "AAAA000000HDFXXX00",
+        nombre: "Ejemplo Docente",
+        cursos: [
+          {nombre:"Evaluación formativa", fecha:"2025-09-01", folio:"ACD5588221"}
+        ]
+      }
+    ];
+
+    function buscar() {
+      const curp = document.getElementById('curpInput').value.trim().toUpperCase();
+      const res = document.getElementById('resultado');
+      res.innerHTML = "";
+
+      if (curp.length !== 18) {
+        res.innerHTML = "La CURP debe tener exactamente 18 caracteres.";
+        return;
+      }
+
+      const persona = baseCursos.find(p => p.curp === curp);
+
+      if (!persona) {
+        res.innerHTML = "No se encontraron registros para esta CURP.";
+        return;
+      }
+
+      let html = `<strong>${persona.nombre}</strong><br><br><b>Cursos/Constancias:</b><br>`;
+      persona.cursos.forEach(c => {
+        html += `• ${c.nombre} • ${c.fecha} • Folio: ${c.folio}<br>`;
+      });
+      res.innerHTML = html;
+    }
+
+    // Soporte para CURP vía URL (?curp=XXXX)
+    const params = new URLSearchParams(window.location.search);
+    const curpQR = params.get('curp');
+    if (curpQR) {
+      document.getElementById('curpInput').value = curpQR.toUpperCase();
+      buscar();
+    }
+  </script>
 
 </body>
 </html>
