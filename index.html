@@ -6,12 +6,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#f4f6f4;color:#222}
+
+.top-image{
+  width:100%;
+  display:block;
+}
+
 header{background:#ffffff;border-bottom:4px solid #7a8457}
 .header-wrap{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px}
 .logo{display:flex;align-items:center;gap:12px}
 .logo img{height:48px}
 .logo h1{font-size:18px;margin:0;color:#6b734f}
 .top-links a{font-size:13px;color:#666;text-decoration:none;margin-left:12px}
+
 nav{background:#7a8457}
 nav ul{list-style:none;margin:0;padding:0;max-width:1200px;margin:auto;display:flex}
 nav a{display:block;padding:12px 16px;color:white;text-decoration:none;font-size:14px}
@@ -46,10 +53,13 @@ nav a:hover{background:#6b734f}
 </head>
 <body>
 
+<!-- Imagen superior -->
+<img src="https://i.imgur.com/g3QP0r7.png" class="top-image" alt="Encabezado institucional">
+
 <header>
   <div class="header-wrap">
     <div class="logo">
-      <!-- IMPORTANTE: usa tu propio logo, no uno institucional oficial -->
+      <!-- IMPORTANTE: usa tu propio logo -->
       <img src="https://dummyimage.com/200x80/7a8457/ffffff&text=TU+LOGO" alt="Logo">
       <h1>Portal Académico de Validación de Cursos</h1>
     </div>
@@ -202,8 +212,7 @@ function buscar(){
   res.innerHTML = html;
 }
 
-// Permite que un QR redirija así:
-// https://tusitio.github.io/tu-repo/?curp=CURP
+// Soporte para QR: ?curp=XXXXXXXX
 const params = new URLSearchParams(window.location.search);
 const curpQR = params.get('curp');
 if(curpQR){
@@ -214,4 +223,3 @@ if(curpQR){
 
 </body>
 </html>
-
