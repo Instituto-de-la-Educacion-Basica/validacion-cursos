@@ -3,376 +3,533 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instituto de la Educación Básica del Estado de Morelos - IEEBEM</title>
+  <title>Portal Académico de Validación - Cursos</title>
 
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
 
   <style>
-    :root {
-      --verde-ie: #7a8457;
-      --verde-osc: #6b734f;
-      --gris-fondo: #f4f6f4;
-      --borde-suave: #d0d8c0;
+    :root{
+      --verde-ie:#7a8457;
+      --verde-osc:#6b734f;
+      --gris-fondo:#f4f6f4;
+      --borde-suave:#d0d8c0;
+      --gris-linea:#e5e5e5;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--gris-fondo);
+      color:#222;
+      line-height:1.5;
+    }
+    img{max-width:100%;height:auto;display:block}
+
+    /* Barra superior */
+    .top-bar{
+      background:#fff;
+      font-size:13px;
+      padding:8px 0;
+      border-bottom:1px solid #ddd;
+      text-align:right;
+    }
+    .top-bar .wrap{
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 15px;
+    }
+    .top-bar a{
+      color:#555;
+      margin-left:20px;
+      text-decoration:none;
+    }
+    .top-bar a:hover{text-decoration:underline}
+
+    /* Header */
+    header{
+      background:#fff;
+      border-bottom:5px solid var(--verde-ie);
+      padding:15px 0;
+    }
+    .header-wrap{
+      max-width:1200px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      padding:0 15px;
+    }
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .logo img{height:72px}
+    .logo .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+    .logo .brand strong{color:var(--verde-osc); font-size:16px}
+    .logo .brand span{color:#666; font-size:13px}
+
+    /* Menú */
+    nav{background:var(--verde-ie)}
+    nav ul{
+      list-style:none;
+      margin:0 auto;
+      padding:0;
+      max-width:1200px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    nav a{
+      display:block;
+      padding:14px 18px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+      transition:background .25s;
+    }
+    nav a:hover{background:var(--verde-osc)}
+
+    /* Contenedor principal (página 1) */
+    .container{
+      max-width:1220px;
+      margin:20px auto;
+      display:grid;
+      grid-template-columns:300px 1fr 300px;
+      gap:20px;
+      padding:0 15px;
     }
 
-    * { box-sizing: border-box; }
+    .box{
+      background:#fff;
+      border:1px solid var(--borde-suave);
+      border-radius:6px;
+      overflow:hidden;
+      box-shadow:0 3px 10px rgba(0,0,0,.08);
+      transition:transform .2s, box-shadow .2s;
+    }
+    .box:hover{
+      transform:translateY(-4px);
+      box-shadow:0 8px 20px rgba(0,0,0,.12);
+    }
+    .box h3{
+      margin:0;
+      background:var(--verde-ie);
+      color:#fff;
+      padding:12px 16px;
+      font-size:16px;
+    }
+    .box .content{padding:16px}
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--gris-fondo);
-      color: #222;
-      line-height: 1.5;
+    .list a{
+      display:block;
+      color:#5c6b3f;
+      text-decoration:none;
+      padding:8px 0;
+      border-bottom:1px dotted #ccc;
+      transition:all .2s;
     }
+    .list a:hover{color:var(--verde-ie); padding-left:10px}
 
-    img { max-width: 100%; height: auto; display: block; }
-
-    /* Barra superior pequeña */
-    .top-bar {
-      background: white;
-      font-size: 13px;
-      padding: 8px 0;
-      border-bottom: 1px solid #ddd;
-      text-align: right;
+    /* Carrusel */
+    .swiper{
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:0 4px 15px rgba(0,0,0,.1);
+      margin-bottom:25px;
     }
-    .top-bar .wrap {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 15px;
+    .swiper-slide img{
+      width:100%;
+      height:240px;
+      object-fit:cover;
     }
-    .top-bar a {
-      color: #555;
-      margin-left: 20px;
-      text-decoration: none;
-    }
-    .top-bar a:hover { text-decoration: underline; }
-
-    /* Header con logo SOLO a la izquierda */
-    header {
-      background: white;
-      border-bottom: 5px solid var(--verde-ie);
-      padding: 15px 0;
-    }
-    .header-wrap {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      padding: 0 15px;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-    .logo img {
-      height: 80px;  /* Tamaño ajustado para verse bien en desktop y móvil */
-    }
-
-    /* Menú principal */
-    nav {
-      background: var(--verde-ie);
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    nav a {
-      display: block;
-      padding: 14px 18px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    nav a:hover { background: var(--verde-osc); }
-
-    /* Contenedor principal */
-    .container {
-      max-width: 1220px;
-      margin: 20px auto;
-      display: grid;
-      grid-template-columns: 300px 1fr 300px;
-      gap: 20px;
-      padding: 0 15px;
-    }
-
-    .box {
-      background: white;
-      border: 1px solid var(--borde-suave);
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      transition: all 0.25s ease;
-    }
-    .box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    }
-    .box h3 {
-      margin: 0;
-      background: var(--verde-ie);
-      color: white;
-      padding: 12px 16px;
-      font-size: 16px;
-    }
-    .box .content { padding: 16px; }
-
-    .list a {
-      display: block;
-      color: #5c6b3f;
-      text-decoration: none;
-      padding: 8px 0;
-      border-bottom: 1px dotted #ccc;
-      transition: all 0.2s;
-    }
-    .list a:hover {
-      color: var(--verde-ie);
-      padding-left: 10px;
-    }
-
-    /* Swiper carrusel */
-    .swiper {
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      margin-bottom: 25px;
-    }
-    .swiper-slide {
-      position: relative;
-    }
-    .swiper-slide img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-    }
-    .slide-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0,0,0,0.65);
-      color: white;
-      padding: 18px;
-      text-align: center;
-      font-size: 15px;
-      font-weight: bold;
+    .slide-caption{
+      position:absolute;
+      bottom:0;
+      left:0;
+      right:0;
+      background:rgba(0,0,0,.65);
+      color:#fff;
+      padding:14px 16px;
+      text-align:center;
+      font-size:14px;
+      font-weight:bold;
     }
 
     /* Buscador */
-    .search-panel {
-      background: #f9faf7;
-      border: 1px solid var(--borde-suave);
-      padding: 20px;
-      border-radius: 6px;
-      margin-bottom: 25px;
+    .search-panel{
+      background:#f9faf7;
+      border:1px solid var(--borde-suave);
+      padding:20px;
+      border-radius:6px;
+      margin-bottom:25px;
     }
-    .search-panel input {
-      width: 100%;
-      padding: 12px;
-      margin: 12px 0;
-      border: 1px solid #999;
-      border-radius: 4px;
-      font-size: 16px;
+    .search-panel label{font-weight:bold;font-size:14px}
+    .search-panel input{
+      width:100%;
+      padding:12px;
+      margin:12px 0;
+      border:1px solid #999;
+      border-radius:4px;
+      font-size:16px;
     }
-    .search-panel button {
-      width: 100%;
-      padding: 14px;
-      background: var(--verde-ie);
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
+    .search-panel button{
+      width:100%;
+      padding:14px;
+      background:var(--verde-ie);
+      color:#fff;
+      border:none;
+      border-radius:4px;
+      font-size:16px;
+      cursor:pointer;
+      transition:background .25s;
     }
-    .search-panel button:hover { background: var(--verde-osc); }
+    .search-panel button:hover{background:var(--verde-osc)}
+    .mini-note{font-size:12px;color:#666;margin-top:10px}
 
-    .result {
-      margin-top: 15px;
-      padding: 15px;
-      background: #e8f0da;
-      border-radius: 6px;
-      line-height: 1.6;
+    /* Página 2: pantalla de resultado estilo "Consulta tu QR" */
+    .page{
+      display:none;
+      max-width:980px;
+      margin:22px auto;
+      padding:0 15px;
+    }
+    .page.active{display:block}
+
+    .qr-header{
+      background:#fff;
+      border:1px solid var(--gris-linea);
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 6px 18px rgba(0,0,0,.08);
+    }
+    .qr-header-top{
+      padding:18px 18px 10px;
+      border-bottom:1px solid var(--gris-linea);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .qr-title{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+    .qr-title strong{
+      font-size:18px;
+      color:#111;
+    }
+    .qr-title span{
+      font-size:13px;
+      color:#666;
+    }
+    .qr-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid var(--gris-linea);
+      background:#fff;
+      cursor:pointer;
+      font-weight:bold;
+      font-size:13px;
+    }
+    .btn.primary{
+      background:var(--verde-ie);
+      border-color:var(--verde-ie);
+      color:#fff;
+    }
+    .btn.primary:hover{background:var(--verde-osc); border-color:var(--verde-osc)}
+    .btn:hover{filter:brightness(.98)}
+
+    .qr-body{
+      padding:18px;
+      display:grid;
+      grid-template-columns: 1fr 280px;
+      gap:18px;
     }
 
-    /* Footer */
-    footer {
-      background: var(--verde-osc);
-      color: white;
-      text-align: center;
-      padding: 25px;
-      margin-top: 40px;
-      font-size: 14px;
+    .card{
+      background:#fff;
+      border:1px solid var(--gris-linea);
+      border-radius:10px;
+      padding:14px;
+    }
+    .section-title{
+      font-weight:bold;
+      margin:0 0 10px;
+      font-size:14px;
+      color:#222;
+    }
+    .kv{
+      display:grid;
+      grid-template-columns: 180px 1fr;
+      gap:8px 10px;
+      font-size:14px;
+    }
+    .kv .k{color:#333; font-weight:bold}
+    .kv .v{color:#222}
+    .hr{height:1px;background:var(--gris-linea);margin:12px 0}
+
+    .courses{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .course-item{
+      border:1px solid var(--gris-linea);
+      border-radius:10px;
+      padding:12px;
+      background:#fafafa;
+      font-size:14px;
+    }
+    .course-item strong{display:block;margin-bottom:6px}
+    .muted{color:#666;font-size:12px;margin-top:8px}
+
+    .qr-box{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-start;
+    }
+    .qr-img{
+      width:220px;
+      height:220px;
+      border:1px solid var(--gris-linea);
+      border-radius:12px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:bold;
+      color:#666;
+      padding:10px;
+      text-align:center;
+    }
+    .qr-link{
+      font-size:12px;
+      color:#666;
+      word-break:break-all;
+      text-align:center;
     }
 
-    /* Responsive: muy importante para celular y monitor */
-    @media (max-width: 1024px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
-      .logo img {
-        height: 65px;
-      }
+    footer{
+      background:var(--verde-osc);
+      color:#fff;
+      text-align:center;
+      padding:25px;
+      margin-top:40px;
+      font-size:14px;
     }
 
-    @media (max-width: 600px) {
-      nav ul {
-        flex-direction: column;
-        text-align: center;
-      }
-      nav a {
-        padding: 12px;
-      }
-      .swiper-slide img {
-        height: 180px;
-      }
-      .logo img {
-        height: 55px;
-      }
+    /* Responsive */
+    @media(max-width:1024px){
+      .container{grid-template-columns:1fr}
+      .logo img{height:60px}
+      .qr-body{grid-template-columns:1fr}
+      .qr-img{width:200px;height:200px}
+    }
+    @media(max-width:600px){
+      nav ul{flex-direction:column;text-align:center}
+      nav a{padding:12px}
+      .swiper-slide img{height:180px}
+      .logo img{height:54px}
+      .kv{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
 
+  <!-- Barra superior -->
   <div class="top-bar">
     <div class="wrap">
-      <a href="#">Portal Ciudadano</a>
+      <a href="#">Portal docente</a>
       <a href="#">Directorio</a>
-      <a href="#">Sitios del Gobierno de Morelos</a>
+      <a href="#">Soporte</a>
     </div>
   </div>
 
+  <!-- Header -->
   <header>
     <div class="header-wrap">
       <div class="logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/SEP_Logo_%282024%29.png" alt="Secretaría de Educación Pública">
+        <!-- CAMBIA ESTE LOGO POR EL TUYO (Imgur o archivo) -->
+        <img src="TU_LOGO_AQUI.png" alt="Logo de la plataforma">
+        <div class="brand">
+          <strong>Plataforma Académica Privada</strong>
+          <span>Validación de cursos y constancias</span>
+        </div>
       </div>
     </div>
   </header>
 
+  <!-- Menú -->
   <nav>
     <ul>
-      <li><a href="#">INICIO</a></li>
-      <li><a href="#">TRÁMITES Y SERVICIOS</a></li>
-      <li><a href="#">ESTRUCTURA</a></li>
-      <li><a href="#">NOTICIAS</a></li>
-      <li><a href="#">TRANSPARENCIA</a></li>
-      <li><a href="#">CONTACTO</a></li>
+      <li><a href="#" onclick="volverInicio(event)">INICIO</a></li>
+      <li><a href="#" onclick="volverInicio(event)">TRÁMITES Y SERVICIOS</a></li>
+      <li><a href="#" onclick="volverInicio(event)">ESTRUCTURA</a></li>
+      <li><a href="#" onclick="volverInicio(event)">NOTICIAS</a></li>
+      <li><a href="#" onclick="volverInicio(event)">TRANSPARENCIA</a></li>
+      <li><a href="#" onclick="volverInicio(event)">CONTACTO</a></li>
     </ul>
   </nav>
 
-  <div class="container">
+  <!-- =================== PÁGINA 1 (PORTAL) =================== -->
+  <div id="pageHome" class="page active">
+    <div class="container">
 
-    <aside class="box">
-      <h3>Trámites y Servicios</h3>
-      <div class="content list">
-        <a href="#">→ Cheques Prontos a Caducar. ¡Aviso!</a>
-        <a href="#">→ Trámite de Becas en Escuelas Particulares.</a>
-        <a href="#">→ Emisión de Certificaciones de Estudio.</a>
-        <a href="#">→ Constancias de Servicio.</a>
-        <a href="#">→ Sistema de control de pago</a>
-        <a href="#">→ Trámite de revalidación de estudios</a>
-        <a href="#">→ Trámite de revalidación de educación básica</a>
-        <a href="#">→ Ver más...</a>
-      </div>
-    </aside>
-
-    <main>
-
-      <div class="swiper" id="mySwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="https://i.imgur.com/example-declaracion-patrimonial.jpg" alt="Declaración">
-            <div class="slide-caption">
-              No olvides realizar tu DECLARACIÓN DE SITUACIÓN PATRIMONIAL Y DE INTERESES<br>
-              Modalidad MODIFICACIÓN 2025 • 01 al 31 de mayo • declaracionet.morelos.gob.mx
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="https://i.imgur.com/example-talleres-docentes.jpg" alt="Talleres">
-            <div class="slide-caption">
-              Participan docentes en talleres sobre desarrollo educativo
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img src="https://i.imgur.com/example-materiales-escolares.jpg" alt="Materiales">
-            <div class="slide-caption">
-              Arranca entrega de materiales escolares a escuelas afectadas
-            </div>
-          </div>
-        </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
-      </div>
-
-      <div class="search-panel">
-        <label>Validación de cursos / constancias por CURP</label>
-        <input type="text" id="curpInput" placeholder="Ingresa tu CURP (18 caracteres)" maxlength="18">
-        <button onclick="buscar()">Buscar</button>
-        <div id="resultado" class="result"></div>
-      </div>
-
-      <div class="box">
-        <h3>Buzón Ciudadano en Línea</h3>
-        <div class="content">
-          <p>Envía tus comentarios, quejas, sugerencias o felicitaciones de forma sencilla.</p>
-          <p style="text-align:center; font-weight:bold; font-size:17px; margin:20px 0;">
-            BUZÓN CIUDADANO EN LÍNEA
-          </p>
-        </div>
-      </div>
-
-      <div class="box">
-        <h3>Oficina Virtual</h3>
-        <div class="content" style="text-align:center;">
-          <p>Consulta en línea trámites y servicios</p>
-          <p style="font-weight:bold; font-size:17px; margin:20px 0;">
-            OFICINA VIRTUAL • CONSULTA
-          </p>
-        </div>
-      </div>
-
-    </main>
-
-    <aside>
-
-      <div class="box">
-        <h3>Últimas Noticias »</h3>
-        <div class="content">
-          <div style="margin:12px 0;">Participan docentes en talleres sobre desarrollo educativo</div>
-          <div style="margin:12px 0;">Convocan a estudiantes a concurso de interpretación del Himno Nacional</div>
-          <div style="margin:12px 0;">Arranca entrega de materiales escolares a escuelas afectadas por el sismo 19S</div>
-        </div>
-      </div>
-
-      <div class="box" style="margin-top:25px;">
-        <h3>Programas</h3>
+      <aside class="box">
+        <h3>Trámites y Servicios</h3>
         <div class="content list">
-          <a href="#">Programa para la Inclusión y Equidad Educativa - Educación Elemental</a>
+          <a href="#" onclick="volverInicio(event)">→ Validación de cursos</a>
+          <a href="#" onclick="volverInicio(event)">→ Emisión de constancias</a>
+          <a href="#" onclick="volverInicio(event)">→ Registro de docentes</a>
+          <a href="#" onclick="volverInicio(event)">→ Convocatorias</a>
+          <a href="#" onclick="volverInicio(event)">→ Soporte</a>
+          <a href="#" onclick="volverInicio(event)">→ Ver más...</a>
+        </div>
+      </aside>
+
+      <main>
+        <!-- Carrusel -->
+        <div class="swiper" id="mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="https://i.imgur.com/g3QP0r7.png" alt="Aviso 1">
+              <div class="slide-caption">Aviso académico • Información para docentes</div>
+            </div>
+            <div class="swiper-slide">
+              <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1600&auto=format&fit=crop" alt="Aviso 2">
+              <div class="slide-caption">Cursos y talleres • Actualización docente</div>
+            </div>
+            <div class="swiper-slide">
+              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600&auto=format&fit=crop" alt="Aviso 3">
+              <div class="slide-caption">Convocatorias • Información general</div>
+            </div>
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Buscador -->
+        <div class="search-panel">
+          <label>Validación de cursos / constancias por CURP</label>
+          <input type="text" id="curpInput" placeholder="Ingresa tu CURP (18 caracteres)" maxlength="18" autocomplete="off">
+          <button onclick="buscar()">Buscar</button>
+          <div class="mini-note">
+            Tip: también funciona por QR con: <b>?curp=TU_CURP</b>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>Anuncios</h3>
+          <div class="content">
+            <div>• Convocatoria de actualización docente abierta.</div>
+            <div>• Taller virtual de planeación didáctica.</div>
+            <div>• Publicación de calendario de cursos.</div>
+          </div>
+        </div>
+
+        <div class="box" style="margin-top:20px;">
+          <h3>Oficina virtual</h3>
+          <div class="content" style="text-align:center;">
+            <p>Consulta en línea trámites y servicios</p>
+            <p style="font-weight:bold; font-size:17px; margin:20px 0;">
+              OFICINA VIRTUAL • CONSULTA
+            </p>
+          </div>
+        </div>
+      </main>
+
+      <aside>
+        <div class="box">
+          <h3>Últimas Noticias »</h3>
+          <div class="content">
+            <div style="margin:12px 0;">Participan docentes en talleres de formación.</div>
+            <div style="margin:12px 0;">Se publica calendario académico de cursos.</div>
+            <div style="margin:12px 0;">Actualización de lineamientos internos.</div>
+          </div>
+        </div>
+
+        <div class="box" style="margin-top:25px;">
+          <h3>Video informativo</h3>
+          <div class="content">
+            <iframe width="100%" height="220"
+              src="https://www.youtube.com/embed/5MgBikgcWnY"
+              title="YouTube video" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  <!-- fin .container -->
+  </div>
+  <!-- fin pageHome -->
+
+  <!-- =================== PÁGINA 2 (RESULTADO / CONSULTA QR) =================== -->
+  <div id="pageQR" class="page">
+    <div class="qr-header">
+
+      <div class="qr-header-top">
+        <div class="qr-title">
+          <strong>Sistema Integral de Formación Continua</strong>
+          <span>Consulta tu QR</span>
+        </div>
+
+        <div class="qr-actions">
+          <button class="btn" onclick="volverInicio()">Volver</button>
+          <button class="btn primary" onclick="copiarEnlace()">Copiar enlace</button>
         </div>
       </div>
 
-    </aside>
+      <div class="qr-body">
+        <div>
+          <div class="card">
+            <p class="section-title">Datos del participante</p>
+            <div id="datosParticipante" class="kv"></div>
 
+            <div class="hr"></div>
+
+            <p class="section-title">Oferta cursada</p>
+            <div id="listaCursos" class="courses"></div>
+
+            <div class="muted">
+              *Esta información es de consulta. Para dudas o aclaraciones, contacta al soporte de la plataforma.
+            </div>
+          </div>
+        </div>
+
+        <div class="qr-box">
+          <div class="qr-img" id="qrBox">
+            QR<br>(representación)
+          </div>
+          <div class="qr-link" id="qrLinkText"></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <footer>
-    Instituto de la Educación Básica del Estado de Morelos © 2026 • Ejemplo educativo
+    Plataforma privada de validación académica © 2026 • Ejemplo educativo
   </footer>
 
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
   <script>
-    // Inicializar Swiper
+    // Swiper
     const swiper = new Swiper('#mySwiper', {
       loop: true,
       autoplay: { delay: 5000, disableOnInteraction: false },
@@ -382,63 +539,159 @@
       fadeEffect: { crossFade: true }
     });
 
-    // Datos de ejemplo
+    // ======= BASE DE DATOS (aquí agregas personas) =======
     const baseCursos = [
       {
         curp: "BIDD971230HASRZM02",
-        nombre: "Damián Briones Díaz",
+        primerApellido: "BRIONES",
+        segundoApellido: "DÍAZ",
+        nombres: "DAMIÁN",
+        email: "damian.brionesdiaz@iea.edu.mx",
+        institucionFormadora: "Centro de Actualización del Magisterio",
         cursos: [
-          {nombre:"Nueva Escuela Mexicana", fecha:"2025-10-12", folio:"ACD1029384"},
-          {nombre:"Planeación didáctica", fecha:"2025-11-03", folio:"ACD3948572"}
+          { folio:"ACD1029384", nombre:"Nueva Escuela Mexicana", tipo:"Taller", duracion:"60 hrs", estatus:"CONCLUIDO", fecha:"2025-10-12" },
+          { folio:"ACD3948572", nombre:"Planeación didáctica", tipo:"Curso", duracion:"40 hrs", estatus:"CONCLUIDO", fecha:"2025-11-03" }
         ]
       },
       {
         curp: "AAAA000000HDFXXX00",
-        nombre: "Ejemplo Docente",
+        primerApellido: "EJEMPLO",
+        segundoApellido: "DOCENTE",
+        nombres: "PRUEBA",
+        email: "correo@ejemplo.com",
+        institucionFormadora: "Plataforma Académica Privada",
         cursos: [
-          {nombre:"Evaluación formativa", fecha:"2025-09-01", folio:"ACD5588221"}
+          { folio:"ACD5588221", nombre:"Evaluación formativa", tipo:"Curso", duracion:"20 hrs", estatus:"CONCLUIDO", fecha:"2025-09-01" }
         ]
       }
     ];
 
-    function buscar() {
-      const curp = document.getElementById('curpInput').value.trim().toUpperCase();
-      const res = document.getElementById('resultado');
-      res.innerHTML = "";
+    // ======= navegación de páginas =======
+    function mostrarPagina(id){
+      document.getElementById('pageHome').classList.remove('active');
+      document.getElementById('pageQR').classList.remove('active');
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
 
-      if (curp.length !== 18) {
+    function volverInicio(e){
+      if(e) e.preventDefault();
+      mostrarPagina('pageHome');
+      // limpiamos campo y resultado visual
+      const input = document.getElementById('curpInput');
+      if(input) input.focus();
+      // opcional: quitar curp de la url si estaba
+      if(history.replaceState){
+        const clean = window.location.origin + window.location.pathname;
+        history.replaceState({}, document.title, clean);
+      }
+    }
+
+    // ======= buscar =======
+    function buscar(){
+      const curp = document.getElementById('curpInput').value.trim().toUpperCase();
+
+      if(curp.length !== 18){
         alert("La CURP debe tener exactamente 18 caracteres.");
         return;
       }
 
       const persona = baseCursos.find(p => p.curp === curp);
 
-      if (!persona) {
+      if(!persona){
         alert("No aparece en el sistema.");
         return;
       }
 
-      let html = `<strong>${persona.nombre}</strong><br><br><b>Cursos/Constancias:</b><br>`;
-      persona.cursos.forEach(c => {
-        html += `• ${c.nombre} • ${c.fecha} • Folio: ${c.folio}<br>`;
+      // construir pantalla 2
+      renderResultado(persona);
+
+      // actualizar URL para que también sirva con QR
+      const newUrl = window.location.origin + window.location.pathname + "?curp=" + encodeURIComponent(curp);
+      if(history.replaceState){
+        history.replaceState({}, document.title, newUrl);
+      }
+
+      mostrarPagina('pageQR');
+    }
+
+    // ======= render =======
+    function renderResultado(p){
+      const datos = document.getElementById('datosParticipante');
+      const cursos = document.getElementById('listaCursos');
+
+      datos.innerHTML = `
+        <div class="k">Primer Apellido:</div><div class="v">${escapeHtml(p.primerApellido || "")}</div>
+        <div class="k">Segundo Apellido:</div><div class="v">${escapeHtml(p.segundoApellido || "")}</div>
+        <div class="k">Nombre(s):</div><div class="v">${escapeHtml(p.nombres || "")}</div>
+        <div class="k">CURP:</div><div class="v">${escapeHtml(p.curp || "")}</div>
+        <div class="k">Correo:</div><div class="v">${escapeHtml(p.email || "")}</div>
+        <div class="k">Institución formadora:</div><div class="v">${escapeHtml(p.institucionFormadora || "")}</div>
+      `;
+
+      cursos.innerHTML = "";
+      (p.cursos || []).forEach(c => {
+        const div = document.createElement('div');
+        div.className = "course-item";
+        div.innerHTML = `
+          <strong>${escapeHtml(c.nombre || "")}</strong>
+          <div><b>Folio:</b> ${escapeHtml(c.folio || "")}</div>
+          <div><b>Tipo:</b> ${escapeHtml(c.tipo || "")}</div>
+          <div><b>Duración:</b> ${escapeHtml(c.duracion || "")}</div>
+          <div><b>Estatus:</b> ${escapeHtml(c.estatus || "")}</div>
+          <div><b>Fecha:</b> ${escapeHtml(c.fecha || "")}</div>
+        `;
+        cursos.appendChild(div);
       });
-      res.innerHTML = html;
+
+      // “QR” representado (sin generar imagen real)
+      const url = window.location.origin + window.location.pathname + "?curp=" + encodeURIComponent(p.curp);
+      document.getElementById('qrLinkText').textContent = url;
+      document.getElementById('qrBox').innerHTML = "Consulta<br>por CURP<br><br>" + escapeHtml(p.curp);
+    }
+
+    function copiarEnlace(){
+      const link = document.getElementById('qrLinkText').textContent;
+      if(!link) return;
+
+      navigator.clipboard.writeText(link)
+        .then(()=> alert("Enlace copiado."))
+        .catch(()=> alert("No se pudo copiar. Copia manualmente el enlace."));
     }
 
     // Enter para buscar
-    document.getElementById('curpInput').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
+    document.getElementById('curpInput').addEventListener('keypress', function(e){
+      if(e.key === 'Enter'){
         e.preventDefault();
         buscar();
       }
     });
 
-    // CURP por URL (opcional)
+    // CURP por URL (para QR)
     const params = new URLSearchParams(window.location.search);
     const curpQR = params.get('curp');
-    if (curpQR) {
-      document.getElementById('curpInput').value = curpQR.toUpperCase();
-      buscar();
+    if(curpQR){
+      // si llega por QR, buscamos directo y mostramos la pantalla 2
+      const curp = (curpQR || "").toUpperCase();
+      const persona = baseCursos.find(p => p.curp === curp);
+      if(persona){
+        renderResultado(persona);
+        mostrarPagina('pageQR');
+      }else{
+        // si no existe, lo mandamos al inicio con la curp precargada
+        mostrarPagina('pageHome');
+        document.getElementById('curpInput').value = curp;
+      }
+    }
+
+    // helper seguridad
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll("\"","&quot;")
+        .replaceAll("'","&#039;");
     }
   </script>
 
