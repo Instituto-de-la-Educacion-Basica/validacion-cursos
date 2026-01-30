@@ -16,14 +16,17 @@
       --borde-suave: #d0d8c0;
     }
 
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       background: var(--gris-fondo);
       color: #222;
+      line-height: 1.5;
     }
 
-    img { max-width: 100%; height: auto; }
+    img { max-width: 100%; height: auto; display: block; }
 
     /* Barra superior pequeña */
     .top-bar {
@@ -45,27 +48,29 @@
     }
     .top-bar a:hover { text-decoration: underline; }
 
-    /* Header con logo */
+    /* Header con logo a la izquierda */
     header {
       background: white;
       border-bottom: 5px solid var(--verde-ie);
+      padding: 12px 0;
     }
     .header-wrap {
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 15px;
+      padding: 0 15px;
     }
     .logo {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 12px;
     }
-    .logo img { height: 65px; }
+    .logo img {
+      height: 70px;
+    }
     .logo h1 {
-      font-size: 21px;
+      font-size: 20px;
       margin: 0;
       color: var(--verde-osc);
       line-height: 1.2;
@@ -87,7 +92,7 @@
     }
     nav a {
       display: block;
-      padding: 14px 22px;
+      padding: 14px 18px;
       color: white;
       text-decoration: none;
       font-weight: bold;
@@ -95,7 +100,7 @@
     }
     nav a:hover { background: var(--verde-osc); }
 
-    /* Contenedor 3 columnas */
+    /* Contenedor principal */
     .container {
       max-width: 1220px;
       margin: 20px auto;
@@ -179,10 +184,9 @@
       width: 100%;
       padding: 12px;
       margin: 12px 0;
-      border: 1px solid #aaa;
+      border: 1px solid #999;
       border-radius: 4px;
       font-size: 16px;
-      box-sizing: border-box;
     }
     .search-panel button {
       width: 100%;
@@ -215,16 +219,35 @@
       font-size: 14px;
     }
 
+    /* Responsive */
     @media (max-width: 1024px) {
       .container {
         grid-template-columns: 1fr;
+      }
+      .logo img {
+        height: 60px;
+      }
+      .logo h1 {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        text-align: center;
+      }
+      nav a {
+        padding: 12px;
+      }
+      .swiper-slide img {
+        height: 180px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Barra superior -->
   <div class="top-bar">
     <div class="wrap">
       <a href="#">Portal Ciudadano</a>
@@ -233,17 +256,15 @@
     </div>
   </div>
 
-  <!-- Header -->
   <header>
     <div class="header-wrap">
       <div class="logo">
-        <img src="https://iebem.morelos.gob.mx/sites/default/files/logo_iebem_0.png" alt="Logo IEEBEM">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Logotipo_de_la_Secretar%C3%ADa_de_Educaci%C3%B3n_P%C3%BAblica_de_M%C3%A9xico.svg/512px-Logotipo_de_la_Secretar%C3%ADa_de_Educaci%C3%B3n_P%C3%BAblica_de_M%C3%A9xico.svg.png" alt="Secretaría de Educación">
         <h1>Instituto de la Educación Básica<br>del Estado de Morelos</h1>
       </div>
     </div>
   </header>
 
-  <!-- Menú -->
   <nav>
     <ul>
       <li><a href="#">INICIO</a></li>
@@ -255,10 +276,8 @@
     </ul>
   </nav>
 
-  <!-- Contenido principal -->
   <div class="container">
 
-    <!-- Columna izquierda -->
     <aside class="box">
       <h3>Trámites y Servicios</h3>
       <div class="content list">
@@ -273,10 +292,8 @@
       </div>
     </aside>
 
-    <!-- Columna central -->
     <main>
 
-      <!-- Carrusel con Swiper -->
       <div class="swiper" id="mySwiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
@@ -299,14 +316,11 @@
             </div>
           </div>
         </div>
-        <!-- Botones de navegación -->
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
-        <!-- Paginación -->
         <div class="swiper-pagination"></div>
       </div>
 
-      <!-- Buscador CURP -->
       <div class="search-panel">
         <label>Validación de cursos / constancias por CURP</label>
         <input type="text" id="curpInput" placeholder="Ingresa tu CURP (18 caracteres)" maxlength="18">
@@ -336,7 +350,6 @@
 
     </main>
 
-    <!-- Columna derecha -->
     <aside>
 
       <div class="box">
@@ -359,37 +372,25 @@
 
   </div>
 
-  <!-- Footer -->
   <footer>
-    Instituto de la Educación Básica del Estado de Morelos © 2026 • Ejemplo educativo para GitHub Pages
+    Instituto de la Educación Básica del Estado de Morelos © 2026 • Ejemplo educativo
   </footer>
 
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
-  <!-- Inicializar Swiper -->
   <script>
+    // Inicializar Swiper
     const swiper = new Swiper('#mySwiper', {
       loop: true,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      effect: 'fade',          // puedes cambiar a 'slide', 'cube', 'coverflow', etc.
-      fadeEffect: { crossFade: true },
+      autoplay: { delay: 5000, disableOnInteraction: false },
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      effect: 'fade',
+      fadeEffect: { crossFade: true }
     });
-  </script>
 
-  <!-- Tu script de búsqueda por CURP -->
-  <script>
+    // Datos de ejemplo
     const baseCursos = [
       {
         curp: "BIDD971230HASRZM02",
@@ -414,14 +415,14 @@
       res.innerHTML = "";
 
       if (curp.length !== 18) {
-        res.innerHTML = "La CURP debe tener exactamente 18 caracteres.";
+        alert("La CURP debe tener exactamente 18 caracteres.");
         return;
       }
 
       const persona = baseCursos.find(p => p.curp === curp);
 
       if (!persona) {
-        res.innerHTML = "No se encontraron registros para esta CURP.";
+        alert("No aparece en el sistema.");
         return;
       }
 
@@ -432,7 +433,15 @@
       res.innerHTML = html;
     }
 
-    // Soporte para CURP vía URL (?curp=XXXX)
+    // Enter para buscar
+    document.getElementById('curpInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        buscar();
+      }
+    });
+
+    // CURP por URL (opcional)
     const params = new URLSearchParams(window.location.search);
     const curpQR = params.get('curp');
     if (curpQR) {
