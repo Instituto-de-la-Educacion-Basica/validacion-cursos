@@ -127,19 +127,29 @@
     }
     .list a:hover{color:var(--verde)}
 
-    /* ✅ SWIPER: evita blanco aunque falle carga */
+    /* ===== Swiper ===== */
     .swiper{
       border-radius:8px;
       overflow:hidden;
       margin-bottom:18px;
       box-shadow:0 4px 15px rgba(0,0,0,.1);
-      background:#ddd;              /* si no carga imagen, no se ve blanco */
-      height:240px;                 /* fuerza altura */
+      background:#ddd;
+      height:240px;
     }
     .swiper-slide{
       position:relative;
-      height:240px;                 /* fuerza altura */
-      background:#ddd;              /* respaldo */
+      height:240px;
+      background:#ddd;
+    }
+
+    /* ✅ Hacemos el banner clickeable sin subrayado */
+    .slide-link{
+      display:block;
+      width:100%;
+      height:100%;
+      color:inherit;
+      text-decoration:none;
+      position:relative;
     }
     .swiper-slide img{
       width:100%;
@@ -187,7 +197,7 @@
     .search-panel button:hover{background:var(--verde-osc)}
     .mini-note{font-size:12px;color:#666;margin-top:8px}
 
-    /* ✅ Noticias como el ejemplo (links) */
+    /* Noticias clickeables (como el ejemplo) */
     .news-list{
       padding:0;
       margin:0;
@@ -195,9 +205,7 @@
       border:1px solid #ddd;
       border-top:none;
     }
-    .news-list li{
-      border-top:1px solid #ddd;
-    }
+    .news-list li{border-top:1px solid #ddd}
     .news-list a{
       display:block;
       padding:10px 12px;
@@ -211,7 +219,7 @@
       text-decoration:underline;
     }
 
-    /* ✅ Recuadro negro de YouTube como el sitio */
+    /* Video institucional (cuadro negro con play) */
     .youtube-box{
       background:#000;
       height:220px;
@@ -248,12 +256,59 @@
       margin-left:6px;
     }
 
-    /* Footer */
+    /* ===== Footer redes (como el recuadro que querías) ===== */
     .inst-footer{
       background:var(--footer);
       color:#eee;
       margin-top:40px;
     }
+    .inst-footer .wrap{
+      max-width:1200px;
+      margin:0 auto;
+      padding:26px 15px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:18px;
+    }
+    .footer-title{
+      font-weight:bold;
+      letter-spacing:.3px;
+      font-size:13px;
+      opacity:.95;
+      margin-bottom:10px;
+      text-transform:uppercase;
+    }
+    .social-row{
+      display:flex;
+      gap:24px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .social-link{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      color:#eee;
+      text-decoration:none;
+      font-size:12px;
+      font-weight:bold;
+      letter-spacing:.2px;
+      text-transform:uppercase;
+    }
+    .social-icon{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+    }
+    .fb{background:#3b5998;}
+    .yt{background:#d9483b;}
+    .social-link:hover{opacity:.9}
+    .social-icon svg{width:22px;height:22px;fill:#fff}
+
     .inst-footer-bottom{
       background:var(--footer2);
       border-top:1px solid rgba(255,255,255,.08);
@@ -328,23 +383,38 @@
     <!-- CENTRO -->
     <main>
 
-      <!-- SWIPER (si imágenes externas fallan, ya no se ve blanco) -->
+      <!-- ✅ SWIPER AUTOPLAY + BANNERS CLICKEABLES -->
       <div class="swiper" id="mySwiper">
         <div class="swiper-wrapper">
 
           <div class="swiper-slide">
-            <img src="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_enlace_contraloria_est.png?itok=3RMYeEAG" alt="Contraloría social">
-            <div class="slide-caption">Enlace Estatal de Contraloría Social</div>
+            <a class="slide-link"
+               href="https://iebem.morelos.gob.mx/contenido/documentos-normativos-de-convivencia-escolar-noviembre-2024"
+               target="_blank" rel="noopener">
+              <img src="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_manuales_protocolos_marco_local.png?itok=wTUApMqg"
+                   alt="Manuales, protocolos y marco normativo local">
+              <div class="slide-caption">Manuales, protocolos y marco normativo local</div>
+            </a>
           </div>
 
           <div class="swiper-slide">
-            <img src="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_manuales_protocolos_marco_local.png?itok=wTUApMqg" alt="Manuales y protocolos">
-            <div class="slide-caption">Manuales, protocolos y marco normativo local</div>
+            <a class="slide-link"
+               href="https://iebem.morelos.gob.mx/contenido/tramite-de-validacion-de-antiguedad-por-jubilacion"
+               target="_blank" rel="noopener">
+              <img src="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_tramite_jubilacion.png?itok=JjC6PBOj"
+                   alt="Trámite de validación de antigüedad por jubilación">
+              <div class="slide-caption">Trámite de validación de antigüedad por jubilación</div>
+            </a>
           </div>
 
           <div class="swiper-slide">
-            <img src="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_contaloria.png?itok=w-qtBmXb" alt="Contraloría">
-            <div class="slide-caption">Información de Contraloría</div>
+            <a class="slide-link"
+               href="https://iebem.edu.mx/"
+               target="_blank" rel="noopener">
+              <img src="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_contaloria.png?itok=w-qtBmXb"
+                   alt="Contraloría">
+              <div class="slide-caption">Información de Contraloría</div>
+            </a>
           </div>
 
         </div>
@@ -372,13 +442,11 @@
 
     </main>
 
-    <!-- DERECHA (exacto como tu recuadro rojo) -->
+    <!-- DERECHA: noticias + video negro -->
     <aside>
 
-      <!-- Últimas Noticias (clickeables) -->
       <div class="box">
         <h3>Últimas Noticias »</h3>
-
         <ul class="news-list">
           <li>
             <a href="https://iebem.edu.mx/noticias/participan-docentes-en-talleres-sobre-desarrollo-educativo" target="_blank" rel="noopener">
@@ -398,7 +466,6 @@
         </ul>
       </div>
 
-      <!-- Cuadro negro YouTube (clickeable) -->
       <div class="box" style="margin-top:18px;">
         <h3>Video institucional</h3>
         <div class="youtube-box">
@@ -412,7 +479,36 @@
 
   </div>
 
+  <!-- ✅ FOOTER REDES (FACEBOOK + YOUTUBE) -->
   <footer class="inst-footer">
+    <div class="wrap">
+      <div>
+        <div class="footer-title">REDES SOCIALES</div>
+
+        <div class="social-row">
+          <!-- FACEBOOK -->
+          <a class="social-link" href="https://www.facebook.com/iebem/?fref=ts#" target="_blank" rel="noopener">
+            <span class="social-icon fb" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M22 12a10 10 0 1 0-11.56 9.87v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.25c-1.23 0-1.61.76-1.61 1.54V12h2.74l-.44 2.88h-2.3v6.99A10 10 0 0 0 22 12z"/>
+              </svg>
+            </span>
+            HAZTE FAN EN FACEBOOK
+          </a>
+
+          <!-- YOUTUBE -->
+          <a class="social-link" href="https://www.youtube.com/user/IEBEMTV" target="_blank" rel="noopener">
+            <span class="social-icon yt" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M21.6 7.2a3 3 0 0 0-2.11-2.12C17.8 4.6 12 4.6 12 4.6s-5.8 0-7.49.48A3 3 0 0 0 2.4 7.2 31.6 31.6 0 0 0 2 12a31.6 31.6 0 0 0 .4 4.8 3 3 0 0 0 2.11 2.12c1.69.48 7.49.48 7.49.48s5.8 0 7.49-.48a3 3 0 0 0 2.11-2.12A31.6 31.6 0 0 0 22 12a31.6 31.6 0 0 0-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/>
+              </svg>
+            </span>
+            CANAL EN YOUTUBE
+          </a>
+        </div>
+      </div>
+    </div>
+
     <div class="inst-footer-bottom">
       © 2026. Todos los derechos reservados.
     </div>
@@ -423,11 +519,16 @@
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 <script>
+  // ✅ Se cambia solo (autoplay), NO se pausa al interactuar
   new Swiper('#mySwiper',{
     loop:true,
-    autoplay:{delay:5000,disableOnInteraction:false},
+    autoplay:{
+      delay:4500,
+      disableOnInteraction:false
+    },
     pagination:{el:'.swiper-pagination',clickable:true},
-    navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'}
+    navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'},
+    speed:600
   });
 </script>
 
