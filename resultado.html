@@ -3,389 +3,452 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Consulta Código QR</title>
+  <title>Consulta Código QR | Sistema Integral de Formación Continua</title>
 
-  <!-- Favicon -->
-  <link rel="icon" href="https://i.imgur.com/YUJ7rzx.png" />
-  <link rel="shortcut icon" href="https://i.imgur.com/YUJ7rzx.png" />
+  <link rel="icon" type="image/png" href="https://i.imgur.com/YUJ7rzx.png" />
 
   <style>
     :root{
       --verde:#7a8457;
       --verde-osc:#6b734f;
-      --bg:#f0f0f0;
-      --card:#ffffff;
-      --borde:#d7d7d7;
+      --fondo:#eeeeee;
+      --panel:#ffffff;
+      --borde:#d9d9d9;
       --texto:#222;
+      --muted:#666;
+      --shadow: 0 10px 24px rgba(0,0,0,.08);
     }
     *{ box-sizing:border-box; }
     body{
       margin:0;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
+      background: var(--fondo);
       color: var(--texto);
+      overflow-x:hidden;
     }
-    .frame{
-      max-width: 980px;
+    a{ color:inherit; text-decoration:none; }
+
+    .page-wrap{
+      max-width: 1180px;
       margin: 0 auto;
-      min-height: 100vh;
-      background:#fff;
-      box-shadow: 0 0 0 1px #ddd;
+      background: var(--panel);
+      box-shadow: 0 0 0 1px #e5e5e5;
+      min-height:100vh;
     }
 
+    .top-bar{
+      background:#fff;
+      border-bottom:1px solid #e6e6e6;
+      font-size:13px;
+    }
+    .top-bar .inner{
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 8px 14px;
+      display:flex;
+      justify-content:flex-end;
+      gap:18px;
+    }
+    .top-bar a{ color:#555; }
+    .top-bar a:hover{ text-decoration:underline; }
+
     header{
-      padding: 14px 14px 10px 14px;
-      border-bottom: 5px solid var(--verde);
+      background:#fff;
+      border-bottom: 1px solid #e6e6e6;
+    }
+    .header-inner{
+      max-width: 1180px;
+      margin:0 auto;
+      padding: 14px;
       display:flex;
       align-items:center;
-      gap:12px;
+      gap:18px;
+      flex-wrap:wrap;
     }
-    header img{
-      height: 54px;
+    .brand-logos img{
+      height:44px;
       width:auto;
       display:block;
     }
-    header .hgroup strong{
-      display:block;
-      font-size:16px;
-      color: var(--verde-osc);
-      line-height:1.2;
+    .brand-title{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
     }
-    header .hgroup span{
-      display:block;
-      font-size:12px;
+    .brand-title b{
+      color: var(--verde-osc);
+      font-size:16px;
+    }
+    .brand-title span{
       color:#666;
-      margin-top:2px;
+      font-size:12px;
     }
 
-    nav{
-      background: var(--verde);
-      padding: 0 10px;
+    nav{ background: var(--verde); }
+    nav .nav-inner{
+      max-width:1180px;
+      margin:0 auto;
+      padding:0 8px;
     }
-    nav .navwrap{
-      max-width: 980px;
-      margin: 0 auto;
+    nav ul{
+      list-style:none;
+      margin:0;
+      padding:0;
       display:flex;
-      flex-wrap:wrap;
       justify-content:center;
+      gap:2px;
+      flex-wrap:wrap;
     }
     nav a{
+      display:block;
+      padding:14px 18px;
       color:#fff;
-      text-decoration:none;
-      padding: 12px 14px;
       font-weight:bold;
       font-size:13px;
-      text-transform:uppercase;
-      border-left: 1px solid rgba(255,255,255,.25);
-      display:block;
     }
-    nav a:first-child{ border-left:none; }
     nav a:hover{ background: var(--verde-osc); }
 
-    .wrap{
-      padding: 18px 14px 18px 14px;
+    .layout{
+      max-width:1180px;
+      margin:0 auto;
+      padding:16px 14px 24px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
     }
 
-    .panel{
-      background: var(--card);
-      border: 1px solid var(--borde);
-      border-radius: 10px;
-      padding: 16px;
-      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    .result-card{
+      background:#fff;
+      border:1px solid var(--borde);
+      border-radius:10px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
     }
-
-    .topline{
+    .result-top{
       display:flex;
-      gap:12px;
       justify-content:space-between;
-      align-items:flex-start;
-      margin-bottom: 14px;
+      gap:12px;
+      padding:16px;
+      border-bottom:1px solid #eee;
+      flex-wrap:wrap;
+      align-items:center;
     }
-
     .title{
-      flex:1;
-      text-align:center;
+      text-align:left;
     }
-    .title h2{
+    .title h1{
       margin:0;
       font-size:18px;
-      font-weight:bold;
+      color:#111;
     }
     .title p{
-      margin:4px 0 0 0;
+      margin:4px 0 0;
+      color: var(--muted);
       font-size:13px;
-      color:#666;
     }
 
     .actions{
       display:flex;
-      gap:8px;
+      gap:10px;
+      flex-wrap:wrap;
     }
     .btn{
-      padding: 9px 12px;
-      border-radius: 8px;
-      font-weight:bold;
-      font-size:12px;
-      cursor:pointer;
-      border:1px solid #cfcfcf;
+      border:1px solid #d8d8d8;
       background:#fff;
+      color:#222;
+      padding:10px 12px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:bold;
+      font-size:13px;
     }
-    .btn.primary{
+    .btn:hover{ background:#f6f6f6; }
+    .btn-primary{
+      border:none;
       background: var(--verde);
-      border-color: var(--verde);
       color:#fff;
     }
-    .btn.primary:hover{ background: var(--verde-osc); }
+    .btn-primary:hover{ background: var(--verde-osc); }
 
-    .grid{
+    .result-body{
+      padding:16px;
       display:grid;
-      grid-template-columns: 1.3fr .7fr;
-      gap: 14px;
+      grid-template-columns: 1fr 320px;
+      gap:16px;
       align-items:start;
     }
 
-    .sub{
-      font-size:13px;
-      font-weight:bold;
-      text-transform:uppercase;
-      margin: 6px 0 10px 0;
-      color:#333;
+    .section{
+      border:1px solid #ededed;
+      border-radius:10px;
+      overflow:hidden;
     }
-
+    .section h3{
+      margin:0;
+      background:#f6f7f6;
+      padding:10px 12px;
+      font-size:13px;
+      border-bottom:1px solid #ededed;
+    }
+    .kv{
+      padding:12px;
+      font-size:13px;
+    }
     .row{
       display:grid;
       grid-template-columns: 180px 1fr;
-      gap: 10px;
-      padding: 4px 0;
+      gap:10px;
+      padding:6px 0;
+      border-bottom:1px dashed #eee;
+    }
+    .row:last-child{ border-bottom:none; }
+    .k{ color:#333; font-weight:bold; }
+    .v{ color:#222; }
+
+    .offer{
+      padding:12px;
       font-size:13px;
     }
-    .row b{ color:#222; }
-
-    .block{
-      border-top:1px solid #eee;
-      margin-top:12px;
-      padding-top:12px;
-    }
-
-    .course{
-      margin-top:8px;
-      border:1px solid #eaeaea;
-      border-radius: 10px;
-      padding: 12px;
+    .offer .block{
+      padding:10px;
+      border:1px solid #eee;
+      border-radius:10px;
       background:#fafafa;
+    }
+    .offer .block .line{ margin:6px 0; }
+    .muted{ color: var(--muted); }
+
+    .side{
+      border:1px solid #ededed;
+      border-radius:10px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .side h3{
+      margin:0;
+      background:#f6f7f6;
+      padding:10px 12px;
       font-size:13px;
-      white-space: pre-wrap; /* respeta saltos de línea si los hubiera */
+      border-bottom:1px solid #ededed;
     }
-
-    .note{
-      margin-top:12px;
-      font-size:12px;
-      color:#555;
-      font-weight:bold;
+    .side .box{
+      padding:12px;
     }
-
-    .qrbox{
-      border:1px solid #e2e2e2;
-      border-radius: 10px;
-      padding: 14px;
+    .qr{
+      border:1px solid #e6e6e6;
+      border-radius:12px;
+      padding:14px;
       text-align:center;
       background:#fff;
     }
-    .qrbox .big{
-      font-weight:bold;
-      font-size:14px;
-      margin-top:10px;
-      word-break:break-all;
-    }
-    .qrbox .small{
-      margin-top:10px;
+    .qr p{ margin:8px 0 0; font-weight:bold; font-size:12px; }
+    .qr small{ color:var(--muted); }
+
+    .warning{
+      margin-top:12px;
       font-size:12px;
-      color:#777;
-      word-break:break-all;
+      color:#333;
+      background:#fff7e6;
+      border:1px solid #ffe1a8;
+      padding:10px 12px;
+      border-radius:10px;
+      line-height:1.4;
     }
 
-    footer{
-      margin-top: 20px;
+    .social-wrap{
+      background:#2e2e2e;
+      color:#fff;
+      margin-top: 14px;
+    }
+    .social-inner{
+      max-width:1180px;
+      margin:0 auto;
+      padding:18px 14px;
+    }
+    .social-title{
+      font-weight:bold;
+      font-size:13px;
+      margin-bottom:12px;
+      letter-spacing:.2px;
+    }
+    .social-buttons{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .social-btn{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:#1f1f1f;
+      border:1px solid #3a3a3a;
+      color:#fff;
+      padding:12px 14px;
+      border-radius:8px;
+      min-width:240px;
+    }
+    .social-icon{
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      font-weight:bold;
+    }
+    .fb{ background:#1877F2; }
+    .yt{ background:#FF0000; }
+
+    .copyright{
       background:#1f1f1f;
       color:#cfcfcf;
       text-align:center;
-      padding: 12px 10px;
+      padding:10px 14px;
       font-size:12px;
+      border-top:1px solid #3a3a3a;
     }
 
-    /* Responsive */
-    @media (max-width: 900px){
-      .grid{ grid-template-columns:1fr; }
-      .title{ text-align:left; }
+    @media (max-width: 980px){
+      .result-body{ grid-template-columns: 1fr; }
     }
-
-    /* Modal */
-    .modal-overlay{
-      position:fixed;
-      inset:0;
-      background: rgba(0,0,0,.55);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:9999;
-      padding:14px;
-    }
-    .modal{
-      width: min(520px, 96vw);
-      background:#fff;
-      border-radius:12px;
-      border:1px solid #ddd;
-      overflow:hidden;
-    }
-    .modal-header{
-      background:#f3f3f3;
-      padding:10px 12px;
-      font-weight:bold;
-      font-size:13px;
-    }
-    .modal-body{
-      padding:14px 12px;
-      font-size:13px;
-      color:#222;
-      line-height:1.5;
-    }
-    .modal-footer{
-      padding:10px 12px;
-      display:flex;
-      justify-content:flex-end;
-      background:#fafafa;
-      border-top:1px solid #eee;
-    }
-    .modal-footer button{
-      padding:8px 12px;
-      border:none;
-      border-radius:8px;
-      background: var(--verde);
-      color:#fff;
-      font-weight:bold;
-      cursor:pointer;
-    }
-    .modal-footer button:hover{ background: var(--verde-osc); }
   </style>
 </head>
 
 <body>
-  <div class="frame">
+  <div class="page-wrap">
+
+    <div class="top-bar">
+      <div class="inner">
+        <a href="index.html">Inicio</a>
+        <a href="#">Directorio</a>
+        <a href="#">Soporte</a>
+      </div>
+    </div>
 
     <header>
-      <img src="https://i.imgur.com/g3QP0r7.png" alt="Logo" />
-      <div class="hgroup">
-        <strong>Plataforma Académica</strong>
-        <span>Consulta y validación de cursos (prototipo interno)</span>
+      <div class="header-inner">
+        <div class="brand-logos">
+          <img src="https://i.imgur.com/g3QP0r7.png" alt="Logo de la plataforma" />
+        </div>
+        <div class="brand-title">
+          <b>Plataforma Académica</b>
+          <span>Validación de cursos y constancias</span>
+        </div>
       </div>
     </header>
 
     <nav>
-      <div class="navwrap">
-        <a href="./">INICIO</a>
-        <a href="#" onclick="return false;">TRÁMITES Y SERVICIOS</a>
-        <a href="#" onclick="return false;">NOTICIAS</a>
-        <a href="#" onclick="return false;">CONTACTO</a>
+      <div class="nav-inner">
+        <ul>
+          <li><a href="index.html">INICIO</a></li>
+          <li><a href="#">TRÁMITES Y SERVICIOS</a></li>
+          <li><a href="#">NOTICIAS</a></li>
+          <li><a href="#">CONTACTO</a></li>
+        </ul>
       </div>
     </nav>
 
-    <div class="wrap">
-      <div class="panel">
+    <div class="layout">
 
-        <div class="topline">
+      <div class="result-card">
+        <div class="result-top">
           <div class="title">
-            <h2>Sistema Integral de Formación Continua</h2>
+            <h1>Sistema Integral de Formación Continua</h1>
             <p>Consulta Código QR</p>
           </div>
+
           <div class="actions">
-            <button class="btn" id="btnVolver" type="button">Volver</button>
-            <button class="btn primary" id="btnCopiar" type="button">Copiar enlace</button>
+            <button class="btn" type="button" onclick="goBack()">Volver</button>
+            <button class="btn btn-primary" type="button" onclick="copyLink()">Copiar enlace</button>
           </div>
         </div>
 
-        <div class="grid">
-          <!-- IZQUIERDA: datos -->
+        <div class="result-body">
           <div>
-            <div class="sub">Datos del Participante</div>
-
-            <div class="row"><b>Primer Apellido:</b><span id="pApe"></span></div>
-            <div class="row"><b>Segundo Apellido:</b><span id="sApe"></span></div>
-            <div class="row"><b>Nombre(s):</b><span id="nombres"></span></div>
-            <div class="row"><b>CURP:</b><span id="curpShow"></span></div>
-
-            <div class="block">
-              <div class="sub">Institución Formadora</div>
-              <div class="row"><b>Denominación:</b><span id="inst"></span></div>
+            <div class="section">
+              <h3>Datos del Participante</h3>
+              <div class="kv" id="datosParticipante">
+                <!-- Se llena por JS -->
+              </div>
             </div>
 
-            <div class="block">
-              <div class="sub">Oferta Cursada</div>
-              <div class="row"><b>Folio:</b><span id="folio"></span></div>
-
-              <div class="course">
-                <div class="row"><b>Nombre:</b><span id="cursoNombre"></span></div>
-                <div class="row"><b>Tipo:</b><span id="cursoTipo"></span></div>
-                <div class="row"><b>Duración:</b><span id="cursoDur"></span></div>
-                <div class="row"><b>Estatus:</b><span id="cursoEst"></span></div>
+            <div class="section" style="margin-top:12px;">
+              <h3>INSTITUCIÓN FORMADORA</h3>
+              <div class="kv" id="instFormadora">
+                <!-- Se llena por JS -->
               </div>
+            </div>
 
-              <div class="note">
-                **Esta información no sustituye a la constancia y se presenta sólo con fines de validación de la misma.
+            <div class="section" style="margin-top:12px;">
+              <h3>OFERTA CURSADA</h3>
+              <div class="offer" id="ofertaCursada">
+                <!-- Se llena por JS -->
+              </div>
+            </div>
+
+            <div class="warning">
+              <b>**</b>Esta información no sustituye a la constancia y se presenta sólo con fines de validación de la misma.
+            </div>
+          </div>
+
+          <div class="side">
+            <h3>Consulta por CURP</h3>
+            <div class="box">
+              <div class="qr">
+                <div style="font-size:28px;">🔎</div>
+                <p id="curpSide">—</p>
+                <small id="urlSide">—</small>
               </div>
             </div>
           </div>
 
-          <!-- DERECHA: cajita tipo QR -->
-          <div class="qrbox">
-            <div style="font-weight:bold; font-size:13px;">Consulta<br>por CURP</div>
-            <div class="big" id="curpBox"></div>
-            <div class="small" id="linkBox"></div>
-          </div>
         </div>
-
       </div>
+
     </div>
 
-    <footer>© 2026. Todos los derechos reservados.</footer>
-  </div>
+    <div class="social-wrap">
+      <div class="social-inner">
+        <div class="social-title">REDES SOCIALES</div>
+        <div class="social-buttons">
+          <a class="social-btn" target="_blank" href="https://www.facebook.com/iebem/?fref=ts#">
+            <div class="social-icon fb">f</div>
+            <div>
+              <b>HAZTE FAN EN FACEBOOK</b><br>
+              <span>Visita la página oficial</span>
+            </div>
+          </a>
 
-  <!-- Modal -->
-  <div class="modal-overlay" id="modal">
-    <div class="modal">
-      <div class="modal-header" id="modalTitle">Aviso</div>
-      <div class="modal-body" id="modalMsg"></div>
-      <div class="modal-footer">
-        <button id="modalOk" type="button">Aceptar</button>
+          <a class="social-btn" target="_blank" href="https://www.youtube.com/user/IEBEMTV">
+            <div class="social-icon yt">▶</div>
+            <div>
+              <b>CANAL EN YOUTUBE</b><br>
+              <span>Contenido y transmisiones</span>
+            </div>
+          </a>
+        </div>
       </div>
+
+      <div class="copyright">© 2026. Todos los derechos reservados.</div>
     </div>
+
   </div>
 
   <script>
-    // ===== Modal helpers =====
-    const modal = document.getElementById('modal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalMsg = document.getElementById('modalMsg');
-    document.getElementById('modalOk').addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-
-    function showModal(title, msg){
-      modalTitle.textContent = title;
-      modalMsg.textContent = msg;
-      modal.style.display = 'flex';
-    }
-
-    // ===== Base de datos demo =====
-    // En producción real: debe venir de un backend seguro.
-    const baseCursos = [
+    // === Base (demo). Debe coincidir con index.html ===
+    const basePersonas = [
       {
         curp: "BIDD971230HASRZM02",
-        primerApellido: "BRIONES",
-        segundoApellido: "Díaz",
-        nombres: "Damián",
-        institucion: "Instituto de la Educación Básica del Estado de Morelos/Instituto de Capacitación Docente de Morelos S.C.",
-        folio: "-01-IEA-DCM-2025-73941", // inventado y distinto
+        participante: {
+          primerApellido: "BRIONES",
+          segundoApellido: "DÍAZ",
+          nombres: "DAMIÁN",
+          curp: "BIDD971230HASRZM02"
+        },
+        institucion: {
+          denominacion: "Instituto de la Educación Básica del Estado de Morelos/Instituto de Capacitación Docente de Morelos S.C."
+        },
         oferta: {
+          folio: "-01-IEA-DCM-2025-87341",  // inventado y distinto
           nombre: "LEER Y ESCRIBIR: HERRAMIENTAS INTELECTUALES E INTERCULTURALES PARA ENSEÑAR A PENSAR DE FORMA CRÍTICA EN EDUCACIÓN BÁSICA",
           tipo: "Curso",
           duracion: "40 hrs.",
@@ -394,72 +457,66 @@
       }
     ];
 
-    function init(){
-      const params = new URLSearchParams(window.location.search);
-      const raw = (params.get('curp') || '').trim();
-
-      if(!raw){
-        showModal("Aviso", "No se recibió una CURP. Regresa al inicio.");
-        return;
-      }
-
-      // si viene con minúsculas, avisar
-      if(raw !== raw.toUpperCase()){
-        showModal("Aviso", "Debes escribir la CURP en MAYÚSCULAS.");
-        return;
-      }
-
-      const curp = raw.toUpperCase();
-
-      if(curp.length !== 18){
-        showModal("Aviso", "La CURP debe tener exactamente 18 caracteres.");
-        return;
-      }
-
-      const persona = baseCursos.find(p => p.curp === curp);
-      if(!persona){
-        showModal("Aviso", "La CURP capturada no está registrada.");
-        return;
-      }
-
-      // Pintar datos
-      document.getElementById('pApe').textContent = persona.primerApellido;
-      document.getElementById('sApe').textContent = persona.segundoApellido;
-      document.getElementById('nombres').textContent = persona.nombres;
-
-      // Mostrar la curp capturada (la correcta)
-      document.getElementById('curpShow').textContent = curp;
-      document.getElementById('curpBox').textContent = curp;
-
-      document.getElementById('inst').textContent = persona.institucion;
-      document.getElementById('folio').textContent = persona.folio;
-
-      document.getElementById('cursoNombre').textContent = persona.oferta.nombre;
-      document.getElementById('cursoTipo').textContent = persona.oferta.tipo;
-      document.getElementById('cursoDur').textContent = persona.oferta.duracion;
-      document.getElementById('cursoEst').textContent = persona.oferta.estatus;
-
-      const link = `${window.location.origin}${window.location.pathname}?curp=${encodeURIComponent(curp)}`;
-      document.getElementById('linkBox').textContent = link;
+    function goBack(){
+      window.location.href = "index.html";
     }
 
-    // Botones
-    document.getElementById('btnVolver').addEventListener('click', () => {
-      window.location.href = "./";
-    });
-
-    document.getElementById('btnCopiar').addEventListener('click', async () => {
-      const link = document.getElementById('linkBox').textContent.trim();
+    async function copyLink(){
       try{
-        await navigator.clipboard.writeText(link);
-        showModal("Listo", "Enlace copiado al portapapeles.");
+        await navigator.clipboard.writeText(window.location.href);
+        alert("Enlace copiado.");
       }catch(e){
-        showModal("Aviso", "No se pudo copiar automáticamente. Copia el enlace manualmente.");
+        // si el navegador bloquea clipboard, al menos mostramos algo
+        alert("No se pudo copiar automáticamente. Copia el enlace desde la barra del navegador.");
       }
-    });
+    }
 
-    init();
+    // Leer CURP de la URL
+    const params = new URLSearchParams(window.location.search);
+    const curp = (params.get('curp') || '').trim();
+
+    // Si no hay CURP, regresar
+    if(!curp){
+      window.location.href = "index.html";
+    }
+
+    // Buscar
+    const persona = basePersonas.find(p => p.curp === curp);
+
+    if(!persona){
+      // si alguien llega aquí con curp no registrada
+      window.location.href = "index.html";
+    }
+
+    // Pintar “Datos del Participante”
+    const dp = persona.participante;
+    document.getElementById('datosParticipante').innerHTML = `
+      <div class="row"><div class="k">Primer Apellido:</div><div class="v">${dp.primerApellido}</div></div>
+      <div class="row"><div class="k">Segundo Apellido:</div><div class="v">${dp.segundoApellido}</div></div>
+      <div class="row"><div class="k">Nombre(s):</div><div class="v">${dp.nombres}</div></div>
+      <div class="row"><div class="k">CURP:</div><div class="v">${dp.curp}</div></div>
+    `;
+
+    // Institución
+    document.getElementById('instFormadora').innerHTML = `
+      <div class="row"><div class="k">Denominación:</div><div class="v">${persona.institucion.denominacion}</div></div>
+    `;
+
+    // Oferta cursada
+    const of = persona.oferta;
+    document.getElementById('ofertaCursada').innerHTML = `
+      <div class="block">
+        <div class="line"><b>Folio:</b> ${of.folio}</div>
+        <div class="line"><b>Nombre:</b> "${of.nombre}"</div>
+        <div class="line"><b>Tipo:</b> ${of.tipo}</div>
+        <div class="line"><b>Duración:</b> ${of.duracion}</div>
+        <div class="line"><b>Estatus:</b> ${of.estatus}</div>
+      </div>
+    `;
+
+    // Side
+    document.getElementById('curpSide').textContent = curp;
+    document.getElementById('urlSide').textContent = window.location.href;
   </script>
 </body>
 </html>
-
