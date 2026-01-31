@@ -2,679 +2,329 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Plataforma Académica - Validación de Cursos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plataforma Académica - Validación</title>
 
-  <!-- FAVICON -->
+  <!-- Favicon -->
   <link rel="icon" href="https://i.imgur.com/YUJ7rzx.png" />
   <link rel="shortcut icon" href="https://i.imgur.com/YUJ7rzx.png" />
-
-  <!-- Swiper -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 
   <style>
     :root{
       --verde:#7a8457;
       --verde-osc:#6b734f;
-      --morado:#6a58a8;
-      --morado-osc:#4e3f86;
-      --fondo-externo:#efefef;
-      --borde:#cfcfcf;
-      --caja:#ffffff;
-      --gris-programas:#d6d6d6;
-      --gris-programas-borde:#bdbdbd;
-      --footer:#2b2b2b;
-      --footer2:#1f1f1f;
+      --bg:#f0f0f0;
+      --card:#ffffff;
+      --borde:#d7d7d7;
+      --texto:#222;
     }
-
     *{ box-sizing:border-box; }
-    html, body{ margin:0; padding:0; }
     body{
+      margin:0;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--fondo-externo);
-      color:#222;
-      overflow-x:hidden;
+      background: var(--bg);
+      color: var(--texto);
     }
-
-    /* Marco centrado tipo portal */
-    .site-frame{
-      max-width: 1040px;
+    .frame{
+      max-width: 980px;
       margin: 0 auto;
-      background: #fff;
-      box-shadow: 0 0 0 1px #ddd;
       min-height: 100vh;
-    }
-
-    /* Barra superior */
-    .top-bar{
       background:#fff;
-      border-bottom:1px solid #ddd;
-      font-size:12px;
-      padding:7px 0;
+      box-shadow: 0 0 0 1px #ddd;
     }
-    .top-bar .wrap{
-      max-width: 1000px;
-      margin:0 auto;
-      padding:0 10px;
-      text-align:right;
-    }
-    .top-bar a{
-      color:#666;
-      text-decoration:none;
-      margin-left:16px;
-    }
-    .top-bar a:hover{ text-decoration:underline; }
 
-    /* Header */
     header{
-      background:#fff;
-      border-bottom:5px solid var(--verde);
-      padding:10px 0;
-    }
-    .header-wrap{
-      max-width:1000px;
-      margin:0 auto;
-      padding:0 10px;
+      padding: 14px 14px 10px 14px;
+      border-bottom: 5px solid var(--verde);
       display:flex;
       align-items:center;
-      gap:14px;
+      gap:12px;
     }
-    .logo img{
-      height:60px;
+    header img{
+      height: 54px;
       width:auto;
       display:block;
     }
-    .brand strong{
+    header .hgroup strong{
       display:block;
       font-size:16px;
-      color:var(--verde-osc);
+      color: var(--verde-osc);
       line-height:1.2;
     }
-    .brand span{
+    header .hgroup span{
       display:block;
       font-size:12px;
       color:#666;
       margin-top:2px;
     }
 
-    /* Menú */
-    nav{ background:var(--verde); }
-    nav ul{
-      list-style:none;
-      margin:0 auto;
-      padding:0;
-      max-width:1000px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-wrap:wrap;
+    nav{
+      background: var(--verde);
+      padding: 0 10px;
     }
-    nav li{ border-left:1px solid rgba(255,255,255,.25); }
-    nav li:first-child{ border-left:none; }
+    nav .navwrap{
+      max-width: 980px;
+      margin: 0 auto;
+      display:flex;
+      gap:0;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
     nav a{
-      display:block;
-      padding:12px 16px;
       color:#fff;
       text-decoration:none;
+      padding: 12px 14px;
       font-weight:bold;
       font-size:13px;
       text-transform:uppercase;
-      white-space:nowrap;
+      border-left: 1px solid rgba(255,255,255,.25);
+      display:block;
     }
-    nav a:hover{ background:var(--verde-osc); }
+    nav a:first-child{ border-left:none; }
+    nav a:hover{ background: var(--verde-osc); }
 
-    /* ====== Layout 3 columnas (FIX IMPORTANTE) ====== */
-    .container{
-      max-width:1000px;
-      margin:16px auto 0 auto;
-      padding:0 10px 18px 10px;
-
-      display:grid;
-      grid-template-columns: 260px minmax(0, 1fr) 260px; /* <-- CLAVE */
-      gap:14px;
-      align-items:start;
+    .content{
+      padding: 18px 14px 22px 14px;
+      background:#fff;
     }
 
-    /* Cajas planas */
-    .box{
-      background:var(--caja);
-      border:1px solid var(--borde);
-      border-radius:4px;
-      overflow:hidden;
+    .card{
+      background: var(--card);
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+      max-width: 680px;
+      margin: 0 auto;
     }
-    .box h3{
-      margin:0;
-      background:var(--verde);
-      color:#fff;
-      padding:8px 10px;
-      font-size:14px;
-      font-weight:bold;
-      border-bottom:1px solid rgba(0,0,0,.1);
+    .card h2{
+      margin:0 0 8px 0;
+      font-size:16px;
     }
-    .box .content{ padding:10px; }
-
-    /* Lista morada */
-    .portal-list a{
-      display:flex;
-      gap:8px;
-      align-items:flex-start;
-      padding:4px 0;
-      border-bottom:1px dotted #d7d7d7;
-      color:var(--morado);
-      text-decoration:none;
-      font-size:12.8px;
-      line-height:1.25;
-    }
-    .portal-list a:last-child{ border-bottom:none; }
-    .portal-list a:hover{
-      color:var(--morado-osc);
-      text-decoration:underline;
-    }
-    .bullet{
-      width:14px;
-      flex:0 0 14px;
-      color:var(--morado);
-      font-weight:bold;
-      margin-top:1px;
-    }
-    .aviso{
-      color:#c62828;
-      font-weight:bold;
-      font-size:12px;
-      margin-left:3px;
-    }
-
-    /* Buzón */
-    .img-card{
-      border:1px solid #ddd;
-      border-radius:3px;
-      overflow:hidden;
-      background:#fafafa;
-    }
-    .img-card a{ display:block; }
-    .img-card img{ width:100%; height:auto; display:block; }
-
-    /* Programas gris */
-    .programas-wrap{
-      background:var(--gris-programas);
-      border:1px solid var(--gris-programas-borde);
-      border-radius:3px;
-      padding:8px;
-    }
-    .programas-wrap .portal-list a{
-      border-bottom:none;
-      padding:5px 0;
-    }
-    .paginacion{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin-top:8px;
-      font-size:12px;
+    .card p{
+      margin:0 0 14px 0;
       color:#666;
-    }
-    .paginacion .nums{
-      display:flex;
-      gap:14px;
-      align-items:center;
-    }
-    .paginacion a{
-      color:var(--morado);
-      text-decoration:none;
-    }
-    .paginacion a:hover{ text-decoration:underline; }
-
-    /* Swiper */
-    .swiper{
-      width:100%;
-      height: 220px;
-      border:1px solid var(--borde);
-      border-radius:4px;
-      overflow:hidden;
-      background:#e5e5e5;
-    }
-    .swiper-slide{ position:relative; height:220px; }
-    .slide-link{
-      display:block;
-      width:100%;
-      height:100%;
-      text-decoration:none;
-      color:inherit;
-      position:relative;
-    }
-    .swiper-slide img{
-      width:100%;
-      height:220px;
-      object-fit:cover;
-      display:block;
-    }
-
-    /* Buscador */
-    .search-panel{
-      background:#f9faf7;
-      border:1px solid var(--borde);
-      border-radius:4px;
-      padding:12px;
-      margin-top:14px;
-    }
-    .search-title{
-      font-weight:bold;
       font-size:13px;
-      margin-bottom:8px;
+      line-height:1.4;
     }
-    .search-panel input{
+
+    .input{
       width:100%;
-      padding:10px;
-      border:1px solid #a9a9a9;
-      border-radius:3px;
+      padding: 12px;
+      border:1px solid #aaa;
+      border-radius:6px;
       font-size:14px;
       outline:none;
     }
-    .search-panel button{
+    .btn{
       width:100%;
       margin-top:10px;
-      padding:11px;
-      background:var(--verde);
+      padding: 12px;
       border:none;
+      border-radius:6px;
+      background: var(--verde);
       color:#fff;
       font-weight:bold;
-      border-radius:3px;
       cursor:pointer;
       font-size:14px;
     }
-    .search-panel button:hover{ background:var(--verde-osc); }
-    .mini-note{
-      font-size:11.5px;
+    .btn:hover{ background: var(--verde-osc); }
+
+    .hint{
+      margin-top:10px;
+      font-size:12px;
       color:#666;
-      margin-top:8px;
+    }
+    .badge{
+      display:inline-block;
+      padding:4px 8px;
+      border-radius:999px;
+      background:#f6f6f6;
+      border:1px solid #e6e6e6;
+      font-size:11px;
+      color:#666;
     }
 
-    /* Noticias */
-    .news-list{
-      list-style:none;
-      margin:0;
-      padding:0;
-      border-top:1px solid #ddd;
-    }
-    .news-list li{ border-bottom:1px solid #ddd; }
-    .news-list a{
-      display:block;
-      padding:10px;
-      font-size:12.5px;
-      color:#444;
-      text-decoration:none;
-      background:#f7f7f7;
-    }
-    .news-list a:hover{
-      background:#ededed;
-      text-decoration:underline;
-    }
-
-    /* Video */
-    .youtube-box{
-      background:#000;
-      height:210px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .youtube-box a{
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-    }
-    .youtube-play{
-      width:110px;
-      height:70px;
-      border-radius:16px;
-      background:#ff0000;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .youtube-play::before{
-      content:"";
-      width:0;height:0;
-      border-left:22px solid #fff;
-      border-top:14px solid transparent;
-      border-bottom:14px solid transparent;
-      margin-left:6px;
-      display:block;
-    }
-
-    /* Footer redes */
-    .inst-footer{
-      background:var(--footer);
-      color:#eee;
-      margin-top:16px;
-    }
-    .inst-footer .wrap{
-      max-width:1000px;
-      margin:0 auto;
-      padding:18px 10px;
-    }
-    .footer-title{
-      font-size:12px;
-      font-weight:bold;
-      text-transform:uppercase;
-      margin-bottom:10px;
-    }
-    .social-row{
-      display:flex;
-      gap:22px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .social-link{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      color:#eee;
-      text-decoration:none;
-      font-size:11.5px;
-      font-weight:bold;
-      text-transform:uppercase;
-    }
-    .social-link:hover{ opacity:.9; }
-    .social-icon{
-      width:40px;height:40px;border-radius:50%;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .fb{ background:#3b5998; }
-    .yt{ background:#d9483b; }
-    .social-icon svg{ width:22px;height:22px; fill:#fff; }
-
-    .inst-footer-bottom{
-      background:var(--footer2);
-      border-top:1px solid rgba(255,255,255,.08);
+    footer{
+      margin-top: 20px;
+      background:#1f1f1f;
       color:#cfcfcf;
-      font-size:12px;
       text-align:center;
-      padding:12px 10px;
+      padding: 12px 10px;
+      font-size:12px;
     }
 
-    /* Responsive */
-    @media (max-width: 1024px){
-      .site-frame{ max-width: 100%; box-shadow:none; }
-      .container{ grid-template-columns:1fr; }
+    /* Modal */
+    .modal-overlay{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      padding:14px;
     }
+    .modal{
+      width: min(520px, 96vw);
+      background:#fff;
+      border-radius:12px;
+      border:1px solid #ddd;
+      overflow:hidden;
+    }
+    .modal-header{
+      background:#f3f3f3;
+      padding:10px 12px;
+      font-weight:bold;
+      font-size:13px;
+    }
+    .modal-body{
+      padding:14px 12px;
+      font-size:13px;
+      color:#222;
+      line-height:1.5;
+    }
+    .modal-footer{
+      padding:10px 12px;
+      display:flex;
+      justify-content:flex-end;
+      background:#fafafa;
+      border-top:1px solid #eee;
+    }
+    .modal-footer button{
+      padding:8px 12px;
+      border:none;
+      border-radius:8px;
+      background: var(--verde);
+      color:#fff;
+      font-weight:bold;
+      cursor:pointer;
+    }
+    .modal-footer button:hover{ background: var(--verde-osc); }
   </style>
 </head>
 
 <body>
-  <div class="site-frame">
-
-    <div class="top-bar">
-      <div class="wrap">
-        <a href="#" onclick="return false;">Portal docente</a>
-        <a href="#" onclick="return false;">Directorio</a>
-        <a href="#" onclick="return false;">Soporte</a>
-      </div>
-    </div>
+  <div class="frame">
 
     <header>
-      <div class="header-wrap">
-        <div class="logo">
-          <img src="https://i.imgur.com/g3QP0r7.png" alt="Logo">
-        </div>
-        <div class="brand">
-          <strong>Plataforma Académica</strong>
-          <span>Validación de cursos y constancias</span>
-        </div>
+      <!-- Tu logo -->
+      <img src="https://i.imgur.com/g3QP0r7.png" alt="Logo" />
+      <div class="hgroup">
+        <strong>Plataforma Académica</strong>
+        <span>Consulta y validación de cursos (prototipo interno)</span>
       </div>
     </header>
 
     <nav>
-      <ul>
-        <li><a href="#" onclick="return false;">INICIO</a></li>
-        <li><a href="#" onclick="return false;">TRÁMITES Y SERVICIOS</a></li>
-        <li><a href="#" onclick="return false;">ESTRUCTURA</a></li>
-        <li><a href="#" onclick="return false;">NOTICIAS</a></li>
-        <li><a href="#" onclick="return false;">TRANSPARENCIA</a></li>
-        <li><a href="#" onclick="return false;">CONTACTO</a></li>
-      </ul>
+      <div class="navwrap">
+        <a href="./">INICIO</a>
+        <a href="#" onclick="return false;">TRÁMITES Y SERVICIOS</a>
+        <a href="#" onclick="return false;">NOTICIAS</a>
+        <a href="#" onclick="return false;">CONTACTO</a>
+      </div>
     </nav>
 
-    <div class="container">
+    <div class="content">
+      <div class="card">
+        <h2>Validación por CURP</h2>
+        <p>
+          Captura tu CURP y presiona <b>Enter</b> para consultar.
+          <br><span class="badge">Nota: la CURP debe escribirse en MAYÚSCULAS</span>
+        </p>
 
-      <!-- IZQUIERDA -->
-      <aside>
-        <div class="box">
-          <h3 style="text-align:center;">Trámites y Servicios</h3>
-          <div class="content portal-list">
+        <input
+          id="curpInput"
+          class="input"
+          type="text"
+          maxlength="18"
+          placeholder="Ingresa tu CURP (18 caracteres)"
+          autocomplete="off"
+        />
 
-            <a href="https://iebem.morelos.gob.mx/contenido/departamento-de-pagos" target="_blank" rel="noopener">
-              <span class="bullet">➜</span>
-              <span>Cheques Prontos a Caducar.<span class="aviso">Aviso!!</span></span>
-            </a>
+        <button class="btn" id="btnBuscar" type="button">Buscar</button>
 
-            <a href="https://iebem.morelos.gob.mx/contenido/tramite-de-becas-en-escuelas-particulares" target="_blank" rel="noopener">
-              <span class="bullet">➜</span>
-              <span>Trámite de Becas en Escuelas Particulares.</span>
-            </a>
-
-            <a href="https://iebem.edu.mx/contenido/emision-de-certificaciones-de-estudio-de-educacion-basica-preescolar-primaria-y-secundaria" target="_blank" rel="noopener">
-              <span class="bullet">➜</span>
-              <span>Emisión de Certificaciones de Estudio.</span>
-            </a>
-
-            <a href="https://oficinavirtual.iebem.edu.mx/oficinavirtual/" target="_blank" rel="noopener">
-              <span class="bullet">➜</span>
-              <span>Constancias de Servicio.</span>
-            </a>
-
-            <a href="https://tramitanet.iebem.edu.mx/main/suspensiones/ct/index.php" target="_blank" rel="noopener">
-              <span class="bullet">➜</span>
-              <span>Sistema de control de pago</span>
-            </a>
-
-            <a href="https://iebem.morelos.gob.mx/contenido/tramite-de-revalidacion-de-estudios-de-educacion-basica" target="_blank" rel="noopener">
-              <span class="bullet">➜</span>
-              <span>Trámite de revalidación de estudios de educación básica</span>
-            </a>
-
-            <a href="#" onclick="return false;">
-              <span class="bullet">➜</span>
-              <span>Ver más...</span>
-            </a>
-
-          </div>
+        <div class="hint">
+          Tip: también puedes usar un QR que apunte a:
+          <b>resultado.html?curp=TU_CURP</b>
         </div>
-
-        <div class="box" style="margin-top:12px;">
-          <h3 style="text-align:center;">Buzón</h3>
-          <div class="content">
-            <div class="img-card">
-              <a href="https://buzonciudadano.morelos.gob.mx/" target="_blank" rel="noopener">
-                <img src="https://i.imgur.com/86jaqfy.png" alt="Buzón Ciudadano">
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="box" style="margin-top:12px;">
-          <h3 style="text-align:center;">Programas</h3>
-          <div class="content">
-            <div class="programas-wrap portal-list">
-
-              <a href="https://iebem.morelos.gob.mx/contenido/programa-para-la-inclusion-y-equidad-educativa-educacion-elemental" target="_blank" rel="noopener">
-                <span class="bullet">➜</span>
-                <span>Programa para la Inclusión y Equidad Educativa - Educación Elemental</span>
-              </a>
-
-              <a href="https://iebem.morelos.gob.mx/contenido/evaluacion-de-impacto" target="_blank" rel="noopener">
-                <span class="bullet">➜</span>
-                <span>Evaluación de Impacto</span>
-              </a>
-
-              <a href="https://iebem.morelos.gob.mx/contenido/programa-binacional-de-educacion-migrante" target="_blank" rel="noopener">
-                <span class="bullet">➜</span>
-                <span>Programa Binacional de Educación Migrante</span>
-              </a>
-
-              <a href="https://iebem.morelos.gob.mx/contenido/ver-bien-para-aprender-mejor" target="_blank" rel="noopener">
-                <span class="bullet">➜</span>
-                <span>Ver Bien para Aprender Mejor</span>
-              </a>
-
-              <a href="https://iebem.morelos.gob.mx/contenido/actividad-fisica" target="_blank" rel="noopener">
-                <span class="bullet">➜</span>
-                <span>Actividad Física</span>
-              </a>
-
-              <div class="paginacion">
-                <a href="#" onclick="return false;">Siguiente »</a>
-                <div class="nums">
-                  <span>1</span><span>2</span><span>3</span><span>4</span>
-                </div>
-                <a href="#" onclick="return false;">Última »</a>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </aside>
-
-      <!-- CENTRO -->
-      <main>
-        <div class="swiper" id="mySwiper">
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <a class="slide-link"
-                 href="https://iebem.morelos.gob.mx/contenido/documentos-normativos-de-convivencia-escolar-noviembre-2024"
-                 target="_blank" rel="noopener">
-                <img src="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_manuales_protocolos_marco_local.png?itok=wTUApMqg"
-                     alt="Documentos normativos convivencia escolar">
-              </a>
-            </div>
-
-            <div class="swiper-slide">
-              <a class="slide-link"
-                 href="https://iebem.morelos.gob.mx/contenido/tramite-de-validacion-de-antiguedad-por-jubilacion"
-                 target="_blank" rel="noopener">
-                <img src="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_tramite_jubilacion.png?itok=JjC6PBOj"
-                     alt="Trámite jubilación">
-              </a>
-            </div>
-
-            <div class="swiper-slide">
-              <a class="slide-link"
-                 href="https://iebem.edu.mx/"
-                 target="_blank" rel="noopener">
-                <img src="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_contaloria.png?itok=w-qtBmXb"
-                     alt="Contraloría">
-              </a>
-            </div>
-
-          </div>
-
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-        <div class="search-panel">
-          <div class="search-title">Validación de cursos / constancias por CURP</div>
-          <input id="curpInput" type="text" maxlength="18" placeholder="Ingresa tu CURP (18 caracteres)" autocomplete="off">
-          <button onclick="alert('Aquí conectamos tu búsqueda por CURP como ya lo tenías antes.')">Buscar</button>
-          <div class="mini-note">Tip: también puede funcionar por QR con <b>?curp=TU_CURP</b></div>
-        </div>
-
-        <div class="box" style="margin-top:12px;">
-          <h3>Anuncios</h3>
-          <div class="content" style="font-size:12.8px;">
-            • Convocatoria de actualización docente abierta.<br>
-            • Taller virtual de planeación didáctica.<br>
-            • Publicación de calendario de cursos.
-          </div>
-        </div>
-      </main>
-
-      <!-- ✅ DERECHA (ESTO ES LO QUE TE FALTA) -->
-      <aside>
-        <div class="box">
-          <h3>Últimas Noticias »</h3>
-          <ul class="news-list">
-            <li>
-              <a href="https://iebem.edu.mx/noticias/participan-docentes-en-talleres-sobre-desarrollo-educativo"
-                 target="_blank" rel="noopener">
-                Participan docentes en talleres sobre desarrollo educativo
-              </a>
-            </li>
-            <li>
-              <a href="https://iebem.edu.mx/noticias/convocan-estudiantes-concurso-de-interpretacion-del-himno-nacional"
-                 target="_blank" rel="noopener">
-                Convocan a estudiantes a concurso de interpretación del Himno Nacional
-              </a>
-            </li>
-            <li>
-              <a href="https://iebem.edu.mx/noticias/arranca-entrega-de-materiales-escolares-escuelas-afectadas-por-el-sismo-19s"
-                 target="_blank" rel="noopener">
-                Arranca entrega de materiales escolares a escuelas afectadas por el sismo 19S
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="box" style="margin-top:12px;">
-          <h3>Video institucional</h3>
-          <div class="youtube-box">
-            <a href="https://www.youtube.com/user/IEBEMTV" target="_blank" rel="noopener" aria-label="Canal de YouTube">
-              <div class="youtube-play"></div>
-            </a>
-          </div>
-        </div>
-      </aside>
-
+      </div>
     </div>
 
-    <footer class="inst-footer">
-      <div class="wrap">
-        <div class="footer-title">Redes sociales</div>
-        <div class="social-row">
-
-          <a class="social-link" href="https://www.facebook.com/iebem/?fref=ts#" target="_blank" rel="noopener">
-            <span class="social-icon fb" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M22 12a10 10 0 1 0-11.56 9.87v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.25c-1.23 0-1.61.76-1.61 1.54V12h2.74l-.44 2.88h-2.3v6.99A10 10 0 0 0 22 12z"/>
-              </svg>
-            </span>
-            Hazte fan en Facebook
-          </a>
-
-          <a class="social-link" href="https://www.youtube.com/user/IEBEMTV" target="_blank" rel="noopener">
-            <span class="social-icon yt" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M21.6 7.2a3 3 0 0 0-2.11-2.12C17.8 4.6 12 4.6 12 4.6s-5.8 0-7.49.48A3 3 0 0 0 2.4 7.2 31.6 31.6 0 0 0 2 12a31.6 31.6 0 0 0 .4 4.8 3 3 0 0 0 2.11 2.12c1.69.48 7.49.48 7.49.48s5.8 0 7.49-.48a3 3 0 0 0 2.11-2.12A31.6 31.6 0 0 0 22 12a31.6 31.6 0 0 0-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/>
-              </svg>
-            </span>
-            Canal en YouTube
-          </a>
-
-        </div>
-      </div>
-
-      <div class="inst-footer-bottom">
-        © 2026. Todos los derechos reservados.
-      </div>
-    </footer>
-
+    <footer>© 2026. Todos los derechos reservados.</footer>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <div class="modal-header" id="modalTitle">Aviso</div>
+      <div class="modal-body" id="modalMsg"></div>
+      <div class="modal-footer">
+        <button id="modalOk" type="button">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    new Swiper('#mySwiper',{
-      loop:true,
-      autoplay:{ delay:4500, disableOnInteraction:false },
-      pagination:{ el:'.swiper-pagination', clickable:true },
-      navigation:{ nextEl:'.swiper-button-next', prevEl:'.swiper-button-prev' },
-      speed:600
+    // ===== Modal helpers =====
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMsg = document.getElementById('modalMsg');
+    document.getElementById('modalOk').addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    function showModal(title, msg){
+      modalTitle.textContent = title;
+      modalMsg.textContent = msg;
+      modal.style.display = 'flex';
+    }
+
+    // ===== Base mínima (solo para saber si está registrado) =====
+    // En producción real: esto NO debe ir en el front. Debe venir de un backend seguro.
+    const curpsRegistradas = new Set([
+      "BIDD971230HASRZM02"
+    ]);
+
+    function buscar(){
+      const raw = document.getElementById('curpInput').value.trim();
+
+      if(!raw){
+        showModal("Aviso", "Captura una CURP.");
+        return;
+      }
+
+      // 1) Si trae minúsculas, NO lo convertimos: avisamos
+      if(raw !== raw.toUpperCase()){
+        showModal("Aviso", "Debes escribir la CURP en MAYÚSCULAS.");
+        return;
+      }
+
+      const curp = raw.toUpperCase();
+
+      // Validación simple de longitud
+      if(curp.length !== 18){
+        showModal("Aviso", "La CURP debe tener exactamente 18 caracteres.");
+        return;
+      }
+
+      // 2) Si no está registrada
+      if(!curpsRegistradas.has(curp)){
+        showModal("Aviso", "La CURP capturada no está registrada.");
+        return;
+      }
+
+      // 3) Si todo está bien: redirigir a otra página real
+      window.location.href = "resultado.html?curp=" + encodeURIComponent(curp);
+    }
+
+    document.getElementById('btnBuscar').addEventListener('click', buscar);
+
+    document.getElementById('curpInput').addEventListener('keydown', (e) => {
+      if(e.key === 'Enter'){
+        e.preventDefault();
+        buscar();
+      }
     });
   </script>
 </body>
