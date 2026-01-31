@@ -3,499 +3,463 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Resultado — Consulta por CURP</title>
+  <title>Consulta Código QR</title>
 
-  <!-- FAVICON -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://i.imgur.com/YUJ7rzx.png" />
 
   <style>
     :root{
       --verde:#7a8457;
-      --verde2:#6b734f;
-      --fondo:#f3f4f2;
-      --borde:#d6dcc8;
-      --texto:#222;
+      --verde-osc:#6b734f;
+      --fondo:#efefef;
+      --panel:#fff;
+      --borde:#d7d7d7;
     }
     *{box-sizing:border-box}
-    html, body{margin:0; padding:0; overflow-x:hidden;}
     body{
+      margin:0;
       font-family: Arial, Helvetica, sans-serif;
-      background:#e9eae7;
-      color:var(--texto);
+      background: var(--fondo);
+      color:#222;
     }
-
-    .page-bg{background:#e9eae7; padding:0 0 40px;}
-    .page-wrap{
-      max-width:1200px;
-      margin:0 auto;
-      background:var(--fondo);
-      box-shadow:0 8px 30px rgba(0,0,0,.12);
-      min-height:100vh;
-    }
-
-    .top-mini{
+    .topbar{
       background:#fff;
-      border-bottom:1px solid #ddd;
-      font-size:13px;
+      border-bottom:1px solid #e3e3e3;
     }
-    .top-mini .inner{
-      padding:8px 16px;
+    .topbar .inner{
+      max-width:1120px;
+      margin:0 auto;
+      padding:8px 14px;
       display:flex;
       justify-content:flex-end;
       gap:18px;
+      font-size:13px;
+      color:#555;
     }
-    .top-mini a{color:#555; text-decoration:none}
-    .top-mini a:hover{text-decoration:underline}
-
-    header{background:#fff;border-bottom:4px solid var(--verde);}
-    .header-inner{
-      padding:14px 16px;
+    header{
+      background:#fff;
+      border-bottom:1px solid #e6e6e6;
+    }
+    header .inner{
+      max-width:1120px;
+      margin:0 auto;
+      padding:14px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:16px;
     }
-    .brand-left{
+    .brand{
       display:flex;
       align-items:center;
       gap:14px;
-      min-width:280px;
     }
-    .brand-left img{height:46px;width:auto;display:block;}
-    .brand-title{display:flex;flex-direction:column;gap:2px;}
-    .brand-title b{color:var(--verde2);font-size:16px}
-    .brand-title span{color:#666;font-size:12px}
+    .brand img{height:52px;width:auto;display:block}
+    .brand .text h1{margin:0;font-size:16px;font-weight:800}
+    .brand .text p{margin:2px 0 0;font-size:12px;color:#666}
 
-    nav{background:var(--verde);}
-    nav ul{list-style:none;margin:0;padding:0;display:flex;}
+    nav{
+      background: var(--verde);
+    }
+    nav .inner{
+      max-width:1120px;
+      margin:0 auto;
+      padding:0 14px;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
     nav a{
-      display:block;padding:12px 16px;color:#fff;text-decoration:none;font-weight:bold;font-size:13px;
-      border-right:1px solid rgba(255,255,255,.18);
+      color:#fff;
+      text-decoration:none;
+      font-weight:800;
+      font-size:13px;
+      padding:14px 16px;
+      border-right:1px solid rgba(255,255,255,.12);
     }
-    nav a:hover{background:var(--verde2)}
+    nav a:last-child{border-right:none}
+    nav a:hover{background:var(--verde-osc)}
 
-    .container{
-      padding:16px;
+    .page{
+      max-width:1120px;
+      margin: 18px auto 0;
+      padding: 0 14px;
+    }
+
+    .paper{
+      background: var(--panel);
+      border:1px solid var(--borde);
+      border-radius:8px;
+      box-shadow:0 10px 24px rgba(0,0,0,.10);
+      padding:18px;
+    }
+
+    .title-center{
+      text-align:center;
+      margin:6px 0 18px;
+    }
+    .title-center h2{
+      margin:0;
+      font-size:20px;
+      font-weight:900;
+    }
+    .title-center p{
+      margin:3px 0 0;
+      color:#666;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .grid{
       display:grid;
-      grid-template-columns: 1fr 300px;
+      grid-template-columns: 1fr 280px;
       gap:16px;
       align-items:start;
     }
-
-    .card{
-      background:#fff;
-      border:1px solid var(--borde);
-      border-radius:8px;
-      overflow:hidden;
-      box-shadow:0 2px 10px rgba(0,0,0,.07);
+    @media(max-width:900px){
+      .grid{grid-template-columns:1fr}
     }
-    .card .head{
-      padding:14px 16px;
-      border-bottom:1px solid #eee;
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-    }
-    .title{
-      text-align:left;
-    }
-    .title h1{
-      margin:0;
-      font-size:18px;
-    }
-    .title p{
-      margin:4px 0 0;
-      color:#666;
-      font-size:13px;
-    }
-    .actions{
-      display:flex;
-      gap:10px;
-    }
-    .btn{
-      border:1px solid #cfcfcf;
-      background:#fff;
-      padding:8px 10px;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:bold;
-      font-size:12px;
-    }
-    .btn.primary{
-      background:var(--verde);
-      border-color:var(--verde);
-      color:#fff;
-    }
-    .btn.primary:hover{background:var(--verde2);border-color:var(--verde2);}
-
-    .content{padding:16px;}
 
     .section{
-      border:1px solid #e5e5e5;
+      border:1px solid #e2e2e2;
       border-radius:8px;
       overflow:hidden;
-      margin-bottom:14px;
+      margin-bottom:12px;
     }
-    .section h2{
-      margin:0;
-      background:#f5f6f2;
+    .section .head{
+      background:#f6f6f6;
       padding:10px 12px;
+      font-weight:900;
       font-size:13px;
-      text-transform:uppercase;
       letter-spacing:.3px;
     }
-    .rows{padding:12px;}
+    .section .body{ padding:12px; }
+
     .row{
       display:grid;
       grid-template-columns: 160px 1fr;
       gap:10px;
-      padding:7px 0;
-      border-bottom:1px dotted #ddd;
+      padding:6px 0;
+      border-bottom:1px dotted #e1e1e1;
       font-size:13px;
     }
-    .row:last-child{border-bottom:0}
-    .k{color:#333;font-weight:bold}
-    .v{color:#111}
+    .row:last-child{border-bottom:none}
+    .row b{font-weight:800}
 
-    .oferta-box{
-      border:1px solid #ececec;
+    .offer-box{
+      border:1px solid #e2e2e2;
       border-radius:8px;
       padding:12px;
-      background:#fbfbfb;
-      font-size:13px;
-      line-height:1.55;
+      background:#fff;
     }
-    .oferta-box b{font-weight:bold}
-
+    .offer-box .line{
+      font-size:13px;
+      margin:6px 0;
+    }
     .note{
-      margin-top:10px;
-      border:1px solid #f1d7a8;
+      margin-top:12px;
+      font-size:12px;
       background:#fff7e6;
+      border:1px solid #f0dfb8;
       padding:10px 12px;
       border-radius:8px;
-      font-size:12px;
     }
 
-    /* sidebar QR */
     .side{
-      background:#fff;
-      border:1px solid var(--borde);
+      border:1px solid #e2e2e2;
       border-radius:8px;
-      box-shadow:0 2px 10px rgba(0,0,0,.07);
       overflow:hidden;
     }
-    .side h3{
-      margin:0;
-      background:var(--verde);
-      color:#fff;
+    .side .head{
+      background:#f6f6f6;
       padding:10px 12px;
+      font-weight:900;
       font-size:13px;
     }
-    .side .inner{padding:12px}
-    .qr{
-      border:1px solid #e5e5e5;
+    .side .body{
+      padding:12px;
+      font-size:13px;
+      color:#333;
+    }
+    .qrbox{
+      border:1px solid #e6e6e6;
       border-radius:10px;
       padding:12px;
       text-align:center;
-      background:#fafafa;
+      background:#fff;
     }
-    .qr b{display:block;font-size:12px;margin-top:8px}
-    .small{font-size:11px;color:#666;word-break:break-all;margin-top:8px}
-
-    /* bottom social */
-    .bottom-social{
-      background:#2c2c2c;
-      color:#fff;
-      padding:18px 16px;
-      margin-top: 16px;
+    .qrbox .big{
+      font-weight:900;
+      margin:6px 0 2px;
     }
-    .bottom-social .inner{max-width:1200px;margin:0 auto;}
-    .bottom-social h4{margin:0 0 12px;font-size:13px;letter-spacing:.4px}
-    .social-buttons{display:flex;gap:14px;flex-wrap:wrap;}
-    .social-btn{
-      display:flex;align-items:center;gap:10px;
-      background:#1f1f1f;border:1px solid rgba(255,255,255,.12);
-      padding:12px 14px;border-radius:6px;text-decoration:none;color:#fff;min-width:260px;
-    }
-    .social-btn:hover{background:#171717}
-    .social-btn b{font-size:13px}
-    .social-btn span{font-size:12px;color:#cfcfcf}
-    .social-icon{
-      width:38px;height:38px;border-radius:999px;
-      display:flex;align-items:center;justify-content:center;flex:0 0 auto;
-    }
-    .social-icon.fb{background:#1877F2}
-    .social-icon.yt{background:#FF0000}
-
-    .copyright{
-      background:#111;
-      color:#d9d9d9;
-      text-align:center;
-      padding:10px 16px;
+    .qrbox .small{
       font-size:12px;
+      color:#666;
+      word-break:break-word;
     }
 
-    /* responsive */
-    @media(max-width:1000px){
-      .container{grid-template-columns:1fr;}
+    .actions{
+      display:flex;
+      gap:10px;
+      justify-content:flex-end;
+      margin: 10px 0 0;
+      flex-wrap:wrap;
+    }
+    .btn{
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #d2d2d2;
+      background:#fff;
+      cursor:pointer;
+      font-weight:800;
+      font-size:13px;
+    }
+    .btn.primary{
+      border-color:transparent;
+      background:var(--verde);
+      color:#fff;
+    }
+    .btn.primary:hover{background:var(--verde-osc)}
+
+    /* redes */
+    .social-wrap{
+      margin-top:18px;
+      background:#2a2a2a;
+      color:#fff;
+      border-top:1px solid #1f1f1f;
+    }
+    .social-wrap .inner{
+      max-width:1120px;
+      margin:0 auto;
+      padding:16px 14px;
+    }
+    .social-title{
+      font-weight:900;
+      font-size:12px;
+      letter-spacing:.5px;
+      margin-bottom:12px;
+    }
+    .social-cards{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .social-card{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      background:#1f1f1f;
+      border:1px solid rgba(255,255,255,.10);
+      padding:12px 14px;
+      border-radius:8px;
+      min-width:240px;
+    }
+    .social-card:hover{
+      border-color: rgba(255,255,255,.22);
+      transform: translateY(-1px);
+    }
+    .icon{
+      width:34px;height:34px;border-radius:999px;
+      display:grid;place-items:center;
+      background:#0f0f0f;
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .social-card .t1{margin:0;font-weight:900;font-size:13px}
+    .social-card .t2{margin:2px 0 0;font-size:12px;color:#cfcfcf}
+
+    footer{
+      background:#141414;
+      color:#d8d8d8;
+      text-align:center;
+      padding:10px 14px;
+      font-size:12px;
+      border-top:1px solid rgba(255,255,255,.08);
     }
   </style>
 </head>
 
 <body>
-<div class="page-bg">
-  <div class="page-wrap">
-
-    <div class="top-mini">
-      <div class="inner">
-        <a href="index.html">Volver</a>
-        <a href="#">Directorio</a>
-        <a href="#">Soporte</a>
-      </div>
+  <div class="topbar">
+    <div class="inner">
+      <span>Portal docente</span>
+      <span>Directorio</span>
+      <span>Soporte</span>
     </div>
-
-    <header>
-      <div class="header-inner">
-        <div class="brand-left">
-          <img src="https://i.imgur.com/g3QP0r7.png" alt="Logo de la plataforma" />
-          <div class="brand-title">
-            <b>Plataforma Académica</b>
-            <span>Validación de cursos y constancias</span>
-          </div>
-        </div>
-      </div>
-
-      <nav>
-        <ul>
-          <li><a href="index.html">INICIO</a></li>
-          <li><a href="#">TRÁMITES Y SERVICIOS</a></li>
-          <li><a href="#">NOTICIAS</a></li>
-          <li><a href="#">CONTACTO</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <div class="container">
-
-      <!-- CONTENIDO PRINCIPAL -->
-      <section class="card" id="cardResultado">
-        <div class="head">
-          <div class="title">
-            <h1>Sistema Integral de Formación Continua</h1>
-            <p>Consulta Código QR</p>
-          </div>
-
-          <div class="actions">
-            <button class="btn" onclick="window.location.href='index.html'">Volver</button>
-            <button class="btn primary" onclick="copiarEnlace()">Copiar enlace</button>
-          </div>
-        </div>
-
-        <div class="content" id="contenido">
-          <!-- Se llena con JS -->
-        </div>
-      </section>
-
-      <!-- SIDEBAR -->
-      <aside class="side">
-        <h3>Consulta por CURP</h3>
-        <div class="inner">
-          <div class="qr">
-            <div style="font-size:34px;">🔎</div>
-            <b id="curpSide">—</b>
-            <div class="small" id="linkSide">—</div>
-          </div>
-        </div>
-      </aside>
-
-    </div>
-
-    <!-- REDES -->
-    <div class="bottom-social">
-      <div class="inner">
-        <h4>REDES SOCIALES</h4>
-        <div class="social-buttons">
-          <a class="social-btn" target="_blank" href="https://www.facebook.com/iebem/?fref=ts#">
-            <div class="social-icon fb" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="white" aria-hidden="true">
-                <path d="M22 12.06C22 6.53 17.52 2 12 2S2 6.53 2 12.06c0 5 3.66 9.14 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.9 3.78-3.9 1.1 0 2.25.2 2.25.2v2.48h-1.27c-1.25 0-1.64.78-1.64 1.57v1.88h2.79l-.45 2.91h-2.34V22c4.78-.8 8.44-4.94 8.44-9.94z"/>
-              </svg>
-            </div>
-            <div>
-              <b>HAZTE FAN EN FACEBOOK</b><br>
-              <span>Visita la página oficial</span>
-            </div>
-          </a>
-
-          <a class="social-btn" target="_blank" href="https://www.youtube.com/user/IEBEMTV">
-            <div class="social-icon yt" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="white" aria-hidden="true">
-                <path d="M23.5 6.2s-.23-1.64-.94-2.36c-.9-.94-1.9-.95-2.36-1C16.9 2.5 12 2.5 12 2.5h0s-4.9 0-8.2.34c-.46.05-1.46.06-2.36 1C.73 4.56.5 6.2.5 6.2S.2 8.12.2 10.04v1.92c0 1.92.3 3.84.3 3.84s.23 1.64.94 2.36c.9.94 2.08.91 2.61 1.01C5.9 19.5 12 19.5 12 19.5s4.9 0 8.2-.34c.46-.05 1.46-.06 2.36-1 .71-.72.94-2.36.94-2.36s.3-1.92.3-3.84v-1.92c0-1.92-.3-3.84-.3-3.84zM9.75 14.02V8.98l5.25 2.52-5.25 2.52z"/>
-              </svg>
-            </div>
-            <div>
-              <b>CANAL EN YOUTUBE</b><br>
-              <span>Contenido y transmisiones</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="copyright">© 2026. Todos los derechos reservados.</div>
-
   </div>
-</div>
 
-<script>
-  // =========================
-  // BASE DE DATOS COMPLETA (AQUÍ VAS A PEGAR NUEVAS PERSONAS)
-  // =========================
+  <header>
+    <div class="inner">
+      <div class="brand">
+        <img src="https://i.imgur.com/g3QP0r7.png" alt="Logo institucional">
+        <div class="text">
+          <h1>Plataforma Académica</h1>
+          <p>Consulta y validación de cursos</p>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn" onclick="window.location.href='index.html'">Volver</button>
+        <button class="btn primary" onclick="copiarEnlace()">Copiar enlace</button>
+      </div>
+    </div>
+  </header>
 
-  const basePersonas = [
-    {
-      curp: "BIDD971230HASRZM02",
-      participante: {
+  <nav>
+    <div class="inner">
+      <a href="index.html">INICIO</a>
+      <a href="#" onclick="return false;">TRÁMITES Y SERVICIOS</a>
+      <a href="#" onclick="return false;">NOTICIAS</a>
+      <a href="#" onclick="return false;">CONTACTO</a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="paper">
+
+      <div class="title-center">
+        <h2>Sistema Integral de Formación Continua</h2>
+        <p>Consulta Código QR</p>
+      </div>
+
+      <div class="grid">
+        <div id="leftCol">
+          <!-- aquí se pinta todo -->
+        </div>
+
+        <div class="side">
+          <div class="head">Consulta por CURP</div>
+          <div class="body">
+            <div class="qrbox">
+              <div style="font-size:22px;">🔎</div>
+              <div class="big" id="curpSide">—</div>
+              <div class="small" id="urlSide">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Redes sociales -->
+  <section class="social-wrap">
+    <div class="inner">
+      <div class="social-title">REDES SOCIALES</div>
+      <div class="social-cards">
+
+        <a class="social-card" href="https://www.facebook.com/iebem/?fref=ts#" target="_blank" rel="noopener">
+          <div class="icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v3H7v3h3v7h3v-7h3l1-3h-4v-3c0-.6.4-1 1-1Z" fill="#fff"/>
+            </svg>
+          </div>
+          <div>
+            <p class="t1">HAZTE FAN EN FACEBOOK</p>
+            <p class="t2">Visita la página oficial</p>
+          </div>
+        </a>
+
+        <a class="social-card" href="https://www.youtube.com/user/IEBEMTV" target="_blank" rel="noopener">
+          <div class="icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.3 31.3 0 0 0 2 12a31.3 31.3 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 22 12a31.3 31.3 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z" fill="#fff"/>
+            </svg>
+          </div>
+          <div>
+            <p class="t1">CANAL EN YOUTUBE</p>
+            <p class="t2">Contenido y transmisiones</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026. Todos los derechos reservados.</footer>
+
+  <script>
+    // ===== Base de datos (misma que en index) =====
+    const baseCursos = [
+      {
+        curp: "BIDD971230HASRZM02",
         primerApellido: "BRIONES",
         segundoApellido: "DÍAZ",
-        nombres: "DAMIÁN"
-      },
-      institucionFormadora: {
-        denominacion: "Instituto de la Educación Básica del Estado de Morelos/Instituto de Capacitación Docente de Morelos S.C."
-      },
-      oferta: {
-        folio: "-01-IEBEM-DCM-2025-87341",
-        nombre: "LEER Y ESCRIBIR: HERRAMIENTAS INTELECTUALES E INTERCULTURALES PARA ENSEÑAR A PENSAR DE FORMA CRÍTICA EN EDUCACIÓN BÁSICA",
-        tipo: "Curso",
-        duracionHrs: 40,
-        estatus: "CONCLUIDO"
+        nombres: "DAMIÁN",
+        institucionFormadora: "Instituto de la Educación Básica del Estado de Morelos/Instituto de Capacitación Docente de Morelos S.C.",
+        oferta: {
+          folio: "-01-IEBEM-DCM-2025-87341",
+          nombre: "LEER Y ESCRIBIR: HERRAMIENTAS INTELECTUALES E INTERCULTURALES PARA ENSEÑAR A PENSAR DE FORMA CRÍTICA EN EDUCACIÓN BÁSICA",
+          tipo: "Curso",
+          duracionHrs: 40,
+          estatus: "CONCLUIDO"
+        }
       }
+    ];
+
+    function copiarEnlace(){
+      navigator.clipboard.writeText(window.location.href);
+      alert("Enlace copiado.");
     }
-  ];
 
-  // =========================
-  // UTILIDADES
-  // =========================
-  function copiarEnlace(){
-    navigator.clipboard.writeText(window.location.href);
-  }
+    function render(){
+      const params = new URLSearchParams(window.location.search);
+      const curp = (params.get('curp') || "").trim();
 
-  function escapeHTML(str){
-    return String(str)
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
-  }
+      document.getElementById('curpSide').textContent = curp || "—";
+      document.getElementById('urlSide').textContent = window.location.href;
 
-  // =========================
-  // RENDER
-  // =========================
-  const params = new URLSearchParams(window.location.search);
-  const curp = (params.get("curp") || "").trim().toUpperCase();
+      const left = document.getElementById('leftCol');
 
-  document.getElementById("curpSide").textContent = curp || "—";
-  document.getElementById("linkSide").textContent = window.location.href;
+      if(!curp){
+        left.innerHTML = "<p><b>Falta la CURP.</b> Vuelve al inicio.</p>";
+        return;
+      }
 
-  const cont = document.getElementById("contenido");
+      const persona = baseCursos.find(p => p.curp === curp);
+      if(!persona){
+        left.innerHTML = "<p><b>La CURP capturada no está registrada.</b></p>";
+        return;
+      }
 
-  if(!curp || curp.length !== 18){
-    cont.innerHTML = `
-      <div class="section">
-        <h2>Aviso</h2>
-        <div class="rows">
-          La CURP es inválida o no fue proporcionada. <br><br>
-          <a href="index.html">Volver al inicio</a>
-        </div>
-      </div>
-    `;
-  } else {
-    const persona = basePersonas.find(p => p.curp === curp);
-
-    if(!persona){
-      cont.innerHTML = `
+      left.innerHTML = `
         <div class="section">
-          <h2>Sin registro</h2>
-          <div class="rows">
-            La CURP capturada no está registrada. <br><br>
-            <a href="index.html">Volver al inicio</a>
-          </div>
-        </div>
-      `;
-    } else {
-      cont.innerHTML = `
-        <div class="section">
-          <h2>Datos del Participante</h2>
-          <div class="rows">
-            <div class="row"><div class="k">Primer Apellido:</div><div class="v">${escapeHTML(persona.participante.primerApellido)}</div></div>
-            <div class="row"><div class="k">Segundo Apellido:</div><div class="v">${escapeHTML(persona.participante.segundoApellido)}</div></div>
-            <div class="row"><div class="k">Nombre(s):</div><div class="v">${escapeHTML(persona.participante.nombres)}</div></div>
-            <div class="row"><div class="k">CURP:</div><div class="v">${escapeHTML(persona.curp)}</div></div>
+          <div class="head">Datos del Participante</div>
+          <div class="body">
+            <div class="row"><b>Primer Apellido:</b> <span>${persona.primerApellido}</span></div>
+            <div class="row"><b>Segundo Apellido:</b> <span>${persona.segundoApellido}</span></div>
+            <div class="row"><b>Nombre(s):</b> <span>${persona.nombres}</span></div>
+            <div class="row"><b>CURP:</b> <span>${persona.curp}</span></div>
           </div>
         </div>
 
         <div class="section">
-          <h2>INSTITUCIÓN FORMADORA</h2>
-          <div class="rows">
-            <div class="row"><div class="k">Denominación:</div><div class="v">${escapeHTML(persona.institucionFormadora.denominacion)}</div></div>
+          <div class="head">INSTITUCIÓN FORMADORA</div>
+          <div class="body">
+            <div class="row"><b>Denominación:</b> <span>${persona.institucionFormadora}</span></div>
           </div>
         </div>
 
         <div class="section">
-          <h2>OFERTA CURSADA</h2>
-          <div class="rows">
-            <div class="oferta-box">
-              <b>Folio:</b> ${escapeHTML(persona.oferta.folio)}<br>
-              <b>Nombre:</b> "${escapeHTML(persona.oferta.nombre)}"<br>
-              <b>Tipo:</b> ${escapeHTML(persona.oferta.tipo)}<br>
-              <b>Duración:</b> ${escapeHTML(persona.oferta.duracionHrs)} hrs.<br>
-              <b>Estatus:</b> ${escapeHTML(persona.oferta.estatus)}
+          <div class="head">OFERTA CURSADA</div>
+          <div class="body">
+            <div class="offer-box">
+              <div class="line"><b>Folio:</b> ${persona.oferta.folio}</div>
+              <div class="line"><b>Nombre:</b> "${persona.oferta.nombre}"</div>
+              <div class="line"><b>Tipo:</b> ${persona.oferta.tipo}</div>
+              <div class="line"><b>Duración:</b> ${persona.oferta.duracionHrs} hrs.</div>
+              <div class="line"><b>Estatus:</b> ${persona.oferta.estatus}</div>
             </div>
 
             <div class="note">
-              <b>**Esta información no sustituye a la constancia y se presenta sólo con fines de validación de la misma.</b>
+              <b>**</b>Esta información no sustituye a la constancia y se presenta sólo con fines de validación de la misma.
             </div>
           </div>
         </div>
       `;
     }
-  }
 
-  // =========================
-  // PLANTILLA PARA AGREGAR PERSONAS (vacía)
-  // Copias este objeto, lo llenas y lo pegas dentro de basePersonas
-  // =========================
-
-  function generarFolioIEBEM(anio){
-    const rand = Math.floor(10000 + Math.random()*90000);
-    return `-01-IEBEM-DCM-${anio}-${rand}`;
-  }
-
-  function agregarPersona(){
-    return {
-      curp: "AQUI_TU_CURP_EN_MAYUSCULAS",
-      participante: {
-        primerApellido: "",
-        segundoApellido: "",
-        nombres: ""
-      },
-      institucionFormadora: {
-        denominacion: ""
-      },
-      oferta: {
-        folio: generarFolioIEBEM(2026),
-        nombre: "",
-        tipo: "Curso",
-        duracionHrs: 0,
-        estatus: "CONCLUIDO"
-      }
-    };
-  }
-
-  // Si quieres ver la plantilla en consola:
-  // console.log(agregarPersona());
-</script>
+    render();
+  </script>
 </body>
 </html>
