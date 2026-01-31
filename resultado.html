@@ -1,1 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Consulta Código QR</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://i.imgur.com/YUJ7rzx.png" />
+  <link rel="shortcut icon" href="https://i.imgur.com/YUJ7rzx.png" />
+
+  <style>
+    :root{
+      --verde:#7a8457;
+      --verde-osc:#6b734f;
+      --bg:#f0f0f0;
+      --card:#ffffff;
+      --borde:#d7d7d7;
+      --texto:#222;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--texto);
+    }
+    .frame{
+      max-width: 980px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background:#fff;
+      box-shadow: 0 0 0 1px #ddd;
+    }
+
+    header{
+      padding: 14px 14px 10px 14px;
+      border-bottom: 5px solid var(--verde);
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    header img{
+      height: 54px;
+      width:auto;
+      display:block;
+    }
+    header .hgroup strong{
+      display:block;
+      font-size:16px;
+      color: var(--verde-osc);
+      line-height:1.2;
+    }
+    header .hgroup span{
+      display:block;
+      font-size:12px;
+      color:#666;
+      margin-top:2px;
+    }
+
+    nav{
+      background: var(--verde);
+      padding: 0 10px;
+    }
+    nav .navwrap{
+      max-width: 980px;
+      margin: 0 auto;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    nav a{
+      color:#fff;
+      text-decoration:none;
+      padding: 12px 14px;
+      font-weight:bold;
+      font-size:13px;
+      text-transform:uppercase;
+      border-left: 1px solid rgba(255,255,255,.25);
+      display:block;
+    }
+    nav a:first-child{ border-left:none; }
+    nav a:hover{ background: var(--verde-osc); }
+
+    .wrap{
+      padding: 18px 14px 18px 14px;
+    }
+
+    .panel{
+      background: var(--card);
+      border: 1px solid var(--borde);
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    }
+
+    .topline{
+      display:flex;
+      gap:12px;
+      justify-content:space-between;
+      align-items:flex-start;
+      margin-bottom: 14px;
+    }
+
+    .title{
+      flex:1;
+      text-align:center;
+    }
+    .title h2{
+      margin:0;
+      font-size:18px;
+      font-weight:bold;
+    }
+    .title p{
+      margin:4px 0 0 0;
+      font-size:13px;
+      color:#666;
+    }
+
+    .actions{
+      display:flex;
+      gap:8px;
+    }
+    .btn{
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-weight:bold;
+      font-size:12px;
+      cursor:pointer;
+      border:1px solid #cfcfcf;
+      background:#fff;
+    }
+    .btn.primary{
+      background: var(--verde);
+      border-color: var(--verde);
+      color:#fff;
+    }
+    .btn.primary:hover{ background: var(--verde-osc); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 14px;
+      align-items:start;
+    }
+
+    .sub{
+      font-size:13px;
+      font-weight:bold;
+      text-transform:uppercase;
+      margin: 6px 0 10px 0;
+      color:#333;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 180px 1fr;
+      gap: 10px;
+      padding: 4px 0;
+      font-size:13px;
+    }
+    .row b{ color:#222; }
+
+    .block{
+      border-top:1px solid #eee;
+      margin-top:12px;
+      padding-top:12px;
+    }
+
+    .course{
+      margin-top:8px;
+      border:1px solid #eaeaea;
+      border-radius: 10px;
+      padding: 12px;
+      background:#fafafa;
+      font-size:13px;
+      white-space: pre-wrap; /* respeta saltos de línea si los hubiera */
+    }
+
+    .note{
+      margin-top:12px;
+      font-size:12px;
+      color:#555;
+      font-weight:bold;
+    }
+
+    .qrbox{
+      border:1px solid #e2e2e2;
+      border-radius: 10px;
+      padding: 14px;
+      text-align:center;
+      background:#fff;
+    }
+    .qrbox .big{
+      font-weight:bold;
+      font-size:14px;
+      margin-top:10px;
+      word-break:break-all;
+    }
+    .qrbox .small{
+      margin-top:10px;
+      font-size:12px;
+      color:#777;
+      word-break:break-all;
+    }
+
+    footer{
+      margin-top: 20px;
+      background:#1f1f1f;
+      color:#cfcfcf;
+      text-align:center;
+      padding: 12px 10px;
+      font-size:12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .grid{ grid-template-columns:1fr; }
+      .title{ text-align:left; }
+    }
+
+    /* Modal */
+    .modal-overlay{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      padding:14px;
+    }
+    .modal{
+      width: min(520px, 96vw);
+      background:#fff;
+      border-radius:12px;
+      border:1px solid #ddd;
+      overflow:hidden;
+    }
+    .modal-header{
+      background:#f3f3f3;
+      padding:10px 12px;
+      font-weight:bold;
+      font-size:13px;
+    }
+    .modal-body{
+      padding:14px 12px;
+      font-size:13px;
+      color:#222;
+      line-height:1.5;
+    }
+    .modal-footer{
+      padding:10px 12px;
+      display:flex;
+      justify-content:flex-end;
+      background:#fafafa;
+      border-top:1px solid #eee;
+    }
+    .modal-footer button{
+      padding:8px 12px;
+      border:none;
+      border-radius:8px;
+      background: var(--verde);
+      color:#fff;
+      font-weight:bold;
+      cursor:pointer;
+    }
+    .modal-footer button:hover{ background: var(--verde-osc); }
+  </style>
+</head>
+
+<body>
+  <div class="frame">
+
+    <header>
+      <img src="https://i.imgur.com/g3QP0r7.png" alt="Logo" />
+      <div class="hgroup">
+        <strong>Plataforma Académica</strong>
+        <span>Consulta y validación de cursos (prototipo interno)</span>
+      </div>
+    </header>
+
+    <nav>
+      <div class="navwrap">
+        <a href="./">INICIO</a>
+        <a href="#" onclick="return false;">TRÁMITES Y SERVICIOS</a>
+        <a href="#" onclick="return false;">NOTICIAS</a>
+        <a href="#" onclick="return false;">CONTACTO</a>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <div class="panel">
+
+        <div class="topline">
+          <div class="title">
+            <h2>Sistema Integral de Formación Continua</h2>
+            <p>Consulta Código QR</p>
+          </div>
+          <div class="actions">
+            <button class="btn" id="btnVolver" type="button">Volver</button>
+            <button class="btn primary" id="btnCopiar" type="button">Copiar enlace</button>
+          </div>
+        </div>
+
+        <div class="grid">
+          <!-- IZQUIERDA: datos -->
+          <div>
+            <div class="sub">Datos del Participante</div>
+
+            <div class="row"><b>Primer Apellido:</b><span id="pApe"></span></div>
+            <div class="row"><b>Segundo Apellido:</b><span id="sApe"></span></div>
+            <div class="row"><b>Nombre(s):</b><span id="nombres"></span></div>
+            <div class="row"><b>CURP:</b><span id="curpShow"></span></div>
+
+            <div class="block">
+              <div class="sub">Institución Formadora</div>
+              <div class="row"><b>Denominación:</b><span id="inst"></span></div>
+            </div>
+
+            <div class="block">
+              <div class="sub">Oferta Cursada</div>
+              <div class="row"><b>Folio:</b><span id="folio"></span></div>
+
+              <div class="course">
+                <div class="row"><b>Nombre:</b><span id="cursoNombre"></span></div>
+                <div class="row"><b>Tipo:</b><span id="cursoTipo"></span></div>
+                <div class="row"><b>Duración:</b><span id="cursoDur"></span></div>
+                <div class="row"><b>Estatus:</b><span id="cursoEst"></span></div>
+              </div>
+
+              <div class="note">
+                **Esta información no sustituye a la constancia y se presenta sólo con fines de validación de la misma.
+              </div>
+            </div>
+          </div>
+
+          <!-- DERECHA: cajita tipo QR -->
+          <div class="qrbox">
+            <div style="font-weight:bold; font-size:13px;">Consulta<br>por CURP</div>
+            <div class="big" id="curpBox"></div>
+            <div class="small" id="linkBox"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <footer>© 2026. Todos los derechos reservados.</footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <div class="modal-header" id="modalTitle">Aviso</div>
+      <div class="modal-body" id="modalMsg"></div>
+      <div class="modal-footer">
+        <button id="modalOk" type="button">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== Modal helpers =====
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMsg = document.getElementById('modalMsg');
+    document.getElementById('modalOk').addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    function showModal(title, msg){
+      modalTitle.textContent = title;
+      modalMsg.textContent = msg;
+      modal.style.display = 'flex';
+    }
+
+    // ===== Base de datos demo =====
+    // En producción real: debe venir de un backend seguro.
+    const baseCursos = [
+      {
+        curp: "BIDD971230HASRZM02",
+        primerApellido: "BRIONES",
+        segundoApellido: "Díaz",
+        nombres: "Damián",
+        institucion: "Instituto de la Educación Básica del Estado de Morelos/Instituto de Capacitación Docente de Morelos S.C.",
+        folio: "-01-IEA-DCM-2025-73941", // inventado y distinto
+        oferta: {
+          nombre: "LEER Y ESCRIBIR: HERRAMIENTAS INTELECTUALES E INTERCULTURALES PARA ENSEÑAR A PENSAR DE FORMA CRÍTICA EN EDUCACIÓN BÁSICA",
+          tipo: "Curso",
+          duracion: "40 hrs.",
+          estatus: "CONCLUIDO"
+        }
+      }
+    ];
+
+    function init(){
+      const params = new URLSearchParams(window.location.search);
+      const raw = (params.get('curp') || '').trim();
+
+      if(!raw){
+        showModal("Aviso", "No se recibió una CURP. Regresa al inicio.");
+        return;
+      }
+
+      // si viene con minúsculas, avisar
+      if(raw !== raw.toUpperCase()){
+        showModal("Aviso", "Debes escribir la CURP en MAYÚSCULAS.");
+        return;
+      }
+
+      const curp = raw.toUpperCase();
+
+      if(curp.length !== 18){
+        showModal("Aviso", "La CURP debe tener exactamente 18 caracteres.");
+        return;
+      }
+
+      const persona = baseCursos.find(p => p.curp === curp);
+      if(!persona){
+        showModal("Aviso", "La CURP capturada no está registrada.");
+        return;
+      }
+
+      // Pintar datos
+      document.getElementById('pApe').textContent = persona.primerApellido;
+      document.getElementById('sApe').textContent = persona.segundoApellido;
+      document.getElementById('nombres').textContent = persona.nombres;
+
+      // Mostrar la curp capturada (la correcta)
+      document.getElementById('curpShow').textContent = curp;
+      document.getElementById('curpBox').textContent = curp;
+
+      document.getElementById('inst').textContent = persona.institucion;
+      document.getElementById('folio').textContent = persona.folio;
+
+      document.getElementById('cursoNombre').textContent = persona.oferta.nombre;
+      document.getElementById('cursoTipo').textContent = persona.oferta.tipo;
+      document.getElementById('cursoDur').textContent = persona.oferta.duracion;
+      document.getElementById('cursoEst').textContent = persona.oferta.estatus;
+
+      const link = `${window.location.origin}${window.location.pathname}?curp=${encodeURIComponent(curp)}`;
+      document.getElementById('linkBox').textContent = link;
+    }
+
+    // Botones
+    document.getElementById('btnVolver').addEventListener('click', () => {
+      window.location.href = "./";
+    });
+
+    document.getElementById('btnCopiar').addEventListener('click', async () => {
+      const link = document.getElementById('linkBox').textContent.trim();
+      try{
+        await navigator.clipboard.writeText(link);
+        showModal("Listo", "Enlace copiado al portapapeles.");
+      }catch(e){
+        showModal("Aviso", "No se pudo copiar automáticamente. Copia el enlace manualmente.");
+      }
+    });
+
+    init();
+  </script>
+</body>
+</html>
 
