@@ -9,6 +9,9 @@
   <link rel="icon" href="https://i.imgur.com/YUJ7rzx.png" />
   <link rel="shortcut icon" href="https://i.imgur.com/YUJ7rzx.png" />
 
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+
   <style>
     :root{
       --verde:#7a8457;
@@ -17,7 +20,10 @@
       --card:#ffffff;
       --borde:#d7d7d7;
       --texto:#222;
+      --link:#5c6b3f;
+      --sombra: 0 2px 10px rgba(0,0,0,.06);
     }
+
     *{ box-sizing:border-box; }
     body{
       margin:0;
@@ -25,14 +31,17 @@
       background: var(--bg);
       color: var(--texto);
     }
+
+    /* Marco centrado con márgenes como el sitio ejemplo */
     .frame{
-      max-width: 980px;
+      max-width: 1040px;
       margin: 0 auto;
       min-height: 100vh;
       background:#fff;
       box-shadow: 0 0 0 1px #ddd;
     }
 
+    /* Header */
     header{
       padding: 14px 14px 10px 14px;
       border-bottom: 5px solid var(--verde);
@@ -58,15 +67,15 @@
       margin-top:2px;
     }
 
+    /* Nav */
     nav{
       background: var(--verde);
       padding: 0 10px;
     }
     nav .navwrap{
-      max-width: 980px;
+      max-width: 1040px;
       margin: 0 auto;
       display:flex;
-      gap:0;
       flex-wrap:wrap;
       justify-content:center;
     }
@@ -83,32 +92,103 @@
     nav a:first-child{ border-left:none; }
     nav a:hover{ background: var(--verde-osc); }
 
+    /* Contenido principal (3 columnas) */
     .content{
-      padding: 18px 14px 22px 14px;
+      padding: 18px 14px 18px 14px;
       background:#fff;
     }
+    .grid{
+      display:grid;
+      grid-template-columns: 260px 1fr 260px;
+      gap: 16px;
+      align-items:start;
+    }
 
-    .card{
+    .box{
       background: var(--card);
       border: 1px solid var(--borde);
-      border-radius: 8px;
-      padding: 16px;
-      box-shadow: 0 2px 10px rgba(0,0,0,.05);
-      max-width: 680px;
-      margin: 0 auto;
+      border-radius: 6px;
+      overflow:hidden;
+      box-shadow: var(--sombra);
     }
-    .card h2{
-      margin:0 0 8px 0;
-      font-size:16px;
+    .box h3{
+      margin:0;
+      background: var(--verde);
+      color:#fff;
+      padding: 10px 12px;
+      font-size: 14px;
     }
-    .card p{
-      margin:0 0 14px 0;
-      color:#666;
-      font-size:13px;
-      line-height:1.4;
+    .box .inner{
+      padding: 10px 12px;
     }
 
-    .input{
+    .list a{
+      display:block;
+      text-decoration:none;
+      color: var(--link);
+      font-size: 13px;
+      padding: 8px 0;
+      border-bottom: 1px dotted #d6d6d6;
+    }
+    .list a:hover{
+      color: var(--verde);
+      padding-left: 6px;
+      transition: .15s;
+    }
+
+    /* Swiper */
+    .swiper{
+      width:100%;
+      border-radius: 8px;
+      border: 1px solid var(--borde);
+      box-shadow: var(--sombra);
+      overflow:hidden;
+      background:#f7f7f7;
+    }
+    .swiper-slide{
+      background:#f7f7f7;
+    }
+    .slide-link{
+      display:block;
+      width:100%;
+      height:100%;
+      text-decoration:none;
+      color:inherit;
+    }
+    .slide-img{
+      width:100%;
+      height: 260px;
+      object-fit: contain; /* importantísimo para que NO se vean blancas por recorte */
+      background:#f7f7f7;
+      display:block;
+    }
+    .swiper-button-prev, .swiper-button-next{
+      color:#2b5cff;
+    }
+    .swiper-pagination-bullet-active{
+      background:#2b5cff !important;
+    }
+
+    /* Panel de búsqueda */
+    .search-panel{
+      margin-top: 14px;
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      overflow:hidden;
+      box-shadow: var(--sombra);
+      background:#fff;
+    }
+    .search-panel .title{
+      background:#f6f6f6;
+      border-bottom:1px solid #e6e6e6;
+      padding: 10px 12px;
+      font-weight:bold;
+      font-size: 13px;
+    }
+    .search-panel .body{
+      padding: 12px;
+    }
+    .search-panel input{
       width:100%;
       padding: 12px;
       border:1px solid #aaa;
@@ -116,7 +196,7 @@
       font-size:14px;
       outline:none;
     }
-    .btn{
+    .search-panel button{
       width:100%;
       margin-top:10px;
       padding: 12px;
@@ -128,33 +208,106 @@
       cursor:pointer;
       font-size:14px;
     }
-    .btn:hover{ background: var(--verde-osc); }
-
+    .search-panel button:hover{ background: var(--verde-osc); }
     .hint{
-      margin-top:10px;
-      font-size:12px;
-      color:#666;
-    }
-    .badge{
-      display:inline-block;
-      padding:4px 8px;
-      border-radius:999px;
-      background:#f6f6f6;
-      border:1px solid #e6e6e6;
-      font-size:11px;
+      margin-top: 10px;
+      font-size: 12px;
       color:#666;
     }
 
-    footer{
-      margin-top: 20px;
-      background:#1f1f1f;
-      color:#cfcfcf;
+    /* Noticias derecha */
+    .news a{
+      display:block;
+      text-decoration:none;
+      color:#444;
+      font-size:13px;
+      padding: 10px 0;
+      border-bottom:1px solid #ececec;
+    }
+    .news a:hover{
+      color: var(--verde);
+      text-decoration: underline;
+    }
+
+    /* Video */
+    .video-wrap{
+      padding: 12px;
+    }
+    .video-wrap iframe{
+      width:100%;
+      height: 220px;
+      border:0;
+      border-radius: 6px;
+    }
+
+    /* Imágenes laterales (buzón) */
+    .img-link{
+      display:block;
+      text-decoration:none;
+    }
+    .img-link img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* Footer redes */
+    .social-footer{
+      margin-top: 18px;
+      background:#222;
+      color:#eaeaea;
+      padding: 18px 14px;
+    }
+    .social-footer .row{
+      max-width: 1040px;
+      margin: 0 auto;
+      display:flex;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .social-footer .label{
+      font-weight:bold;
+      font-size:13px;
+      opacity:.95;
+      width: 100%;
+    }
+    .social-btn{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:#fff;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      font-size: 13px;
+      font-weight:bold;
+    }
+    .social-btn:hover{
+      background: rgba(255,255,255,.14);
+    }
+    .icon{
+      width:34px; height:34px;
+      border-radius: 50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:bold;
+    }
+    .icon.fb{ background:#1877F2; }
+    .icon.yt{ background:#FF0000; }
+
+    .copyright{
       text-align:center;
-      padding: 12px 10px;
-      font-size:12px;
+      padding: 10px 14px;
+      background:#111;
+      color:#cfcfcf;
+      font-size: 12px;
     }
 
-    /* Modal */
+    /* Modal (ventana tipo “alert”) */
     .modal-overlay{
       position:fixed;
       inset:0;
@@ -201,6 +354,15 @@
       cursor:pointer;
     }
     .modal-footer button:hover{ background: var(--verde-osc); }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .grid{
+        grid-template-columns: 1fr;
+      }
+      .slide-img{ height: 220px; }
+      .video-wrap iframe{ height: 240px; }
+    }
   </style>
 </head>
 
@@ -226,32 +388,158 @@
     </nav>
 
     <div class="content">
-      <div class="card">
-        <h2>Validación por CURP</h2>
-        <p>
-          Captura tu CURP y presiona <b>Enter</b> para consultar.
-          <br><span class="badge">Nota: la CURP debe escribirse en MAYÚSCULAS</span>
-        </p>
+      <div class="grid">
 
-        <input
-          id="curpInput"
-          class="input"
-          type="text"
-          maxlength="18"
-          placeholder="Ingresa tu CURP (18 caracteres)"
-          autocomplete="off"
-        />
+        <!-- COLUMNA IZQUIERDA -->
+        <aside>
+          <div class="box">
+            <h3>Trámites y Servicios</h3>
+            <div class="inner list">
+              <a href="https://iebem.morelos.gob.mx/contenido/departamento-de-pagos" target="_blank" rel="noopener">→ Cheques Prontos a Caducar.</a>
+              <a href="https://iebem.morelos.gob.mx/contenido/tramite-de-becas-en-escuelas-particulares" target="_blank" rel="noopener">→ Trámite de Becas en Escuelas Particulares.</a>
+              <a href="https://iebem.edu.mx/contenido/emision-de-certificaciones-de-estudio-de-educacion-basica-preescolar-primaria-y-secundaria" target="_blank" rel="noopener">→ Emisión de Certificaciones de Estudio.</a>
+              <a href="https://oficinavirtual.iebem.edu.mx/oficinavirtual/" target="_blank" rel="noopener">→ Constancias de Servicio.</a>
+              <a href="https://tramitanet.iebem.edu.mx/main/suspensiones/ct/index.php" target="_blank" rel="noopener">→ Sistema de control de pago</a>
+              <a href="https://iebem.morelos.gob.mx/contenido/tramite-de-revalidacion-de-estudios-de-educacion-basica" target="_blank" rel="noopener">→ Trámite de revalidación de estudios de educación básica</a>
+              <a href="#" onclick="return false;">→ Ver más...</a>
+            </div>
+          </div>
 
-        <button class="btn" id="btnBuscar" type="button">Buscar</button>
+          <div class="box" style="margin-top:14px;">
+            <h3>Buzón</h3>
+            <div class="inner">
+              <a class="img-link" href="https://buzonciudadano.morelos.gob.mx/" target="_blank" rel="noopener">
+                <img src="https://i.imgur.com/86jaqfy.png" alt="Buzón ciudadano">
+              </a>
+            </div>
+          </div>
 
-        <div class="hint">
-          Tip: también puedes usar un QR que apunte a:
-          <b>resultado.html?curp=TU_CURP</b>
-        </div>
+          <div class="box" style="margin-top:14px;">
+            <h3>Programas</h3>
+            <div class="inner list">
+              <a href="https://iebem.morelos.gob.mx/contenido/programa-para-la-inclusion-y-equidad-educativa-educacion-elemental" target="_blank" rel="noopener">→ Programa para la Inclusión y Equidad Educativa - Educación Elemental</a>
+              <a href="https://iebem.morelos.gob.mx/contenido/evaluacion-de-impacto" target="_blank" rel="noopener">→ Evaluación de Impacto</a>
+              <a href="https://iebem.morelos.gob.mx/contenido/programa-binacional-de-educacion-migrante" target="_blank" rel="noopener">→ Programa Binacional de Educación Migrante</a>
+              <a href="https://iebem.morelos.gob.mx/contenido/ver-bien-para-aprender-mejor" target="_blank" rel="noopener">→ Ver Bien para Aprender Mejor</a>
+              <a href="https://iebem.morelos.gob.mx/contenido/actividad-fisica" target="_blank" rel="noopener">→ Actividad Física</a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- COLUMNA CENTRAL -->
+        <main>
+          <!-- Swiper -->
+          <div class="swiper" id="mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a class="slide-link" href="https://iebem.edu.mx/" target="_blank" rel="noopener">
+                  <img class="slide-img" src="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_enlace_contraloria_est.png?itok=3RMYeEAG" alt="Enlace contraloría">
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a class="slide-link" href="https://iebem.morelos.gob.mx/contenido/documentos-normativos-de-convivencia-escolar-noviembre-2024" target="_blank" rel="noopener">
+                  <img class="slide-img" src="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_manuales_protocolos_marco_local.png?itok=wTUApMqg" alt="Manuales y protocolos">
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a class="slide-link" href="https://iebem.morelos.gob.mx/contenido/tramite-de-validacion-de-antiguedad-por-jubilacion" target="_blank" rel="noopener">
+                  <img class="slide-img" src="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_tramite_jubilacion.png?itok=JjC6PBOj" alt="Trámite jubilación">
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a class="slide-link" href="https://iebem.edu.mx/" target="_blank" rel="noopener">
+                  <img class="slide-img" src="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_contaloria.png?itok=w-qtBmXb" alt="Contraloría">
+                </a>
+              </div>
+            </div>
+
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+          <!-- Buscador -->
+          <div class="search-panel">
+            <div class="title">Validación de cursos / constancias por CURP</div>
+            <div class="body">
+              <input
+                id="curpInput"
+                type="text"
+                maxlength="18"
+                placeholder="Ingresa tu CURP (18 caracteres)"
+                autocomplete="off"
+              />
+              <button id="btnBuscar" type="button">Buscar</button>
+              <div class="hint">Tip: también puede funcionar por QR con <b>?curp=TU_CURP</b></div>
+            </div>
+          </div>
+
+          <!-- Anuncios -->
+          <div class="box" style="margin-top:14px;">
+            <h3>Anuncios</h3>
+            <div class="inner">
+              • Convocatoria de actualización docente abierta.<br>
+              • Taller virtual de planeación didáctica.<br>
+              • Publicación de calendario de cursos.
+            </div>
+          </div>
+        </main>
+
+        <!-- COLUMNA DERECHA -->
+        <aside>
+          <div class="box">
+            <h3>Últimas Noticias »</h3>
+            <div class="inner news">
+              <a href="https://iebem.edu.mx/noticias/participan-docentes-en-talleres-sobre-desarrollo-educativo" target="_blank" rel="noopener">
+                Participan docentes en talleres sobre desarrollo educativo
+              </a>
+              <a href="https://iebem.edu.mx/noticias/convocan-estudiantes-concurso-de-interpretacion-del-himno-nacional" target="_blank" rel="noopener">
+                Convocan a estudiantes a concurso de interpretación del Himno Nacional
+              </a>
+              <a href="https://iebem.edu.mx/noticias/arranca-entrega-de-materiales-escolares-escuelas-afectadas-por-el-sismo-19s" target="_blank" rel="noopener">
+                Arranca entrega de materiales escolares a escuelas afectadas por el sismo 19S
+              </a>
+            </div>
+          </div>
+
+          <div class="box" style="margin-top:14px;">
+            <h3>Video institucional</h3>
+            <div class="video-wrap">
+              <iframe
+                src="https://www.youtube.com/embed/5MgBikgcWnY"
+                title="Video institucional"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </aside>
+
       </div>
     </div>
 
-    <footer>© 2026. Todos los derechos reservados.</footer>
+    <!-- Footer redes -->
+    <div class="social-footer">
+      <div class="row">
+        <div class="label">REDES SOCIALES</div>
+
+        <a class="social-btn" href="https://www.facebook.com/iebem/?fref=ts#" target="_blank" rel="noopener">
+          <span class="icon fb">f</span>
+          HAZTE FAN EN FACEBOOK
+        </a>
+
+        <a class="social-btn" href="https://www.youtube.com/user/IEBEMTV" target="_blank" rel="noopener">
+          <span class="icon yt">▶</span>
+          CANAL EN YOUTUBE
+        </a>
+      </div>
+    </div>
+
+    <div class="copyright">
+      © 2026. Todos los derechos reservados.
+    </div>
   </div>
 
   <!-- Modal -->
@@ -265,7 +553,19 @@
     </div>
   </div>
 
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
   <script>
+    // ===== Swiper (autoplay) =====
+    const swiper = new Swiper('#mySwiper', {
+      loop: true,
+      autoplay: { delay: 4200, disableOnInteraction: false },
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      effect: 'slide'
+    });
+
     // ===== Modal helpers =====
     const modal = document.getElementById('modal');
     const modalTitle = document.getElementById('modalTitle');
@@ -280,8 +580,7 @@
       modal.style.display = 'flex';
     }
 
-    // ===== Base mínima (solo para saber si está registrado) =====
-    // En producción real: esto NO debe ir en el front. Debe venir de un backend seguro.
+    // ===== CURPs registradas (demo) =====
     const curpsRegistradas = new Set([
       "BIDD971230HASRZM02"
     ]);
@@ -294,7 +593,7 @@
         return;
       }
 
-      // 1) Si trae minúsculas, NO lo convertimos: avisamos
+      // Si trae minúsculas, avisamos (no convertimos)
       if(raw !== raw.toUpperCase()){
         showModal("Aviso", "Debes escribir la CURP en MAYÚSCULAS.");
         return;
@@ -302,19 +601,17 @@
 
       const curp = raw.toUpperCase();
 
-      // Validación simple de longitud
       if(curp.length !== 18){
         showModal("Aviso", "La CURP debe tener exactamente 18 caracteres.");
         return;
       }
 
-      // 2) Si no está registrada
       if(!curpsRegistradas.has(curp)){
         showModal("Aviso", "La CURP capturada no está registrada.");
         return;
       }
 
-      // 3) Si todo está bien: redirigir a otra página real
+      // Redirige a página nueva
       window.location.href = "resultado.html?curp=" + encodeURIComponent(curp);
     }
 
