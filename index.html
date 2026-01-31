@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Plataforma Académica | Validación de cursos y constancias</title>
 
-  <!-- FAVICON (icono de la pestaña) -->
+  <!-- FAVICON -->
   <link rel="icon" type="image/png" href="https://i.imgur.com/YUJ7rzx.png" />
 
   <!-- Swiper CSS -->
@@ -19,6 +19,7 @@
       --panel:#ffffff;
       --borde:#d9d9d9;
       --texto:#222;
+      --overlay: rgba(0,0,0,.55);
     }
 
     *{ box-sizing:border-box; }
@@ -28,11 +29,10 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--fondo);
       color: var(--texto);
-      overflow-x:hidden; /* evita barra horizontal */
+      overflow-x:hidden;
     }
     a{ color:inherit; }
 
-    /* Fondo y “márgenes” tipo institucional */
     .page-wrap{
       max-width: 1180px;
       margin: 0 auto;
@@ -41,7 +41,6 @@
       min-height:100vh;
     }
 
-    /* Barra superior */
     .top-bar{
       background:#fff;
       border-bottom:1px solid #e6e6e6;
@@ -61,7 +60,6 @@
     }
     .top-bar a:hover{ text-decoration:underline; }
 
-    /* Header */
     header{
       background:#fff;
       border-bottom: 1px solid #e6e6e6;
@@ -73,12 +71,12 @@
       display:flex;
       align-items:center;
       gap:18px;
+      flex-wrap:wrap;
     }
     .brand-logos{
       display:flex;
       align-items:center;
       gap:14px;
-      min-width: 320px;
     }
     .brand-logos img{
       height:44px;
@@ -99,7 +97,6 @@
       font-size:12px;
     }
 
-    /* Nav */
     nav{
       background: var(--verde);
     }
@@ -127,7 +124,6 @@
     }
     nav a:hover{ background: var(--verde-osc); }
 
-    /* Layout 3 columnas */
     .layout{
       max-width: 1180px;
       margin:0 auto;
@@ -138,7 +134,6 @@
       align-items:start;
     }
 
-    /* Box */
     .box{
       background:#fff;
       border:1px solid var(--borde);
@@ -158,7 +153,6 @@
       font-size:13px;
     }
 
-    /* Listas */
     .list a{
       display:flex;
       gap:8px;
@@ -174,14 +168,12 @@
     .list a:hover{ color: var(--verde-osc); }
     .bullet{ color:#6f78c8; font-weight:bold; margin-top:1px; }
 
-    /* Imagen clickeable en box */
     .img-link img{
       width:100%;
       height:auto;
       display:block;
     }
 
-    /* Swiper */
     .swiper{
       width:100%;
       border:1px solid var(--borde);
@@ -189,11 +181,7 @@
       overflow:hidden;
       background:#f7f7f7;
     }
-    .swiper-slide a{
-      display:block;
-      width:100%;
-      height:100%;
-    }
+    .swiper-slide a{ display:block; width:100%; height:100%; }
     .swiper-slide img{
       width:100%;
       height: 250px;
@@ -201,17 +189,10 @@
       display:block;
       background:#f2f2f2;
     }
-    .swiper-button-prev, .swiper-button-next{
-      color:#0b57d0;
-    }
+    .swiper-button-prev, .swiper-button-next{ color:#0b57d0; }
 
-    /* Panel buscador */
-    .search{
-      margin-top: 14px;
-    }
-    .search .content{
-      padding: 12px;
-    }
+    .search{ margin-top: 14px; }
+    .search .content{ padding: 12px; }
     .search label{
       display:block;
       font-weight:bold;
@@ -243,15 +224,19 @@
       color:#666;
       font-size:12px;
     }
-
-    /* Anuncios */
-    .anuncios .content ul{
-      margin: 0;
-      padding-left: 18px;
+    .note{
+      margin-top:8px;
+      font-size:12px;
+      background:#f6f6f6;
+      border:1px solid #e5e5e5;
+      padding:8px;
+      border-radius:6px;
+      color:#444;
     }
+
+    .anuncios .content ul{ margin: 0; padding-left: 18px; }
     .anuncios .content li{ margin:6px 0; }
 
-    /* Columna derecha (noticias + video) */
     .news a{
       display:block;
       text-decoration:none;
@@ -273,7 +258,6 @@
       background:#000;
     }
 
-    /* Footer redes */
     .social-wrap{
       background:#2e2e2e;
       color:#fff;
@@ -330,23 +314,66 @@
       border-top:1px solid #3a3a3a;
     }
 
-    /* Responsive */
     @media (max-width: 1050px){
-      .layout{
-        grid-template-columns: 1fr;
-      }
+      .layout{ grid-template-columns: 1fr; }
       .swiper-slide img{ height: 210px; }
       .video iframe{ height: 220px; }
-      .brand-logos{ min-width:unset; }
-      .header-inner{ flex-wrap:wrap; }
     }
+
+    /* ===== MODAL (en vez de alert) ===== */
+    .modal-overlay{
+      position:fixed;
+      inset:0;
+      background: var(--overlay);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 16px;
+      z-index:9999;
+    }
+    .modal{
+      width: min(520px, 100%);
+      background:#fff;
+      border-radius: 12px;
+      overflow:hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      border:1px solid #e5e5e5;
+    }
+    .modal-header{
+      background: var(--verde);
+      color:#fff;
+      padding: 12px 14px;
+      font-weight:bold;
+      font-size:14px;
+    }
+    .modal-body{
+      padding: 14px;
+      font-size:14px;
+      color:#222;
+      line-height:1.45;
+    }
+    .modal-actions{
+      padding: 12px 14px 14px;
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+    }
+    .btn{
+      border:0;
+      padding:10px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:bold;
+      font-size:13px;
+    }
+    .btn-primary{ background: var(--verde); color:#fff; }
+    .btn-primary:hover{ background: var(--verde-osc); }
   </style>
 </head>
 
 <body>
   <div class="page-wrap">
 
-    <!-- Top bar -->
     <div class="top-bar">
       <div class="inner">
         <a href="#">Portal docente</a>
@@ -355,11 +382,9 @@
       </div>
     </div>
 
-    <!-- Header -->
     <header>
       <div class="header-inner">
         <div class="brand-logos">
-          <!-- Puedes cambiar estas imágenes por las tuyas cuando quieras -->
           <img src="https://i.imgur.com/g3QP0r7.png" alt="Logo de la plataforma" />
         </div>
         <div class="brand-title">
@@ -369,7 +394,6 @@
       </div>
     </header>
 
-    <!-- Nav -->
     <nav>
       <div class="nav-inner">
         <ul>
@@ -383,7 +407,6 @@
       </div>
     </nav>
 
-    <!-- Layout -->
     <div class="layout">
 
       <!-- IZQUIERDA -->
@@ -424,11 +447,9 @@
 
       <!-- CENTRO -->
       <main>
-        <!-- Swiper (banners clickeables + autoplay) -->
         <div class="swiper" id="mySwiper" aria-label="Banners institucionales">
           <div class="swiper-wrapper">
 
-            <!-- Banner 1 -->
             <div class="swiper-slide">
               <a target="_blank" href="https://iebem.edu.mx/sites/iebem.edu.mx/files/styles/imagenes_promocionales/public/imagenes_promocionales/banner_437x200_px_enlace_contraloria_est.png?itok=3RMYeEAG">
                 <img
@@ -437,7 +458,6 @@
               </a>
             </div>
 
-            <!-- Banner 2 (redirige a Documentos normativos...) -->
             <div class="swiper-slide">
               <a target="_blank" href="https://iebem.morelos.gob.mx/contenido/documentos-normativos-de-convivencia-escolar-noviembre-2024">
                 <img
@@ -446,7 +466,6 @@
               </a>
             </div>
 
-            <!-- Banner 3 (redirige a Trámite jubilación...) -->
             <div class="swiper-slide">
               <a target="_blank" href="https://iebem.morelos.gob.mx/contenido/tramite-de-validacion-de-antiguedad-por-jubilacion">
                 <img
@@ -461,18 +480,17 @@
           <div class="swiper-pagination"></div>
         </div>
 
-        <!-- Buscador -->
         <div class="box search">
           <h3>Validación de cursos / constancias por CURP</h3>
           <div class="content">
             <label for="curpInput">Ingresa tu CURP</label>
             <input id="curpInput" type="text" placeholder="Ingresa tu CURP (18 caracteres)" maxlength="18" />
             <button type="button" onclick="buscar()">Buscar</button>
+            <div class="note">Nota: la CURP debe escribirse en <b>MAYÚSCULAS</b>.</div>
             <div class="tip">Tip: también puede funcionar por QR con <b>?curp=TU_CURP</b></div>
           </div>
         </div>
 
-        <!-- Anuncios -->
         <div class="box anuncios">
           <h3>Anuncios</h3>
           <div class="content">
@@ -489,7 +507,7 @@
       <aside>
         <div class="box">
           <h3>Últimas Noticias »</h3>
-          <div class="content" style="padding:0;">
+          <div class="content news" style="padding:0;">
             <a target="_blank" href="https://iebem.edu.mx/noticias/participan-docentes-en-talleres-sobre-desarrollo-educativo">
               Participan docentes en talleres sobre desarrollo educativo
             </a>
@@ -514,7 +532,6 @@
           </div>
         </div>
 
-        <!-- (Opcional) banner adicional en derecha como en la página original -->
         <div class="box" style="margin-top:14px;">
           <h3>Información</h3>
           <div class="content">
@@ -530,7 +547,6 @@
 
     </div><!-- /layout -->
 
-    <!-- Footer redes -->
     <div class="social-wrap">
       <div class="social-inner">
         <div class="social-title">REDES SOCIALES</div>
@@ -558,11 +574,22 @@
 
   </div><!-- /page-wrap -->
 
+  <!-- MODAL (para mensajes sin “github.io dice…”) -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-header" id="modalTitle">Aviso</div>
+      <div class="modal-body" id="modalMessage">Mensaje</div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" type="button" onclick="closeModal()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
   <script>
-    // Swiper: autoplay + loop
+    // Swiper autoplay
     const swiper = new Swiper('#mySwiper', {
       loop: true,
       autoplay: { delay: 4000, disableOnInteraction: false },
@@ -570,38 +597,67 @@
       navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
     });
 
-    // Base de datos demo (tú la vas ampliando)
-    const baseCursos = [
+    // ====== MODAL ======
+    function showModal(title, message){
+      document.getElementById('modalTitle').textContent = title || 'Aviso';
+      document.getElementById('modalMessage').textContent = message || '';
+      const overlay = document.getElementById('modalOverlay');
+      overlay.style.display = 'flex';
+      overlay.setAttribute('aria-hidden', 'false');
+    }
+    function closeModal(){
+      const overlay = document.getElementById('modalOverlay');
+      overlay.style.display = 'none';
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if(e.target.id === 'modalOverlay') closeModal();
+    });
+
+    // ====== “Base de datos” (demo) ======
+    const basePersonas = [
       {
         curp: "BIDD971230HASRZM02",
-        nombre: "Damián Briones Díaz"
-      },
-      {
-        curp: "AAAA000000HDFXXX00",
-        nombre: "Ejemplo Docente"
+        participante: {
+          primerApellido: "BRIONES",
+          segundoApellido: "DÍAZ",
+          nombres: "DAMIÁN",
+          curp: "BIDD971230HASRZM02"
+        }
       }
     ];
 
     function buscar(){
       const input = document.getElementById('curpInput');
-      const curp = input.value.trim();
+      const curpRaw = input.value.trim();
 
-      // Solo demo: si está vacío
-      if(!curp){
-        alert("Ingresa tu CURP.");
+      if(!curpRaw){
+        showModal("Validación por CURP", "Ingresa tu CURP.");
         return;
       }
 
-      // Aquí seguimos como lo tenías antes: buscamos por igualdad en la base demo
-      const persona = baseCursos.find(p => p.curp === curp.toUpperCase());
+      // Si tiene minúsculas, NO convertimos: avisamos (como pediste)
+      if(curpRaw !== curpRaw.toUpperCase()){
+        showModal("Validación por CURP", "Debes escribir la CURP en MAYÚSCULAS.");
+        return;
+      }
+
+      // Validación básica de longitud
+      if(curpRaw.length !== 18){
+        showModal("Validación por CURP", "La CURP debe tener exactamente 18 caracteres.");
+        return;
+      }
+
+      // Buscar en base
+      const persona = basePersonas.find(p => p.curp === curpRaw);
 
       if(!persona){
-        alert("No se encontraron registros.");
+        showModal("Validación por CURP", "La CURP capturada no está registrada.");
         return;
       }
 
-      // Por ahora solo confirmación (luego hacemos el resultado.html como pediste)
-      alert("CURP encontrada: " + persona.nombre);
+      // OK -> redirigir a resultado.html
+      window.location.href = "resultado.html?curp=" + encodeURIComponent(curpRaw);
     }
 
     // Enter para buscar
@@ -612,13 +668,11 @@
       }
     });
 
-    // CURP por URL (QR): ?curp=XXXX
+    // CURP por QR: ?curp=XXXX  (si quieres que también funcione aquí)
     const params = new URLSearchParams(window.location.search);
     const curpQR = params.get('curp');
     if(curpQR){
-      document.getElementById('curpInput').value = curpQR.toUpperCase();
-      // NO auto-busco para no molestar; si quieres que busque solo, descomenta:
-      // buscar();
+      document.getElementById('curpInput').value = curpQR.trim();
     }
   </script>
 </body>
