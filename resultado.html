@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Consulta Código QR</title>
+  <title>Sistema Integral de Formación Continua | Consulta Código QR</title>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://i.imgur.com/YUJ7rzx.png" />
 
   <style>
@@ -13,8 +12,9 @@
       --verde:#7a8457;
       --verde-osc:#6b734f;
       --fondo:#efefef;
-      --panel:#fff;
+      --panel:#ffffff;
       --borde:#d7d7d7;
+      --sombra: 0 10px 24px rgba(0,0,0,.10);
     }
     *{box-sizing:border-box}
     body{
@@ -23,28 +23,36 @@
       background: var(--fondo);
       color:#222;
     }
+    img{max-width:100%; height:auto; display:block;}
+    a{color:inherit; text-decoration:none;}
+    .shell{
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    /* top links */
     .topbar{
       background:#fff;
       border-bottom:1px solid #e3e3e3;
     }
     .topbar .inner{
-      max-width:1120px;
-      margin:0 auto;
-      padding:8px 14px;
       display:flex;
       justify-content:flex-end;
       gap:18px;
       font-size:13px;
       color:#555;
+      padding:8px 0;
     }
+    .topbar a:hover{ text-decoration:underline; }
+
+    /* header */
     header{
       background:#fff;
       border-bottom:1px solid #e6e6e6;
     }
     header .inner{
-      max-width:1120px;
-      margin:0 auto;
-      padding:14px;
+      padding:14px 0;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -55,185 +63,179 @@
       align-items:center;
       gap:14px;
     }
-    .brand img{height:52px;width:auto;display:block}
-    .brand .text h1{margin:0;font-size:16px;font-weight:800}
-    .brand .text p{margin:2px 0 0;font-size:12px;color:#666}
-
-    nav{
-      background: var(--verde);
-    }
-    nav .inner{
-      max-width:1120px;
-      margin:0 auto;
-      padding:0 14px;
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    nav a{
-      color:#fff;
-      text-decoration:none;
-      font-weight:800;
-      font-size:13px;
-      padding:14px 16px;
-      border-right:1px solid rgba(255,255,255,.12);
-    }
-    nav a:last-child{border-right:none}
-    nav a:hover{background:var(--verde-osc)}
-
-    .page{
-      max-width:1120px;
-      margin: 18px auto 0;
-      padding: 0 14px;
-    }
-
-    .paper{
-      background: var(--panel);
-      border:1px solid var(--borde);
-      border-radius:8px;
-      box-shadow:0 10px 24px rgba(0,0,0,.10);
-      padding:18px;
-    }
-
-    .title-center{
-      text-align:center;
-      margin:6px 0 18px;
-    }
-    .title-center h2{
+    .brand img{ height:52px; width:auto; }
+    .brand .text h1{
       margin:0;
-      font-size:20px;
-      font-weight:900;
+      font-size:16px;
+      color:#2b2b2b;
+      font-weight:800;
     }
-    .title-center p{
-      margin:3px 0 0;
-      color:#666;
-      font-size:13px;
-      font-weight:700;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 280px;
-      gap:16px;
-      align-items:start;
-    }
-    @media(max-width:900px){
-      .grid{grid-template-columns:1fr}
-    }
-
-    .section{
-      border:1px solid #e2e2e2;
-      border-radius:8px;
-      overflow:hidden;
-      margin-bottom:12px;
-    }
-    .section .head{
-      background:#f6f6f6;
-      padding:10px 12px;
-      font-weight:900;
-      font-size:13px;
-      letter-spacing:.3px;
-    }
-    .section .body{ padding:12px; }
-
-    .row{
-      display:grid;
-      grid-template-columns: 160px 1fr;
-      gap:10px;
-      padding:6px 0;
-      border-bottom:1px dotted #e1e1e1;
-      font-size:13px;
-    }
-    .row:last-child{border-bottom:none}
-    .row b{font-weight:800}
-
-    .offer-box{
-      border:1px solid #e2e2e2;
-      border-radius:8px;
-      padding:12px;
-      background:#fff;
-    }
-    .offer-box .line{
-      font-size:13px;
-      margin:6px 0;
-    }
-    .note{
-      margin-top:12px;
-      font-size:12px;
-      background:#fff7e6;
-      border:1px solid #f0dfb8;
-      padding:10px 12px;
-      border-radius:8px;
-    }
-
-    .side{
-      border:1px solid #e2e2e2;
-      border-radius:8px;
-      overflow:hidden;
-    }
-    .side .head{
-      background:#f6f6f6;
-      padding:10px 12px;
-      font-weight:900;
-      font-size:13px;
-    }
-    .side .body{
-      padding:12px;
-      font-size:13px;
-      color:#333;
-    }
-    .qrbox{
-      border:1px solid #e6e6e6;
-      border-radius:10px;
-      padding:12px;
-      text-align:center;
-      background:#fff;
-    }
-    .qrbox .big{
-      font-weight:900;
-      margin:6px 0 2px;
-    }
-    .qrbox .small{
+    .brand .text p{
+      margin:2px 0 0 0;
       font-size:12px;
       color:#666;
-      word-break:break-word;
+      font-weight:600;
     }
 
+    /* header actions */
     .actions{
       display:flex;
       gap:10px;
-      justify-content:flex-end;
-      margin: 10px 0 0;
-      flex-wrap:wrap;
+      align-items:center;
     }
-    .btn{
+    .btnTop{
       padding:10px 12px;
       border-radius:8px;
-      border:1px solid #d2d2d2;
+      border:1px solid #d0d0d0;
       background:#fff;
       cursor:pointer;
       font-weight:800;
       font-size:13px;
     }
-    .btn.primary{
-      border-color:transparent;
+    .btnTop.primary{
       background:var(--verde);
       color:#fff;
+      border-color:transparent;
     }
-    .btn.primary:hover{background:var(--verde-osc)}
+    .btnTop.primary:hover{ background:var(--verde-osc); }
+    .btnTop:hover{ filter:brightness(.98); }
 
-    /* redes */
+    /* nav */
+    nav{
+      background: var(--verde);
+      border-top:1px solid rgba(255,255,255,.15);
+    }
+    nav .inner{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    nav a{
+      display:block;
+      padding:14px 16px;
+      color:#fff;
+      font-weight:800;
+      font-size:13px;
+      border-right:1px solid rgba(255,255,255,.12);
+    }
+    nav a:last-child{border-right:none}
+    nav a:hover{background:var(--verde-osc)}
+
+    /* layout */
+    .wrap{
+      margin:18px 0 24px;
+      display:grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap:16px;
+      align-items:start;
+    }
+
+    /* cards */
+    .card{
+      background: var(--panel);
+      border:1px solid var(--borde);
+      border-radius:10px;
+      box-shadow: var(--sombra);
+      overflow:hidden;
+      min-width:0;
+    }
+    .card .head{
+      padding:14px 16px;
+      background:#fafafa;
+      border-bottom:1px solid #ececec;
+    }
+    .title{
+      margin:0;
+      text-align:center;
+      font-size:20px;
+      font-weight:900;
+    }
+    .subtitle{
+      margin:4px 0 0;
+      text-align:center;
+      font-size:13px;
+      color:#555;
+      font-weight:800;
+    }
+    .body{ padding:16px; }
+
+    .section{
+      margin-bottom:14px;
+      border:1px solid #ececec;
+      border-radius:10px;
+      overflow:hidden;
+    }
+    .section .st{
+      padding:10px 12px;
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.2px;
+      background:#f6f6f6;
+      border-bottom:1px solid #e9e9e9;
+      text-transform:uppercase;
+    }
+    .rows{
+      padding:10px 12px;
+      font-size:13px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 200px minmax(0,1fr);
+      gap:10px;
+      padding:6px 0;
+      border-bottom:1px dotted #dadada;
+    }
+    .row:last-child{border-bottom:none}
+    .k{ font-weight:900; color:#333; }
+    .v{ color:#222; }
+
+    .note{
+      margin-top:10px;
+      padding:12px 12px;
+      background:#fff7e8;
+      border:1px solid #ffe2b7;
+      color:#6b4a12;
+      border-radius:10px;
+      font-size:12.5px;
+      font-weight:700;
+    }
+
+    /* right small card */
+    .mini{
+      padding:14px;
+    }
+    .miniTitle{
+      margin:0 0 10px 0;
+      font-size:13px;
+      font-weight:900;
+      color:#222;
+    }
+    .qrBox{
+      border:1px solid #e6e6e6;
+      border-radius:10px;
+      padding:12px;
+      background:#fff;
+      text-align:center;
+    }
+    .curpBig{
+      font-weight:900;
+      margin:8px 0 6px;
+      font-size:14px;
+    }
+    .smallUrl{
+      font-size:11px;
+      color:#666;
+      word-break:break-all;
+      line-height:1.4;
+    }
+
+    /* redes abajo */
     .social-wrap{
-      margin-top:18px;
       background:#2a2a2a;
       color:#fff;
       border-top:1px solid #1f1f1f;
     }
-    .social-wrap .inner{
-      max-width:1120px;
-      margin:0 auto;
-      padding:16px 14px;
-    }
+    .social-wrap .inner{ padding:16px 0; }
     .social-title{
       font-weight:900;
       font-size:12px;
@@ -253,21 +255,33 @@
       background:#1f1f1f;
       border:1px solid rgba(255,255,255,.10);
       padding:12px 14px;
-      border-radius:8px;
-      min-width:240px;
+      border-radius:10px;
+      min-width: 260px;
     }
     .social-card:hover{
       border-color: rgba(255,255,255,.22);
       transform: translateY(-1px);
     }
     .icon{
-      width:34px;height:34px;border-radius:999px;
-      display:grid;place-items:center;
+      width:36px;height:36px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      flex:0 0 36px;
       background:#0f0f0f;
       border:1px solid rgba(255,255,255,.14);
     }
-    .social-card .t1{margin:0;font-weight:900;font-size:13px}
-    .social-card .t2{margin:2px 0 0;font-size:12px;color:#cfcfcf}
+    .social-card .t1{
+      margin:0;
+      font-weight:900;
+      font-size:13px;
+      color:#fff;
+    }
+    .social-card .t2{
+      margin:2px 0 0;
+      font-size:12px;
+      color:#cfcfcf;
+    }
 
     footer{
       background:#141414;
@@ -277,101 +291,125 @@
       font-size:12px;
       border-top:1px solid rgba(255,255,255,.08);
     }
+
+    .msgOnly{
+      font-size:15px;
+      font-weight:800;
+      padding:8px 2px;
+    }
+
+    @media (max-width: 980px){
+      .wrap{ grid-template-columns: 1fr; }
+      .row{ grid-template-columns: 1fr; }
+      .k{ opacity:.9; }
+    }
   </style>
 </head>
 
 <body>
+
   <div class="topbar">
-    <div class="inner">
-      <span>Portal docente</span>
-      <span>Directorio</span>
-      <span>Soporte</span>
+    <div class="shell">
+      <div class="inner">
+        <a href="#">Portal docente</a>
+        <a href="#">Directorio</a>
+        <a href="#">Soporte</a>
+      </div>
     </div>
   </div>
 
   <header>
-    <div class="inner">
-      <div class="brand">
-        <img src="https://i.imgur.com/g3QP0r7.png" alt="Logo institucional">
-        <div class="text">
-          <h1>Plataforma Académica</h1>
-          <p>Consulta y validación de cursos</p>
+    <div class="shell">
+      <div class="inner">
+        <div class="brand">
+          <img src="https://i.imgur.com/g3QP0r7.png" alt="Logo institucional">
+          <div class="text">
+            <h1>Plataforma Académica</h1>
+            <p>Consulta y validación de cursos</p>
+          </div>
         </div>
-      </div>
-      <div class="actions">
-        <button class="btn" onclick="window.location.href='index.html'">Volver</button>
-        <button class="btn primary" onclick="copiarEnlace()">Copiar enlace</button>
+
+        <div class="actions">
+          <button class="btnTop" id="btnVolver">Volver</button>
+          <button class="btnTop primary" id="btnCopiar">Copiar enlace</button>
+        </div>
       </div>
     </div>
   </header>
 
   <nav>
-    <div class="inner">
-      <a href="index.html">INICIO</a>
-      <a href="#" onclick="return false;">TRÁMITES Y SERVICIOS</a>
-      <a href="#" onclick="return false;">NOTICIAS</a>
-      <a href="#" onclick="return false;">CONTACTO</a>
+    <div class="shell">
+      <div class="inner">
+        <a href="index.html">INICIO</a>
+        <a href="#">TRÁMITES Y SERVICIOS</a>
+        <a href="#">NOTICIAS</a>
+        <a href="#">CONTACTO</a>
+      </div>
     </div>
   </nav>
 
-  <div class="page">
-    <div class="paper">
+  <div class="shell">
+    <div class="wrap">
 
-      <div class="title-center">
-        <h2>Sistema Integral de Formación Continua</h2>
-        <p>Consulta Código QR</p>
-      </div>
-
-      <div class="grid">
-        <div id="leftCol">
-          <!-- aquí se pinta todo -->
+      <!-- IZQUIERDA (RESULTADO) -->
+      <section class="card">
+        <div class="head">
+          <h2 class="title">Sistema Integral de Formación Continua</h2>
+          <div class="subtitle">Consulta Código QR</div>
         </div>
 
-        <div class="side">
-          <div class="head">Consulta por CURP</div>
-          <div class="body">
-            <div class="qrbox">
-              <div style="font-size:22px;">🔎</div>
-              <div class="big" id="curpSide">—</div>
-              <div class="small" id="urlSide">—</div>
-            </div>
+        <div class="body" id="contenido">
+          <!-- aquí se inyecta resultado -->
+        </div>
+      </section>
+
+      <!-- DERECHA (CUADRO CURP) -->
+      <aside class="card">
+        <div class="mini">
+          <p class="miniTitle">Consulta por CURP</p>
+          <div class="qrBox">
+            <div style="font-size:22px;">🔎</div>
+            <div class="curpBig" id="curpSide">—</div>
+            <div class="smallUrl" id="urlSide">—</div>
           </div>
         </div>
-      </div>
+      </aside>
 
     </div>
   </div>
 
   <!-- Redes sociales -->
   <section class="social-wrap">
-    <div class="inner">
-      <div class="social-title">REDES SOCIALES</div>
-      <div class="social-cards">
+    <div class="shell">
+      <div class="inner">
+        <div class="social-title">REDES SOCIALES</div>
+        <div class="social-cards">
 
-        <a class="social-card" href="https://www.facebook.com/iebem/?fref=ts#" target="_blank" rel="noopener">
-          <div class="icon" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v3H7v3h3v7h3v-7h3l1-3h-4v-3c0-.6.4-1 1-1Z" fill="#fff"/>
-            </svg>
-          </div>
-          <div>
-            <p class="t1">HAZTE FAN EN FACEBOOK</p>
-            <p class="t2">Visita la página oficial</p>
-          </div>
-        </a>
+          <a class="social-card" href="https://www.facebook.com/iebem/?fref=ts#" target="_blank" rel="noopener">
+            <div class="icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v3H7v3h3v7h3v-7h3l1-3h-4v-3c0-.6.4-1 1-1Z" fill="#fff"/>
+              </svg>
+            </div>
+            <div>
+              <p class="t1">HAZTE FAN EN FACEBOOK</p>
+              <p class="t2">Visita la página oficial</p>
+            </div>
+          </a>
 
-        <a class="social-card" href="https://www.youtube.com/user/IEBEMTV" target="_blank" rel="noopener">
-          <div class="icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.3 31.3 0 0 0 2 12a31.3 31.3 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 22 12a31.3 31.3 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z" fill="#fff"/>
-            </svg>
-          </div>
-          <div>
-            <p class="t1">CANAL EN YOUTUBE</p>
-            <p class="t2">Contenido y transmisiones</p>
-          </div>
-        </a>
+          <a class="social-card" href="https://www.youtube.com/user/IEBEMTV" target="_blank" rel="noopener">
+            <div class="icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.3 31.3 0 0 0 2 12a31.3 31.3 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 22 12a31.3 31.3 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z" fill="#fff"/>
+              </svg>
+            </div>
+            <div>
+              <p class="t1">CANAL EN YOUTUBE</p>
+              <p class="t2">Contenido y transmisiones</p>
+            </div>
+          </a>
 
+        </div>
       </div>
     </div>
   </section>
@@ -379,7 +417,7 @@
   <footer>© 2026. Todos los derechos reservados.</footer>
 
   <script>
-    // ===== Base de datos (misma que en index) =====
+    // ✅ BASE DE DATOS (DEBE EXISTIR TAMBIÉN EN resultado.html)
     const baseCursos = [
       {
         curp: "BIDD971230HASRZM02",
@@ -394,72 +432,98 @@
           duracionHrs: 40,
           estatus: "CONCLUIDO"
         }
+      },
+      {
+        curp: "LOCE790624HASPRL03",
+        primerApellido: "LOPERENA",
+        segundoApellido: "DE LA CRUZ",
+        nombres: "ELIU JUAN DANIEL",
+        institucionFormadora: "Instituto de la Educación Básica del Estado de Morelos/Instituto de Capacitación Docente de Morelos S.C.",
+        oferta: {
+          folio: "-01-IEBEM-DCM-2025-84217",
+          nombre: "LEER Y ESCRIBIR: HERRAMIENTAS INTELECTUALES E INTERCULTURALES PARA ENSEÑAR A PENSAR DE FORMA CRÍTICA EN EDUCACIÓN BÁSICA",
+          tipo: "Curso",
+          duracionHrs: 40,
+          estatus: "CONCLUIDO"
+        }
       }
     ];
 
-    function copiarEnlace(){
-      navigator.clipboard.writeText(window.location.href);
-      alert("Enlace copiado.");
-    }
+    function esc(str){ return (str ?? "").toString(); }
 
-    function render(){
-      const params = new URLSearchParams(window.location.search);
-      const curp = (params.get('curp') || "").trim();
-
-      document.getElementById('curpSide').textContent = curp || "—";
-      document.getElementById('urlSide').textContent = window.location.href;
-
-      const left = document.getElementById('leftCol');
-
-      if(!curp){
-        left.innerHTML = "<p><b>Falta la CURP.</b> Vuelve al inicio.</p>";
-        return;
-      }
-
-      const persona = baseCursos.find(p => p.curp === curp);
-      if(!persona){
-        left.innerHTML = "<p><b>La CURP capturada no está registrada.</b></p>";
-        return;
-      }
-
-      left.innerHTML = `
+    function renderPersona(p){
+      return `
         <div class="section">
-          <div class="head">Datos del Participante</div>
-          <div class="body">
-            <div class="row"><b>Primer Apellido:</b> <span>${persona.primerApellido}</span></div>
-            <div class="row"><b>Segundo Apellido:</b> <span>${persona.segundoApellido}</span></div>
-            <div class="row"><b>Nombre(s):</b> <span>${persona.nombres}</span></div>
-            <div class="row"><b>CURP:</b> <span>${persona.curp}</span></div>
+          <div class="st">Datos del Participante</div>
+          <div class="rows">
+            <div class="row"><div class="k">Primer Apellido:</div><div class="v">${esc(p.primerApellido)}</div></div>
+            <div class="row"><div class="k">Segundo Apellido:</div><div class="v">${esc(p.segundoApellido)}</div></div>
+            <div class="row"><div class="k">Nombre(s):</div><div class="v">${esc(p.nombres)}</div></div>
+            <div class="row"><div class="k">CURP:</div><div class="v">${esc(p.curp)}</div></div>
           </div>
         </div>
 
         <div class="section">
-          <div class="head">INSTITUCIÓN FORMADORA</div>
-          <div class="body">
-            <div class="row"><b>Denominación:</b> <span>${persona.institucionFormadora}</span></div>
+          <div class="st">Institución Formadora</div>
+          <div class="rows">
+            <div class="row"><div class="k">Denominación:</div><div class="v">${esc(p.institucionFormadora)}</div></div>
           </div>
         </div>
 
         <div class="section">
-          <div class="head">OFERTA CURSADA</div>
-          <div class="body">
-            <div class="offer-box">
-              <div class="line"><b>Folio:</b> ${persona.oferta.folio}</div>
-              <div class="line"><b>Nombre:</b> "${persona.oferta.nombre}"</div>
-              <div class="line"><b>Tipo:</b> ${persona.oferta.tipo}</div>
-              <div class="line"><b>Duración:</b> ${persona.oferta.duracionHrs} hrs.</div>
-              <div class="line"><b>Estatus:</b> ${persona.oferta.estatus}</div>
-            </div>
-
-            <div class="note">
-              <b>**</b>Esta información no sustituye a la constancia y se presenta sólo con fines de validación de la misma.
-            </div>
+          <div class="st">Oferta Cursada</div>
+          <div class="rows">
+            <div class="row"><div class="k">Folio:</div><div class="v">${esc(p.oferta.folio)}</div></div>
+            <div class="row"><div class="k">Nombre:</div><div class="v">"${esc(p.oferta.nombre)}"</div></div>
+            <div class="row"><div class="k">Tipo:</div><div class="v">${esc(p.oferta.tipo)}</div></div>
+            <div class="row"><div class="k">Duración:</div><div class="v">${esc(p.oferta.duracionHrs)} hrs.</div></div>
+            <div class="row"><div class="k">Estatus:</div><div class="v">${esc(p.oferta.estatus)}</div></div>
           </div>
         </div>
+
+        <div class="note"><b>**Esta información no sustituye a la constancia y se presenta sólo con fines de validación de la misma.**</b></div>
       `;
     }
 
-    render();
+    function setSide(curp){
+      const fullUrl = window.location.href;
+      document.getElementById('curpSide').textContent = curp || "—";
+      document.getElementById('urlSide').textContent = fullUrl;
+    }
+
+    // Botones
+    document.getElementById('btnVolver').addEventListener('click', ()=> {
+      window.location.href = "index.html";
+    });
+
+    document.getElementById('btnCopiar').addEventListener('click', async ()=> {
+      try{
+        await navigator.clipboard.writeText(window.location.href);
+        alert("Enlace copiado.");
+      }catch(e){
+        alert("No se pudo copiar el enlace en este navegador.");
+      }
+    });
+
+    // Cargar por ?curp=
+    const params = new URLSearchParams(window.location.search);
+    const curp = (params.get('curp') || "").trim();
+
+    setSide(curp);
+
+    const cont = document.getElementById('contenido');
+
+    if(!curp){
+      cont.innerHTML = `<div class="msgOnly">La CURP capturada no está registrada.</div>`;
+    }else{
+      const persona = baseCursos.find(p => p.curp === curp);
+      if(!persona){
+        cont.innerHTML = `<div class="msgOnly">La CURP capturada no está registrada.</div>`;
+      }else{
+        cont.innerHTML = renderPersona(persona);
+      }
+    }
   </script>
+
 </body>
 </html>
