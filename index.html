@@ -68,10 +68,17 @@
       display:flex;
       align-items:center;
       gap:14px;
+      flex: 1;
     }
     .brand img{
       height:52px;
       width:auto;
+    }
+
+    /* ✅ NUEVO: texto del encabezado alineado a la derecha */
+    .brand .text{
+      margin-left:auto;
+      text-align:right;
     }
     .brand .text h1{
       margin:0;
@@ -192,10 +199,19 @@
       color:#666;
     }
 
-    .bullets{
+    /* ✅ Anuncios como enlaces */
+    .ann-list{
       margin:0;
       padding-left:18px;
       font-size:13px;
+    }
+    .ann-list li{ margin:6px 0; }
+    .ann-list a{
+      color:#222;
+      text-decoration:none;
+    }
+    .ann-list a:hover{
+      text-decoration:underline;
     }
 
     .news a{
@@ -469,17 +485,23 @@
         <div class="box">
           <div class="title">Anuncios</div>
           <div class="content">
-            <ul class="bullets">
-              <li>Simposio Internacional Educación para la vida saludable en las comunidades escolares</li>
-              <li>CONVOCATORIA DE INTERCAMBIO DE MAESTROS 2026</li>
-              <li>CONVOCATORIA PREINSCRIPCIONES 2026-2027</li>
-              <li>PROCESO DE CAMBIOS DE CENTRO DE TRABAJO EN EDUCACIÓN BÁSICA MORELOS CICLO ESCOLAR 2026 2027</li>
-              <li>CIRCULAR No.: DG/014/2025</li>
-              <li>CONVOCATORIA DEL PROCESO DE PROMOCIÓN A HORAS ADICIONALES EN EDUCACIÓN BÁSICA, CICLO ESCOLAR 2026-2027</li>
-              <li>PROGRAMA DE PROMOCIÓN HORIZONTAL POR NIVELES CON INCENTIVOS EN EDUCACIÓN BÁSICA 2025</li>
-              <li>CONVOCATORIA PROCESO PROMOCIÓN VERTICAL 2026-2027</li>
-              <li>Convocatoria del Proceso de cursos de admisión en su segunda fase</li>
-              <li>C O N V O C A T O R I A 32° CONCURSO NACIONAL DE DIBUJO Y PINTURA INFANTIL Y JUVENIL, 2025. “MI CAMINO HACIA LOS 60”</li>
+            <ul class="ann-list">
+              <li><a href="https://iebem.morelos.gob.mx/contenido/simposio-internacional-educacion-para-la-vida-saludable-en-las-comunidades-escolares" target="_blank" rel="noopener">Simposio Internacional Educación para la vida saludable en las comunidades escolares</a></li>
+
+              <!-- ⚠️ No me diste URL real, lo dejo listo para que pegues el link -->
+              <li><a href="#" onclick="return false;">CONVOCATORIA DE INTERCAMBIO DE MAESTROS 2026</a></li>
+
+              <li><a href="https://iebem.morelos.gob.mx/contenido/convocatoria-preinscripciones-2026-2027" target="_blank" rel="noopener">CONVOCATORIA PREINSCRIPCIONES 2026-2027</a></li>
+              <li><a href="https://iebem.morelos.gob.mx/contenido/proceso-de-cambios-de-centro-de-trabajo-en-educacion-basica-morelos-ciclo-escolar-2026" target="_blank" rel="noopener">PROCESO DE CAMBIOS DE CENTRO DE TRABAJO EN EDUCACIÓN BÁSICA MORELOS CICLO ESCOLAR 2026 2027</a></li>
+              <li><a href="https://iebem.morelos.gob.mx/contenido/circular-no-dg0142025" target="_blank" rel="noopener">CIRCULAR No.: DG/014/2025</a></li>
+              <li><a href="https://iebem.morelos.gob.mx/contenido/convocatoria-del-proceso-de-promocion-horas-adicionales-en-educacion-basica-ciclo-escola-2" target="_blank" rel="noopener">CONVOCATORIA DEL PROCESO DE PROMOCIÓN A HORAS ADICIONALES EN EDUCACIÓN BÁSICA, CICLO ESCOLAR 2026-2027</a></li>
+              <li><a href="https://iebem.morelos.gob.mx/contenido/programa-de-promocion-horizontal-por-niveles-con-incentivos-en-educacion-basica-2025" target="_blank" rel="noopener">PROGRAMA DE PROMOCIÓN HORIZONTAL POR NIVELES CON INCENTIVOS EN EDUCACIÓN BÁSICA 2025</a></li>
+
+              <!-- ⚠️ No me diste URL real, lo dejo listo para que pegues el link -->
+              <li><a href="#" onclick="return false;">CONVOCATORIA PROCESO PROMOCIÓN VERTICAL 2026-2027</a></li>
+
+              <li><a href="https://iebem.morelos.gob.mx/contenido/convocatoria-del-proceso-de-cursos-de-admision-en-su-segunda-fase" target="_blank" rel="noopener">Convocatoria del Proceso de cursos de admisión en su segunda fase</a></li>
+              <li><a href="https://iebem.morelos.gob.mx/contenido/c-o-n-v-o-c-t-o-r-i-32deg-concurso-nacional-de-dibujo-y-pintura-infantil-y-juvenil-2025-mi" target="_blank" rel="noopener">C O N V O C A T O R I A 32° CONCURSO NACIONAL DE DIBUJO Y PINTURA INFANTIL Y JUVENIL, 2025. “MI CAMINO HACIA LOS 60”</a></li>
             </ul>
           </div>
         </div>
