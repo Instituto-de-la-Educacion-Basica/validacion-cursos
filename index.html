@@ -370,12 +370,12 @@
   <nav>
     <div class="shell">
       <div class="inner">
-        <a href="#">INICIO</a>
-        <a href="#">TRÁMITES Y SERVICIOS</a>
-        <a href="#">ESTRUCTURA</a>
-        <a href="#">NOTICIAS</a>
-        <a href="#">TRANSPARENCIA</a>
-        <a href="#">CONTACTO</a>
+        <a href="#" onclick="return false;">INICIO</a>
+        <a href="https://iebem.edu.mx/contenido/tramites-y-servicios" target="_blank" rel="noopener">TRÁMITES Y SERVICIOS</a>
+        <a href="https://iebem.edu.mx/contenido/unidades-administrativas" target="_blank" rel="noopener">ESTRUCTURA</a>
+        <a href="https://iebem.edu.mx/noticias" target="_blank" rel="noopener">NOTICIAS</a>
+        <a href="https://iebem.edu.mx/contenido/transparencia" target="_blank" rel="noopener">TRANSPARENCIA</a>
+        <a href="https://iebem.edu.mx/contenido/contacto" target="_blank" rel="noopener">CONTACTO</a>
       </div>
     </div>
   </nav>
@@ -470,9 +470,16 @@
           <div class="title">Anuncios</div>
           <div class="content">
             <ul class="bullets">
-              <li>Convocatoria de actualización docente abierta.</li>
-              <li>Taller virtual de planeación didáctica.</li>
-              <li>Publicación de calendario de cursos.</li>
+              <li>Simposio Internacional Educación para la vida saludable en las comunidades escolares</li>
+              <li>CONVOCATORIA DE INTERCAMBIO DE MAESTROS 2026</li>
+              <li>CONVOCATORIA PREINSCRIPCIONES 2026-2027</li>
+              <li>PROCESO DE CAMBIOS DE CENTRO DE TRABAJO EN EDUCACIÓN BÁSICA MORELOS CICLO ESCOLAR 2026 2027</li>
+              <li>CIRCULAR No.: DG/014/2025</li>
+              <li>CONVOCATORIA DEL PROCESO DE PROMOCIÓN A HORAS ADICIONALES EN EDUCACIÓN BÁSICA, CICLO ESCOLAR 2026-2027</li>
+              <li>PROGRAMA DE PROMOCIÓN HORIZONTAL POR NIVELES CON INCENTIVOS EN EDUCACIÓN BÁSICA 2025</li>
+              <li>CONVOCATORIA PROCESO PROMOCIÓN VERTICAL 2026-2027</li>
+              <li>Convocatoria del Proceso de cursos de admisión en su segunda fase</li>
+              <li>C O N V O C A T O R I A 32° CONCURSO NACIONAL DE DIBUJO Y PINTURA INFANTIL Y JUVENIL, 2025. “MI CAMINO HACIA LOS 60”</li>
             </ul>
           </div>
         </div>
@@ -573,7 +580,6 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
   <script>
-    // Swiper auto
     const swiper = new Swiper('#mySwiper', {
       loop: true,
       autoplay: { delay: 4200, disableOnInteraction: false },
@@ -582,7 +588,6 @@
       effect: 'slide'
     });
 
-    // ✅ Base (actualizada)
     const baseCursos = [
       {
         curp: "BIDD971230HASRZM02",
@@ -616,7 +621,6 @@
       }
     ];
 
-    // Modal
     const modalBack = document.getElementById('modalBack');
     const modalMsg = document.getElementById('modalMsg');
     const modalOk = document.getElementById('modalOk');
@@ -651,7 +655,6 @@
       }
     });
 
-    // por QR: index.html?curp=XXXX
     const params = new URLSearchParams(window.location.search);
     const curpQR = params.get('curp');
     if(curpQR){
