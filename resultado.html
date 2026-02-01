@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sistema Integral de Formación Continua | Consulta Código QR</title>
+  <title>Plataforma Académica | Resultado de validación</title>
 
   <link rel="icon" type="image/png" href="https://i.imgur.com/YUJ7rzx.png" />
 
@@ -15,6 +15,8 @@
       --panel:#ffffff;
       --borde:#d7d7d7;
       --sombra: 0 10px 24px rgba(0,0,0,.10);
+      --texto:#222;
+      --muted:#666;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -22,7 +24,7 @@
       margin:0;
       font-family: Arial, Helvetica, sans-serif;
       background: var(--fondo);
-      color:#222;
+      color: var(--texto);
       overflow-x:hidden;
     }
     img{max-width:100%; height:auto; display:block;}
@@ -34,6 +36,7 @@
       padding: 0 18px;
     }
 
+    /* Top links */
     .topbar{
       background:#fff;
       border-bottom:1px solid #e3e3e3;
@@ -49,6 +52,7 @@
     .topbar a{ text-decoration:none; }
     .topbar a:hover{ text-decoration:underline; }
 
+    /* Header */
     header{
       background:#fff;
       border-bottom:1px solid #e6e6e6;
@@ -69,19 +73,51 @@
       height:52px;
       width:auto;
     }
+    /* Título alineado a la derecha (como pediste) */
+    .brand .text{
+      text-align:right;
+    }
     .brand .text h1{
       margin:0;
-      font-size:16px;
+      font-size:18px;
       color:#2b2b2b;
-      font-weight:800;
+      font-weight:900;
+      line-height:1.05;
     }
     .brand .text p{
-      margin:2px 0 0 0;
+      margin:3px 0 0 0;
       font-size:12px;
       color:#666;
-      font-weight:600;
+      font-weight:700;
     }
 
+    /* Acciones header (Volver / Copiar) */
+    .head-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .btn-ghost{
+      background:#fff;
+      border:1px solid #d6d6d6;
+      padding:10px 14px;
+      border-radius:8px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .btn-ghost:hover{ border-color:#bfbfbf; }
+    .btn-primary{
+      background:var(--verde);
+      color:#fff;
+      border:none;
+      padding:10px 14px;
+      border-radius:8px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .btn-primary:hover{ background:var(--verde-osc); }
+
+    /* Nav */
     nav{
       background: var(--verde);
       border-top:1px solid rgba(255,255,255,.15);
@@ -103,155 +139,150 @@
     nav a:last-child{border-right:none}
     nav a:hover{background:var(--verde-osc)}
 
-    .actions{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .btn{
-      border:1px solid #cfcfcf;
-      background:#fff;
-      padding:10px 14px;
-      border-radius:10px;
-      font-weight:900;
-      cursor:pointer;
-    }
-    .btn.primary{
-      border-color:transparent;
-      background:var(--verde);
-      color:#fff;
-    }
-    .btn.primary:hover{background:var(--verde-osc)}
-    .btn:hover{filter:brightness(.98)}
-
+    /* Layout resultado */
     .wrap{
-      margin:18px 0 26px;
-      display:grid;
-      grid-template-columns: minmax(0, 1fr) 320px;
-      gap:16px;
-      align-items:start;
+      margin:22px 0 26px;
     }
-
     .panel{
-      background:var(--panel);
+      background: var(--panel);
       border:1px solid var(--borde);
       border-radius:10px;
       box-shadow: var(--sombra);
       overflow:hidden;
-      min-width:0;
     }
-    .panel .p-head{
-      padding:18px 16px 10px;
+    .panel-body{
+      padding:18px;
+    }
+    .result-grid{
+      display:grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap:16px;
+      align-items:start;
+    }
+
+    .title-center{
       text-align:center;
+      padding:10px 0 16px;
     }
-    .panel .p-head h2{
+    .title-center h2{
       margin:0;
       font-size:22px;
       font-weight:900;
       color:#111;
     }
-    .panel .p-head p{
-      margin:4px 0 0;
+    .title-center p{
+      margin:4px 0 0 0;
       font-size:13px;
-      color:#666;
+      color:#555;
       font-weight:700;
     }
-    .panel .p-body{
-      padding:14px 16px 18px;
-    }
 
-    .section{
-      margin-top:12px;
-      border:1px solid #e6e6e6;
+    .box{
+      border:1px solid #e2e2e2;
       border-radius:10px;
       overflow:hidden;
+      background:#fff;
     }
-    .section .s-title{
+    .box .box-head{
       background:#f6f6f6;
-      border-bottom:1px solid #e9e9e9;
+      padding:10px 12px;
       font-weight:900;
-      padding:10px 12px;
       font-size:13px;
-      letter-spacing:.2px;
+      border-bottom:1px solid #e9e9e9;
     }
-    .section .s-content{
-      padding:10px 12px;
+    .box .box-content{
+      padding:12px;
       font-size:13px;
       color:#222;
     }
 
-    .kv{
+    .table{
       width:100%;
       border-collapse:collapse;
       font-size:13px;
     }
-    .kv td{
-      padding:8px 6px;
-      border-bottom:1px dashed #e2e2e2;
+    .table tr{ border-bottom:1px dotted #dadada; }
+    .table tr:last-child{ border-bottom:none; }
+    .table th{
+      text-align:left;
+      padding:10px 8px;
+      width:170px;
+      font-weight:900;
+      color:#222;
       vertical-align:top;
     }
-    .kv td:first-child{
-      width:180px;
-      font-weight:900;
+    .table td{
+      padding:10px 8px;
+      color:#222;
+      vertical-align:top;
+    }
+
+    .muted-note{
+      margin-top:14px;
+      background:#fff6e8;
+      border:1px solid #f0d7b5;
+      padding:10px 12px;
+      border-radius:8px;
+      font-size:12px;
       color:#333;
-    }
-    .kv tr:last-child td{border-bottom:none}
-
-    .note{
-      margin-top:12px;
-      background:#fff6e6;
-      border:1px solid #ffd7a6;
-      color:#5a3c00;
-      padding:10px 12px;
-      border-radius:10px;
-      font-size:12.5px;
-      font-weight:800;
+      font-weight:700;
     }
 
-    .mini{
-      background:var(--panel);
-      border:1px solid var(--borde);
-      border-radius:10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
-      overflow:hidden;
+    /* Botón constancia */
+    .btn-constancia{
+      background:var(--verde);
+      color:#fff;
+      border:none;
+      padding:12px 18px;
+      border-radius:8px;
+      font-weight:900;
+      cursor:pointer;
     }
-    .mini .m-title{
-      background:#f6f6f6;
-      border-bottom:1px solid #e9e9e9;
-      padding:10px 12px;
+    .btn-constancia:hover{ background:var(--verde-osc); }
+
+    /* Tarjeta QR */
+    .qr-card{
+      background:#fff;
+      border:1px solid #e2e2e2;
+      border-radius:12px;
+      padding:14px;
+      box-shadow: 0 6px 16px rgba(0,0,0,.08);
+    }
+    .qr-title{
       font-weight:900;
       font-size:13px;
+      margin-bottom:12px;
     }
-    .mini .m-body{
-      padding:12px;
-      display:grid;
-      gap:10px;
-    }
-    .qr{
-      border:1px solid #e6e6e6;
+    .qr-box{
+      border:1px solid #e9e9e9;
       border-radius:12px;
       padding:12px;
       text-align:center;
-      background:#fff;
+      background:#fbfbfb;
     }
-    .qr .curp{
+    .mag{
+      width:44px;height:44px;
+      margin:0 auto 8px;
+      display:grid;
+      place-items:center;
+    }
+    .qr-curp{
       font-weight:900;
-      margin-top:8px;
-      font-size:13px;
+      margin:0 0 6px;
+      font-size:14px;
     }
-    .qr .link{
+    .qr-url{
+      margin:0;
       font-size:12px;
-      color:#666;
-      word-break:break-all;
-      margin-top:6px;
-      line-height:1.3;
+      color:#444;
+      word-break:break-word;
     }
 
+    /* Redes sociales */
     .social-wrap{
       background:#2a2a2a;
       color:#fff;
       border-top:1px solid #1f1f1f;
-      margin-top:18px;
     }
     .social-wrap .inner{
       padding:16px 0;
@@ -313,13 +344,16 @@
     }
 
     @media (max-width: 980px){
-      .wrap{ grid-template-columns: 1fr; }
+      .result-grid{ grid-template-columns: 1fr; }
+      .brand .text{ text-align:left; }
+      .head-actions{ flex-wrap:wrap; justify-content:flex-end; }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- Topbar links -->
   <div class="topbar">
     <div class="shell">
       <div class="inner">
@@ -330,6 +364,7 @@
     </div>
   </div>
 
+  <!-- Header -->
   <header>
     <div class="shell">
       <div class="inner">
@@ -341,51 +376,117 @@
           </div>
         </div>
 
-        <div class="actions">
-          <button class="btn" id="btnVolver">Volver</button>
-          <button class="btn primary" id="btnCopiar">Copiar enlace</button>
+        <div class="head-actions">
+          <button class="btn-ghost" id="btnVolver">Volver</button>
+          <button class="btn-primary" id="btnCopiar">Copiar enlace</button>
         </div>
       </div>
     </div>
   </header>
 
+  <!-- Nav -->
   <nav>
     <div class="shell">
       <div class="inner">
         <a href="index.html">INICIO</a>
-        <a href="#">TRÁMITES Y SERVICIOS</a>
-        <a href="#">NOTICIAS</a>
-        <a href="#">CONTACTO</a>
+        <a href="https://iebem.edu.mx/contenido/tramites-y-servicios" target="_blank" rel="noopener">TRÁMITES Y SERVICIOS</a>
+        <a href="https://iebem.edu.mx/contenido/unidades-administrativas" target="_blank" rel="noopener">ESTRUCTURA</a>
+        <a href="https://iebem.edu.mx/noticias" target="_blank" rel="noopener">NOTICIAS</a>
+        <a href="https://iebem.edu.mx/contenido/transparencia" target="_blank" rel="noopener">TRANSPARENCIA</a>
+        <a href="https://iebem.edu.mx/contenido/contacto" target="_blank" rel="noopener">CONTACTO</a>
       </div>
     </div>
   </nav>
 
+  <!-- Content -->
   <div class="shell">
     <div class="wrap">
-
       <div class="panel">
-        <div class="p-head">
-          <h2>Sistema Integral de Formación Continua</h2>
-          <p>Consulta Código QR</p>
-        </div>
+        <div class="panel-body">
 
-        <div class="p-body" id="resultadoBody"></div>
-      </div>
-
-      <div class="mini">
-        <div class="m-title">Consulta por CURP</div>
-        <div class="m-body">
-          <div class="qr" id="qrCard">
-            <div style="font-size:26px;">🔎</div>
-            <div class="curp" id="curpShown">—</div>
-            <div class="link" id="linkShown">—</div>
+          <div class="title-center">
+            <h2>Sistema Integral de Formación Continua</h2>
+            <p>Consulta Código QR</p>
           </div>
+
+          <div class="result-grid">
+
+            <!-- LEFT: Datos -->
+            <div id="leftCol">
+
+              <div class="box" style="margin-bottom:12px;">
+                <div class="box-head">Datos del Participante</div>
+                <div class="box-content">
+                  <table class="table">
+                    <tr><th>Primer Apellido:</th><td id="pPrimer">—</td></tr>
+                    <tr><th>Segundo Apellido:</th><td id="pSegundo">—</td></tr>
+                    <tr><th>Nombre(s):</th><td id="pNombre">—</td></tr>
+                    <tr><th>CURP:</th><td id="pCurp">—</td></tr>
+                  </table>
+                </div>
+              </div>
+
+              <div class="box" style="margin-bottom:12px;">
+                <div class="box-head">INSTITUCIÓN FORMADORA</div>
+                <div class="box-content">
+                  <table class="table">
+                    <tr><th>Denominación:</th><td id="pInst">—</td></tr>
+                  </table>
+                </div>
+              </div>
+
+              <div class="box">
+                <div class="box-head">OFERTA CURSADA</div>
+                <div class="box-content">
+                  <table class="table">
+                    <tr><th>Folio:</th><td id="cFolio">—</td></tr>
+                    <tr><th>Clave registrada:</th><td id="cClave">—</td></tr>
+                    <tr><th>Nombre:</th><td id="cNombre">—</td></tr>
+                    <tr><th>Tipo:</th><td id="cTipo">—</td></tr>
+                    <tr><th>Duración:</th><td id="cDur">—</td></tr>
+                    <tr><th>Estatus:</th><td id="cEst">—</td></tr>
+                  </table>
+
+                  <!-- Botón PDF -->
+                  <div style="margin-top:16px; text-align:right;">
+                    <button id="btnConstancia" class="btn-constancia">Generar constancia (PDF)</button>
+                  </div>
+
+                  <div class="muted-note">
+                    <b>**</b>Esta información no sustituye a la constancia y se presenta sólo con fines de validación de la misma.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- RIGHT: QR -->
+            <div>
+              <div class="qr-card">
+                <div class="qr-title">Consulta por CURP</div>
+                <div class="qr-box">
+                  <div class="mag" aria-hidden="true">
+                    <!-- icono lupa -->
+                    <svg width="44" height="44" viewBox="0 0 64 64" fill="none">
+                      <circle cx="28" cy="28" r="16" stroke="#2b6cff" stroke-width="6"/>
+                      <line x1="40" y1="40" x2="56" y2="56" stroke="#2b6cff" stroke-width="6" stroke-linecap="round"/>
+                      <circle cx="48" cy="48" r="6" fill="#2b6cff" opacity=".15"/>
+                    </svg>
+                  </div>
+                  <p class="qr-curp" id="qrCurp">—</p>
+                  <p class="qr-url" id="qrUrl">—</p>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /grid -->
+
         </div>
       </div>
-
     </div>
   </div>
 
+  <!-- Redes sociales -->
   <section class="social-wrap">
     <div class="shell">
       <div class="inner">
@@ -424,20 +525,23 @@
   <footer>© 2026. Todos los derechos reservados.</footer>
 
   <script>
-    // ✅ Base (actualizada) — debe coincidir con index
-    const baseCursos = [
+    /* ==========================
+       BASE DE DATOS LOCAL
+       ========================== */
+
+    const personas = [
       {
         curp: "BIDD971230HASRZM02",
         primerApellido: "BRIONES",
         segundoApellido: "DÍAZ",
         nombres: "DAMIÁN",
         institucionFormadora: "Instituto de la Educación Básica del Estado de Morelos/DYCAP Daga Diseño y Capacitación Profesional",
-        oferta: {
+        curso: {
           folio: "-01-IEBEM-DCM-2025-87341",
-          claveRegistrada: "C1720240154",
+          clave: "C1720240154",
           nombre: "Fundamentos de Inclusión de Género y Aprendizajes Éticos para la Educación Básica",
           tipo: "Curso",
-          duracionHrs: 200,
+          duracion: "200 hrs.",
           estatus: "CONCLUIDO"
         }
       },
@@ -447,100 +551,109 @@
         segundoApellido: "DE LA CRUZ",
         nombres: "ELIU JUAN DANIEL",
         institucionFormadora: "Instituto de la Educación Básica del Estado de Morelos/DYCAP Daga Diseño y Capacitación Profesional",
-        oferta: {
-          folio: "-01-IEBEM-DCM-2025-91352",
-          claveRegistrada: "C1720240154",
+        curso: {
+          folio: "-01-IEBEM-DCM-2025-93427",
+          clave: "C1720240154",
           nombre: "Fundamentos de Inclusión de Género y Aprendizajes Éticos para la Educación Básica",
           tipo: "Curso",
-          duracionHrs: 200,
+          duracion: "200 hrs.",
           estatus: "CONCLUIDO"
         }
       }
     ];
 
-    const $ = (id) => document.getElementById(id);
+    /* ==========================
+       PDF POR CURP
+       (Los PDFs deben estar en la misma carpeta que resultado.html)
+       ========================== */
+    const constanciasPDF = {
+      "BIDD971230HASRZM02": "Damián.pdf",
+      "LOCE790624HASPRL03": "Eliu.pdf"
+    };
 
-    function getCurpFromQuery(){
-      const params = new URLSearchParams(window.location.search);
-      return (params.get("curp") || "").trim();
+    function $(id){ return document.getElementById(id); }
+
+    function setText(id, value){
+      const el = $(id);
+      if(el) el.textContent = value ?? "—";
     }
 
-    function renderNoRegistrada(){
-      $("resultadoBody").innerHTML = `
-        <div style="padding:18px 6px 6px;font-weight:900;font-size:15px;">
-          La CURP capturada no está registrada.
-        </div>
-      `;
+    function renderNoRegistrada(curp){
+      setText("pPrimer","—");
+      setText("pSegundo","—");
+      setText("pNombre","—");
+      setText("pCurp", curp || "—");
+      setText("pInst","—");
+      setText("cFolio","—");
+      setText("cClave","—");
+      setText("cNombre","—");
+      setText("cTipo","—");
+      setText("cDur","—");
+      setText("cEst","—");
+
+      setText("qrCurp", curp || "—");
+      setText("qrUrl", window.location.href);
     }
 
     function renderPersona(p){
-      $("resultadoBody").innerHTML = `
-        <div class="section">
-          <div class="s-title">Datos del Participante</div>
-          <div class="s-content">
-            <table class="kv">
-              <tr><td>Primer Apellido:</td><td>${p.primerApellido}</td></tr>
-              <tr><td>Segundo Apellido:</td><td>${p.segundoApellido}</td></tr>
-              <tr><td>Nombre(s):</td><td>${p.nombres}</td></tr>
-              <tr><td>CURP:</td><td>${p.curp}</td></tr>
-            </table>
-          </div>
-        </div>
+      setText("pPrimer", p.primerApellido);
+      setText("pSegundo", p.segundoApellido);
+      setText("pNombre", p.nombres);
+      setText("pCurp", p.curp);
+      setText("pInst", p.institucionFormadora);
 
-        <div class="section">
-          <div class="s-title">INSTITUCIÓN FORMADORA</div>
-          <div class="s-content">
-            <table class="kv">
-              <tr><td>Denominación:</td><td>${p.institucionFormadora}</td></tr>
-            </table>
-          </div>
-        </div>
+      setText("cFolio", p.curso.folio);
+      setText("cClave", p.curso.clave);
+      setText("cNombre", "“" + p.curso.nombre + "”");
+      setText("cTipo", p.curso.tipo);
+      setText("cDur", p.curso.duracion);
+      setText("cEst", p.curso.estatus);
 
-        <div class="section">
-          <div class="s-title">OFERTA CURSADA</div>
-          <div class="s-content">
-            <table class="kv">
-              <tr><td>Folio:</td><td>${p.oferta.folio}</td></tr>
-              <tr><td>Clave registrada:</td><td>${p.oferta.claveRegistrada}</td></tr>
-              <tr><td>Nombre:</td><td>“${p.oferta.nombre}”</td></tr>
-              <tr><td>Tipo:</td><td>${p.oferta.tipo}</td></tr>
-              <tr><td>Duración:</td><td>${p.oferta.duracionHrs} hrs.</td></tr>
-              <tr><td>Estatus:</td><td>${p.oferta.estatus}</td></tr>
-            </table>
-          </div>
-        </div>
-
-        <div class="note">
-          <b>**Esta información no sustituye a la constancia y se presenta sólo con fines de validación de la misma.**</b>
-        </div>
-      `;
+      setText("qrCurp", p.curp);
+      setText("qrUrl", window.location.href);
     }
 
-    $("btnVolver").addEventListener("click", ()=> window.location.href = "index.html");
-    $("btnCopiar").addEventListener("click", async ()=>{
+    // Botones
+    $("btnVolver").addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
+    $("btnCopiar").addEventListener("click", async () => {
       try{
         await navigator.clipboard.writeText(window.location.href);
         $("btnCopiar").textContent = "Enlace copiado";
-        setTimeout(()=> $("btnCopiar").textContent = "Copiar enlace", 1300);
+        setTimeout(()=> $("btnCopiar").textContent = "Copiar enlace", 1400);
       }catch(e){
-        alert("No se pudo copiar el enlace.");
+        alert("No se pudo copiar el enlace. Copia manualmente la URL del navegador.");
       }
     });
 
-    const curp = getCurpFromQuery();
+    $("btnConstancia").addEventListener("click", () => {
+      const params = new URLSearchParams(window.location.search);
+      const curp = (params.get("curp") || "").trim();
 
-    $("curpShown").textContent = curp || "—";
-    $("linkShown").textContent = curp
-      ? (window.location.origin + window.location.pathname + "?curp=" + encodeURIComponent(curp))
-      : "—";
+      if(!curp || !constanciasPDF[curp]){
+        alert("No se encontró la constancia en PDF para esta CURP.");
+        return;
+      }
+      window.open(constanciasPDF[curp], "_blank");
+    });
+
+    // Carga por querystring
+    const params = new URLSearchParams(window.location.search);
+    const curp = (params.get("curp") || "").trim();
 
     if(!curp){
-      renderNoRegistrada();
+      renderNoRegistrada("—");
     }else{
-      const persona = baseCursos.find(x => x.curp === curp);
-      if(!persona) renderNoRegistrada();
-      else renderPersona(persona);
+      const persona = personas.find(x => x.curp === curp);
+      if(!persona){
+        renderNoRegistrada(curp);
+      }else{
+        renderPersona(persona);
+      }
     }
   </script>
+
 </body>
 </html>
