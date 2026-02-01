@@ -549,7 +549,7 @@
           duracionHrs: 200,
           estatus: "CONCLUIDO"
         },
-        pdfFile: "Damián.pdf"
+        pdfFile: "pdf/Damián.pdf"
       },
       {
         curp: "LOCE790624HASPRL03",
@@ -565,7 +565,7 @@
           duracionHrs: 200,
           estatus: "CONCLUIDO"
         },
-        pdfFile: "Eliu.pdf"
+        pdfFile: "pdf/Eliu.pdf"
       }
     ];
 
@@ -593,6 +593,19 @@
       }
     });
 
+    // ===== Helpers PDF URL (corrige carpeta + acentos) =====
+    function getBaseFolderUrl(){
+      // Ej: https://usuario.github.io/validacion-cursos/resultado.html?...  ->  https://usuario.github.io/validacion-cursos/
+      return window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, "/");
+    }
+
+    function buildSafeRelativeUrl(relPath){
+      // relPath: "pdf/Damián.pdf" -> codifica "Damián.pdf" correctamente
+      const base = getBaseFolderUrl();
+      const safe = relPath.split("/").map(encodeURIComponent).join("/");
+      return base + safe;
+    }
+
     // ===== Render =====
     const params = new URLSearchParams(window.location.search);
     const curp = (params.get('curp') || "").trim();
@@ -619,14 +632,10 @@
       if(!persona){
         renderNoEncontrado();
       }else{
-        // arma URL del PDF (IMPORTANTE: esto encodea acentos correctamente)
-        try{
-          const pdfUrl = new URL(persona.pdfFile, window.location.href).toString();
-          btnPdf.href = pdfUrl;
-          btnPdf.style.display = "inline-flex";
-        }catch(err){
-          btnPdf.style.display = "none";
-        }
+        // ✅ URL del PDF (siempre en /pdf/ y con acentos bien codificados)
+        const pdfUrl = buildSafeRelativeUrl(persona.pdfFile);
+        btnPdf.href = pdfUrl;
+        btnPdf.style.display = "inline-flex";
 
         leftCol.innerHTML = `
           <div class="section">
