@@ -27,19 +27,17 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--fondo);
       color:#222;
-      overflow-x:hidden; /* evita barra horizontal */
+      overflow-x:hidden;
     }
     img{max-width:100%; height:auto; display:block;}
     a{color:inherit}
 
-    /* ===== Contenedor centrado (márgenes como sitio institucional) ===== */
     .shell{
-      max-width: 1160px;         /* ancho institucional */
+      max-width: 1160px;
       margin: 0 auto;
-      padding: 0 18px;           /* márgenes laterales */
+      padding: 0 18px;
     }
 
-    /* top links */
     .topbar{
       background:#fff;
       border-bottom:1px solid #e3e3e3;
@@ -55,7 +53,6 @@
     .topbar a{ text-decoration:none; }
     .topbar a:hover{ text-decoration:underline; }
 
-    /* header */
     header{
       background:#fff;
       border-bottom:1px solid #e6e6e6;
@@ -89,7 +86,6 @@
       font-weight:600;
     }
 
-    /* nav */
     nav{
       background: var(--verde);
       border-top:1px solid rgba(255,255,255,.15);
@@ -111,23 +107,21 @@
     nav a:last-child{border-right:none}
     nav a:hover{background:var(--verde-osc)}
 
-    /* ===== layout 3 columnas ===== */
     .grid{
       margin:18px 0 22px;
       display:grid;
-      grid-template-columns: 280px minmax(0, 1fr) 300px; /* izquierda, centro, derecha */
+      grid-template-columns: 280px minmax(0, 1fr) 300px;
       gap:16px;
       align-items:start;
     }
 
-    /* cajas */
     .box{
       background: var(--panel);
       border:1px solid var(--borde);
       border-radius:6px;
       overflow:hidden;
       box-shadow: 0 3px 10px rgba(0,0,0,.06);
-      min-width:0; /* IMPORTANTÍSIMO: evita que se rompa el grid */
+      min-width:0;
     }
     .box .title{
       background: var(--verde);
@@ -138,7 +132,6 @@
     }
     .box .content{ padding:10px 12px; }
 
-    /* lista izquierda */
     .menu a{
       display:block;
       text-decoration:none;
@@ -150,14 +143,13 @@
     .menu a:hover{ text-decoration:underline; }
     .menu a:last-child{border-bottom:none}
 
-    /* swiper */
     .swiper{
       border-radius:6px;
       overflow:hidden;
       background:#f7f7f7;
       border:1px solid var(--borde);
       box-shadow: var(--sombra);
-      min-width:0; /* evita overflow */
+      min-width:0;
     }
     .swiper-slide a{ display:block; }
     .swiper-slide img{
@@ -168,7 +160,6 @@
     .swiper-button-next, .swiper-button-prev{ color:#1e63ff; }
     .swiper-pagination-bullet-active{ background:#1e63ff; }
 
-    /* panel búsqueda */
     .searchbox label{
       display:block;
       font-weight:800;
@@ -201,14 +192,12 @@
       color:#666;
     }
 
-    /* anuncios */
     .bullets{
       margin:0;
       padding-left:18px;
       font-size:13px;
     }
 
-    /* derecha noticias */
     .news a{
       display:block;
       padding:10px 0;
@@ -220,7 +209,6 @@
     .news a:hover{ text-decoration:underline; }
     .news a:last-child{border-bottom:none}
 
-    /* video */
     .video iframe{
       width:100%;
       height:240px;
@@ -228,7 +216,6 @@
       border-radius:6px;
     }
 
-    /* redes abajo */
     .social-wrap{
       background:#2a2a2a;
       color:#fff;
@@ -293,7 +280,6 @@
       border-top:1px solid rgba(255,255,255,.08);
     }
 
-    /* Modal */
     .modal-back{
       position:fixed;
       inset:0;
@@ -347,7 +333,6 @@
     }
     .modal button.primary:hover{ background:var(--verde-osc); }
 
-    /* ✅ Breakpoint MÁS BAJO para que NO desaparezca la derecha tan fácil */
     @media (max-width: 980px){
       .grid{ grid-template-columns: 1fr; }
       .swiper-slide img{ height:220px; }
@@ -378,7 +363,6 @@
             <p>Validación de cursos y constancias</p>
           </div>
         </div>
-        <!-- ✅ Quitado "Prototipo interno" (lo negro) -->
       </div>
     </div>
   </header>
@@ -598,19 +582,20 @@
       effect: 'slide'
     });
 
-    // Base ejemplo (luego agregamos más)
+    // ✅ Base (actualizada)
     const baseCursos = [
       {
         curp: "BIDD971230HASRZM02",
         primerApellido: "BRIONES",
         segundoApellido: "DÍAZ",
         nombres: "DAMIÁN",
-        institucionFormadora: "Instituto de la Educación Básica del Estado de Morelos/Instituto de Capacitación Docente de Morelos S.C.",
+        institucionFormadora: "Instituto de la Educación Básica del Estado de Morelos/DYCAP Daga Diseño y Capacitación Profesional",
         oferta: {
           folio: "-01-IEBEM-DCM-2025-87341",
-          nombre: "LEER Y ESCRIBIR: HERRAMIENTAS INTELECTUALES E INTERCULTURALES PARA ENSEÑAR A PENSAR DE FORMA CRÍTICA EN EDUCACIÓN BÁSICA",
+          claveRegistrada: "C1720240154",
+          nombre: "Fundamentos de Inclusión de Género y Aprendizajes Éticos para la Educación Básica",
           tipo: "Curso",
-          duracionHrs: 40,
+          duracionHrs: 200,
           estatus: "CONCLUIDO"
         }
       },
@@ -619,12 +604,13 @@
         primerApellido: "LOPERENA",
         segundoApellido: "DE LA CRUZ",
         nombres: "ELIU JUAN DANIEL",
-        institucionFormadora: "Instituto de la Educación Básica del Estado de Morelos/Instituto de Capacitación Docente de Morelos S.C.",
+        institucionFormadora: "Instituto de la Educación Básica del Estado de Morelos/DYCAP Daga Diseño y Capacitación Profesional",
         oferta: {
-          folio: "-01-IEBEM-DCM-2025-84217",
-          nombre: "LEER Y ESCRIBIR: HERRAMIENTAS INTELECTUALES E INTERCULTURALES PARA ENSEÑAR A PENSAR DE FORMA CRÍTICA EN EDUCACIÓN BÁSICA",
+          folio: "-01-IEBEM-DCM-2025-91352",
+          claveRegistrada: "C1720240154",
+          nombre: "Fundamentos de Inclusión de Género y Aprendizajes Éticos para la Educación Básica",
           tipo: "Curso",
-          duracionHrs: 40,
+          duracionHrs: 200,
           estatus: "CONCLUIDO"
         }
       }
