@@ -24,651 +24,208 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--fondo);
       color:var(--txt);
-      overflow-x:hidden;
     }
-    img{max-width:100%; height:auto; display:block;}
-    a{color:inherit}
+    a{text-decoration:none;color:inherit}
+    .shell{max-width:1160px;margin:0 auto;padding:0 18px}
 
-    .shell{
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 18px;
-    }
-
-    /* Top links */
-    .topbar{
-      background:#fff;
-      border-bottom:1px solid #e3e3e3;
-    }
-    .topbar .inner{
-      display:flex;
-      justify-content:flex-end;
-      gap:18px;
-      font-size:13px;
-      color:#555;
-      padding:8px 0;
-    }
-    .topbar a{ text-decoration:none; }
-    .topbar a:hover{ text-decoration:underline; }
+    /* Topbar */
+    .topbar{background:#fff;border-bottom:1px solid #e3e3e3}
+    .topbar .inner{display:flex;justify-content:flex-end;gap:18px;font-size:13px;padding:8px 0}
 
     /* Header */
-    header{
-      background:#fff;
-      border-bottom:1px solid #e6e6e6;
-    }
-    header .inner{
-      padding:14px 0;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      min-width:0;
-    }
-    .brand img{ height:52px; width:auto; }
-    .brand .text h1{
-      margin:0;
-      font-size:16px;
-      color:#2b2b2b;
-      font-weight:800;
-      line-height:1.2;
-    }
-    .brand .text p{
-      margin:2px 0 0 0;
-      font-size:12px;
-      color:#666;
-      font-weight:600;
-      line-height:1.2;
-    }
+    header{background:#fff;border-bottom:1px solid #e6e6e6}
+    header .inner{padding:14px 0;display:flex;justify-content:space-between;align-items:center}
+    .brand{display:flex;gap:14px;align-items:center}
+    .brand img{height:52px}
+    .brand h1{margin:0;font-size:16px;font-weight:900}
+    .brand p{margin:0;font-size:12px;color:#666;font-weight:700}
 
-    .header-actions{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
     .btn-top{
-      border:1px solid #d6d6d6;
-      background:#fff;
-      color:#222;
       padding:10px 14px;
       border-radius:10px;
+      border:1px solid #d6d6d6;
+      background:#fff;
       font-weight:900;
       cursor:pointer;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,.06);
     }
-    .btn-top.primary{
-      background:var(--verde);
-      border-color:transparent;
-      color:#fff;
-    }
-    .btn-top.primary:hover{ background:var(--verde-osc); }
-    .btn-top:hover{ border-color:#c6c6c6; }
+    .btn-top.primary{background:var(--verde);color:#fff;border:none}
 
-    nav{
-      background: var(--verde);
-      border-top:1px solid rgba(255,255,255,.15);
-    }
-    nav .inner{
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    nav a{
-      display:block;
-      padding:14px 16px;
-      color:#fff;
-      text-decoration:none;
-      font-weight:800;
-      font-size:13px;
-      border-right:1px solid rgba(255,255,255,.12);
-    }
-    nav a:last-child{border-right:none}
+    nav{background:var(--verde)}
+    nav .inner{display:flex;justify-content:center}
+    nav a{color:#fff;padding:14px 16px;font-weight:900;font-size:13px}
     nav a:hover{background:var(--verde-osc)}
 
-    /* Main card */
-    .wrap{
-      padding:18px 0 22px;
-    }
+    .wrap{padding:18px 0}
     .card{
       background:#fff;
       border:1px solid var(--borde);
       border-radius:10px;
-      box-shadow: var(--shadow);
-      overflow:hidden;
       padding:18px;
-    }
-    .layout{
-      display:grid;
-      grid-template-columns: minmax(0, 1fr) 320px;
-      gap:18px;
-      align-items:start;
-    }
-    .title{
-      text-align:center;
-      margin:2px 0 14px;
-    }
-    .title h2{
-      margin:0;
-      font-size:22px;
-      font-weight:900;
-      color:#111;
-    }
-    .title p{
-      margin:2px 0 0;
-      font-size:13px;
-      color:var(--muted);
-      font-weight:700;
+      box-shadow:var(--shadow)
     }
 
-    .section{
-      border:1px solid #e3e3e3;
-      border-radius:10px;
-      overflow:hidden;
-      margin-bottom:12px;
-      background:#fff;
-    }
-    .section .head{
-      background:#f7f7f7;
-      padding:10px 12px;
-      font-weight:900;
-      font-size:13px;
-      letter-spacing:.2px;
-    }
-    .rows{
-      padding:8px 12px;
-    }
-    .row{
-      display:grid;
-      grid-template-columns: 170px minmax(0, 1fr);
-      gap:10px;
-      padding:9px 0;
-      border-bottom:1px dotted #e1e1e1;
-      font-size:13px;
-      align-items:center;
-    }
+    .layout{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    @media(max-width:980px){.layout{grid-template-columns:1fr}}
+
+    .title{text-align:center}
+    .title h2{margin:0;font-size:22px;font-weight:900}
+    .title p{margin:4px 0 14px;color:#666;font-weight:700}
+
+    .section{border:1px solid #e3e3e3;border-radius:10px;margin-bottom:12px}
+    .section .head{background:#f7f7f7;padding:10px 12px;font-weight:900;font-size:13px}
+    .rows{padding:8px 12px}
+    .row{display:grid;grid-template-columns:170px 1fr;padding:8px 0;border-bottom:1px dotted #ddd;font-size:13px}
     .row:last-child{border-bottom:none}
-    .k{ font-weight:900; color:#222; }
-    .v{ color:#222; }
+    .k{font-weight:900}
 
-    .note{
-      margin-top:10px;
-      padding:12px 12px;
-      border-radius:8px;
-      background:#fff3e6;
-      border:1px solid #ffd8b0;
-      font-size:12px;
-      color:#5a3a14;
-      font-weight:700;
-    }
-
-    /* Right QR */
-    .qrbox{
-      border:1px solid #e3e3e3;
-      border-radius:10px;
-      padding:12px;
-      background:#fff;
-      box-shadow: 0 6px 16px rgba(0,0,0,.08);
-    }
-    .qrbox .qtitle{
-      font-weight:900;
-      font-size:13px;
-      margin-bottom:10px;
-    }
-    .qrinner{
-      border:1px solid #ededed;
-      border-radius:10px;
-      padding:14px;
-      text-align:center;
-      background:#fafafa;
-    }
-    .magnifier{
-      width:36px;height:36px;
-      margin:0 auto 8px;
-      display:grid;
-      place-items:center;
-    }
-    .curp-big{
-      font-weight:900;
-      font-size:13px;
-      margin:6px 0 6px;
-    }
-    .smallurl{
-      font-size:11px;
-      color:#666;
-      word-break:break-word;
-      line-height:1.35;
-    }
-
-    /* PDF button */
+    .qrbox{border:1px solid #e3e3e3;border-radius:10px;padding:12px}
     .btn-pdf{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      width:100%;
-      margin-top:10px;
-      padding:12px 12px;
-      border:none;
-      border-radius:10px;
-      background:var(--verde);
-      color:#fff;
-      font-weight:900;
-      cursor:pointer;
-      text-decoration:none;
-      box-shadow: 0 8px 18px rgba(0,0,0,.10);
-    }
-    .btn-pdf:hover{ background:var(--verde-osc); }
-
-    /* Redes abajo */
-    .social-wrap{
-      background:#2a2a2a;
-      color:#fff;
-      border-top:1px solid #1f1f1f;
-    }
-    .social-wrap .inner{ padding:16px 0; }
-    .social-title{
-      font-weight:900;
-      font-size:12px;
-      letter-spacing:.5px;
-      margin-bottom:12px;
-    }
-    .social-cards{ display:flex; gap:14px; flex-wrap:wrap; }
-    .social-card{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      text-decoration:none;
-      background:#1f1f1f;
-      border:1px solid rgba(255,255,255,.10);
-      padding:12px 14px;
-      border-radius:10px;
-      min-width: 260px;
-    }
-    .social-card:hover{
-      border-color: rgba(255,255,255,.22);
-      transform: translateY(-1px);
-    }
-    .icon{
-      width:36px;height:36px;
-      border-radius:999px;
-      display:grid;
-      place-items:center;
-      flex:0 0 36px;
-      background:#0f0f0f;
-      border:1px solid rgba(255,255,255,.14);
-    }
-    .social-card .t1{
-      margin:0;
-      font-weight:900;
-      font-size:13px;
-      color:#fff;
-    }
-    .social-card .t2{
-      margin:2px 0 0;
-      font-size:12px;
-      color:#cfcfcf;
-    }
-
-    footer{
-      background:#141414;
-      color:#d8d8d8;
-      text-align:center;
-      padding:10px 14px;
-      font-size:12px;
-      border-top:1px solid rgba(255,255,255,.08);
-    }
-
-    @media (max-width: 980px){
-      .layout{ grid-template-columns: 1fr; }
-    }
-
-    /* Modal */
-    .modal-back{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.55);
       display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:9999;
-      padding:16px;
-    }
-    .modal{
-      width:min(520px, 100%);
-      background:#fff;
-      border-radius:10px;
-      overflow:hidden;
-      box-shadow:0 20px 60px rgba(0,0,0,.25);
-      border:1px solid #e6e6e6;
-    }
-    .modal .m-head{
-      padding:12px 14px;
-      background:#f6f6f6;
-      border-bottom:1px solid #e8e8e8;
-      font-weight:900;
-      font-size:14px;
-    }
-    .modal .m-body{
-      padding:14px;
-      font-size:14px;
-      color:#222;
-      line-height:1.5;
-    }
-    .modal .m-actions{
-      padding:12px 14px;
-      display:flex;
-      justify-content:flex-end;
-      gap:10px;
-      border-top:1px solid #eee;
-    }
-    .modal button{
-      padding:10px 14px;
-      border-radius:8px;
-      border:1px solid #d2d2d2;
-      background:#fff;
-      cursor:pointer;
-      font-weight:800;
-    }
-    .modal button.primary{
-      border-color:transparent;
+      margin-top:12px;
+      width:100%;
+      padding:12px;
       background:var(--verde);
       color:#fff;
+      font-weight:900;
+      border-radius:10px;
+      text-align:center;
     }
-    .modal button.primary:hover{ background:var(--verde-osc); }
+    .btn-pdf:hover{background:var(--verde-osc)}
+
+    footer{background:#141414;color:#d8d8d8;text-align:center;padding:10px;font-size:12px}
   </style>
 </head>
 
 <body>
-  <!-- Topbar -->
-  <div class="topbar">
-    <div class="shell">
-      <div class="inner">
-        <a href="https://www.morelos.gob.mx/" target="_blank" rel="noopener">Portal ciudadano</a>
-        <a href="https://iebem.morelos.gob.mx/directorio" target="_blank" rel="noopener">Directorio</a>
-        <a href="https://www.morelos.gob.mx/poder_ejecutivo" target="_blank" rel="noopener">Sitios de Gobierno de Morelos</a>
+
+<div class="topbar">
+  <div class="shell inner">
+    <a href="https://www.morelos.gob.mx/" target="_blank">Portal ciudadano</a>
+    <a href="https://iebem.morelos.gob.mx/directorio" target="_blank">Directorio</a>
+    <a href="https://www.morelos.gob.mx/poder_ejecutivo" target="_blank">Sitios de Gobierno de Morelos</a>
+  </div>
+</div>
+
+<header>
+  <div class="shell inner">
+    <div class="brand">
+      <img src="https://i.imgur.com/g3QP0r7.png">
+      <div>
+        <h1>Plataforma Académica</h1>
+        <p>Consulta y validación de cursos</p>
+      </div>
+    </div>
+    <div>
+      <a class="btn-top" href="index.html">Volver</a>
+      <button class="btn-top primary" onclick="navigator.clipboard.writeText(location.href)">Copiar enlace</button>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="shell inner">
+    <a href="index.html">INICIO</a>
+    <a href="https://iebem.edu.mx/contenido/tramites-y-servicios" target="_blank">TRÁMITES Y SERVICIOS</a>
+    <a href="https://iebem.edu.mx/noticias" target="_blank">NOTICIAS</a>
+    <a href="https://iebem.edu.mx/contenido/contacto" target="_blank">CONTACTO</a>
+  </div>
+</nav>
+
+<div class="shell wrap">
+  <div class="card">
+    <div class="title">
+      <h2>Sistema Integral de Formación Continua</h2>
+      <p>Consulta Código QR</p>
+    </div>
+
+    <div class="layout">
+      <div id="left"></div>
+
+      <div class="qrbox">
+        <strong>Consulta por CURP</strong>
+        <p id="qrCurp"></p>
+        <a id="btnPdf" class="btn-pdf" target="_blank">Generar Constancia (PDF)</a>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Header -->
-  <header>
-    <div class="shell">
-      <div class="inner">
-        <div class="brand">
-          <img src="https://i.imgur.com/g3QP0r7.png" alt="Logo institucional">
-          <div class="text">
-            <h1>Plataforma Académica</h1>
-            <p>Consulta y validación de cursos</p>
-          </div>
-        </div>
+<footer>© 2026. Todos los derechos reservados.</footer>
 
-        <div class="header-actions">
-          <a class="btn-top" href="index.html">Volver</a>
-          <button class="btn-top primary" id="btnCopy">Copiar enlace</button>
-        </div>
+<script>
+const baseCursos = [
+  {
+    curp:"BIDD971230HASRZM02",
+    primerApellido:"BRIONES",
+    segundoApellido:"DÍAZ",
+    nombres:"DAMIÁN",
+    institucion:"Instituto de la Educación Básica del Estado de Morelos/DYCAP Daga Diseño y Capacitación Profesional",
+    oferta:{
+      folio:"-01-IEBEM-DCM-2025-87341",
+      clave:"C1720240154",
+      nombre:"Fundamentos de Inclusión de Género y Aprendizajes Éticos para la Educación Básica",
+      tipo:"Curso",
+      duracion:"200 hrs.",
+      estatus:"CONCLUIDO"
+    },
+    pdf:"pdf/Damian.pdf"
+  },
+  {
+    curp:"LOCE790624HASPRL03",
+    primerApellido:"LOPERENA",
+    segundoApellido:"DE LA CRUZ",
+    nombres:"ELIU JUAN DANIEL",
+    institucion:"Instituto de la Educación Básica del Estado de Morelos/DYCAP Daga Diseño y Capacitación Profesional",
+    oferta:{
+      folio:"-01-IEBEM-DCM-2025-84217",
+      clave:"C1720240154",
+      nombre:"Fundamentos de Inclusión de Género y Aprendizajes Éticos para la Educación Básica",
+      tipo:"Curso",
+      duracion:"200 hrs.",
+      estatus:"CONCLUIDO"
+    },
+    pdf:"pdf/Eliu.pdf"
+  }
+];
+
+const curp = new URLSearchParams(location.search).get("curp");
+const persona = baseCursos.find(p=>p.curp===curp);
+document.getElementById("qrCurp").textContent = curp || "—";
+
+if(!persona){
+  document.getElementById("left").innerHTML="<b>La CURP capturada no está registrada.</b>";
+}else{
+  document.getElementById("btnPdf").href = persona.pdf;
+  document.getElementById("btnPdf").style.display="block";
+
+  document.getElementById("left").innerHTML = `
+    <div class="section">
+      <div class="head">Datos del Participante</div>
+      <div class="rows">
+        <div class="row"><div class="k">Nombre:</div><div>${persona.nombres}</div></div>
+        <div class="row"><div class="k">CURP:</div><div>${persona.curp}</div></div>
       </div>
     </div>
-  </header>
 
-  <!-- Nav -->
-  <nav>
-    <div class="shell">
-      <div class="inner">
-        <a href="index.html">INICIO</a>
-        <a href="https://iebem.edu.mx/contenido/tramites-y-servicios" target="_blank" rel="noopener">TRÁMITES Y SERVICIOS</a>
-        <a href="https://iebem.edu.mx/noticias" target="_blank" rel="noopener">NOTICIAS</a>
-        <a href="https://iebem.edu.mx/contenido/contacto" target="_blank" rel="noopener">CONTACTO</a>
+    <div class="section">
+      <div class="head">Institución Formadora</div>
+      <div class="rows">
+        <div class="row"><div class="k">Denominación:</div><div>${persona.institucion}</div></div>
       </div>
     </div>
-  </nav>
 
-  <div class="shell wrap">
-    <div class="card">
-      <div class="title">
-        <h2>Sistema Integral de Formación Continua</h2>
-        <p>Consulta Código QR</p>
-      </div>
-
-      <div class="layout">
-        <!-- LEFT -->
-        <div id="leftCol">
-          <!-- contenido dinámico -->
-        </div>
-
-        <!-- RIGHT -->
-        <div>
-          <div class="qrbox">
-            <div class="qtitle">Consulta por CURP</div>
-            <div class="qrinner">
-              <div class="magnifier" aria-hidden="true">
-                <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
-                  <path d="M10.5 19a8.5 8.5 0 1 1 0-17 8.5 8.5 0 0 1 0 17Z" stroke="#1e63ff" stroke-width="2"/>
-                  <path d="M16.8 16.8 22 22" stroke="#1e63ff" stroke-width="2" stroke-linecap="round"/>
-                  <circle cx="14.5" cy="8.5" r="3" fill="#1e63ff" opacity=".2"/>
-                </svg>
-              </div>
-              <div class="curp-big" id="qrCurp">—</div>
-              <div class="smallurl" id="qrUrl">—</div>
-            </div>
-
-            <!-- Botón PDF -->
-            <a class="btn-pdf" id="btnPdf" href="#" target="_blank" rel="noopener" style="display:none;">
-              <span aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="white" stroke-width="2"/>
-                  <path d="M14 3v6h6" stroke="white" stroke-width="2"/>
-                  <path d="M8 16h8" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M8 12h5" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </span>
-              Generar Constancia (PDF)
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="note">
-        <b>**</b>Esta información no sustituye a la constancia y se presenta sólo con fines de validación de la misma.
+    <div class="section">
+      <div class="head">Oferta Cursada</div>
+      <div class="rows">
+        <div class="row"><div class="k">Folio:</div><div>${persona.oferta.folio}</div></div>
+        <div class="row"><div class="k">Nombre:</div><div>${persona.oferta.nombre}</div></div>
+        <div class="row"><div class="k">Duración:</div><div>${persona.oferta.duracion}</div></div>
+        <div class="row"><div class="k">Estatus:</div><div>${persona.oferta.estatus}</div></div>
       </div>
     </div>
-  </div>
+  `;
+}
+</script>
 
-  <!-- Redes sociales -->
-  <section class="social-wrap">
-    <div class="shell">
-      <div class="inner">
-        <div class="social-title">REDES SOCIALES</div>
-        <div class="social-cards">
-
-          <a class="social-card" href="https://www.facebook.com/iebem/?fref=ts#" target="_blank" rel="noopener">
-            <div class="icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v3H7v3h3v7h3v-7h3l1-3h-4v-3c0-.6.4-1 1-1Z" fill="#fff"/>
-              </svg>
-            </div>
-            <div>
-              <p class="t1">HAZTE FAN EN FACEBOOK</p>
-              <p class="t2">Visita la página oficial</p>
-            </div>
-          </a>
-
-          <a class="social-card" href="https://www.youtube.com/user/IEBEMTV" target="_blank" rel="noopener">
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.3 31.3 0 0 0 2 12a31.3 31.3 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 22 12a31.3 31.3 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z" fill="#fff"/>
-              </svg>
-            </div>
-            <div>
-              <p class="t1">CANAL EN YOUTUBE</p>
-              <p class="t2">Contenido y transmisiones</p>
-            </div>
-          </a>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>© 2026. Todos los derechos reservados.</footer>
-
-  <!-- Modal -->
-  <div class="modal-back" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal">
-      <div class="m-head" id="modalTitle">Aviso</div>
-      <div class="m-body" id="modalMsg">Mensaje</div>
-      <div class="m-actions">
-        <button class="primary" id="modalOk">Aceptar</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // ====== BASE DE DATOS LOCAL (MISMA QUE INDEX, AQUÍ EN RESULTADO) ======
-    const baseCursos = [
-      {
-        curp: "BIDD971230HASRZM02",
-        primerApellido: "BRIONES",
-        segundoApellido: "DÍAZ",
-        nombres: "DAMIÁN",
-        institucionFormadora: "Instituto de la Educación Básica del Estado de Morelos/DYCAP Daga Diseño y Capacitación Profesional",
-        oferta: {
-          folio: "-01-IEBEM-DCM-2025-87341",
-          clave: "C1720240154",
-          nombre: "Fundamentos de Inclusión de Género y Aprendizajes Éticos para la Educación Básica",
-          tipo: "Curso",
-          duracionHrs: 200,
-          estatus: "CONCLUIDO"
-        },
-        pdfFile: "pdf/Damián.pdf"
-      },
-      {
-        curp: "LOCE790624HASPRL03",
-        primerApellido: "LOPERENA",
-        segundoApellido: "DE LA CRUZ",
-        nombres: "ELIU JUAN DANIEL",
-        institucionFormadora: "Instituto de la Educación Básica del Estado de Morelos/DYCAP Daga Diseño y Capacitación Profesional",
-        oferta: {
-          folio: "-01-IEBEM-DCM-2025-84217",
-          clave: "C1720240154",
-          nombre: "Fundamentos de Inclusión de Género y Aprendizajes Éticos para la Educación Básica",
-          tipo: "Curso",
-          duracionHrs: 200,
-          estatus: "CONCLUIDO"
-        },
-        pdfFile: "pdf/Eliu.pdf"
-      }
-    ];
-
-    // ===== Modal =====
-    const modalBack = document.getElementById('modalBack');
-    const modalMsg = document.getElementById('modalMsg');
-    const modalOk = document.getElementById('modalOk');
-
-    function showModal(msg){
-      modalMsg.textContent = msg;
-      modalBack.style.display = 'flex';
-      modalOk.focus();
-    }
-    function hideModal(){ modalBack.style.display = 'none'; }
-    modalOk.addEventListener('click', hideModal);
-    modalBack.addEventListener('click', (e)=>{ if(e.target === modalBack) hideModal(); });
-
-    // ===== Copy link =====
-    document.getElementById('btnCopy').addEventListener('click', async () => {
-      try{
-        await navigator.clipboard.writeText(window.location.href);
-        showModal("Enlace copiado al portapapeles.");
-      }catch(e){
-        showModal("No se pudo copiar automáticamente. Copia manualmente la URL del navegador.");
-      }
-    });
-
-    // ===== Helpers PDF URL (corrige carpeta + acentos) =====
-    function getBaseFolderUrl(){
-      // Ej: https://usuario.github.io/validacion-cursos/resultado.html?...  ->  https://usuario.github.io/validacion-cursos/
-      return window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, "/");
-    }
-
-    function buildSafeRelativeUrl(relPath){
-      // relPath: "pdf/Damián.pdf" -> codifica "Damián.pdf" correctamente
-      const base = getBaseFolderUrl();
-      const safe = relPath.split("/").map(encodeURIComponent).join("/");
-      return base + safe;
-    }
-
-    // ===== Render =====
-    const params = new URLSearchParams(window.location.search);
-    const curp = (params.get('curp') || "").trim();
-
-    const qrCurp = document.getElementById('qrCurp');
-    const qrUrl  = document.getElementById('qrUrl');
-    const leftCol = document.getElementById('leftCol');
-    const btnPdf = document.getElementById('btnPdf');
-
-    function renderNoEncontrado(){
-      leftCol.innerHTML = `<p style="font-weight:900;margin:0 0 10px;">La CURP capturada no está registrada.</p>`;
-      qrCurp.textContent = curp || "—";
-      qrUrl.textContent = curp ? window.location.href : "—";
-      btnPdf.style.display = "none";
-    }
-
-    if(!curp){
-      renderNoEncontrado();
-    }else{
-      const persona = baseCursos.find(p => p.curp === curp);
-      qrCurp.textContent = curp;
-      qrUrl.textContent = window.location.href;
-
-      if(!persona){
-        renderNoEncontrado();
-      }else{
-        // ✅ URL del PDF (siempre en /pdf/ y con acentos bien codificados)
-        const pdfUrl = buildSafeRelativeUrl(persona.pdfFile);
-        btnPdf.href = pdfUrl;
-        btnPdf.style.display = "inline-flex";
-
-        leftCol.innerHTML = `
-          <div class="section">
-            <div class="head">Datos del Participante</div>
-            <div class="rows">
-              <div class="row"><div class="k">Primer Apellido:</div><div class="v">${persona.primerApellido}</div></div>
-              <div class="row"><div class="k">Segundo Apellido:</div><div class="v">${persona.segundoApellido}</div></div>
-              <div class="row"><div class="k">Nombre(s):</div><div class="v">${persona.nombres}</div></div>
-              <div class="row"><div class="k">CURP:</div><div class="v">${persona.curp}</div></div>
-            </div>
-          </div>
-
-          <div class="section">
-            <div class="head">INSTITUCIÓN FORMADORA</div>
-            <div class="rows">
-              <div class="row"><div class="k">Denominación:</div><div class="v">${persona.institucionFormadora}</div></div>
-            </div>
-          </div>
-
-          <div class="section">
-            <div class="head">OFERTA CURSADA</div>
-            <div class="rows">
-              <div class="row"><div class="k">Folio:</div><div class="v">${persona.oferta.folio}</div></div>
-              <div class="row"><div class="k">Clave registrada:</div><div class="v">${persona.oferta.clave}</div></div>
-              <div class="row"><div class="k">Nombre:</div><div class="v">“${persona.oferta.nombre}”</div></div>
-              <div class="row"><div class="k">Tipo:</div><div class="v">${persona.oferta.tipo}</div></div>
-              <div class="row"><div class="k">Duración:</div><div class="v">${persona.oferta.duracionHrs} hrs.</div></div>
-              <div class="row"><div class="k">Estatus:</div><div class="v">${persona.oferta.estatus}</div></div>
-            </div>
-          </div>
-        `;
-      }
-    }
-  </script>
 </body>
 </html>
