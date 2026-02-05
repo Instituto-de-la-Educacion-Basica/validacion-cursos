@@ -547,7 +547,7 @@
           duracionHrs: 200,
           estatus: "CONCLUIDO"
         },
-        pdfPath: "pdf/Damian_v2.pdf" // ✅ coincide con tu archivo real en el repo
+        pdfPath: "pdf/Damian_v2.pdf"
       },
       {
         curp: "LOCE790624HASPRL03",
@@ -564,6 +564,24 @@
           estatus: "CONCLUIDO"
         },
         pdfPath: "pdf/Eliu_v2.pdf"
+      },
+
+      // ===== NUEVA PERSONA (DEMO) =====
+      {
+        curp: "MOBA770812DEMO000",
+        primerApellido: "MORENO",
+        segundoApellido: "BAZARTE",
+        nombres: "ADRIANA",
+        institucionFormadora: "Instituto de la Educación Básica del Estado de Morelos/DYCAP Daga Diseño y Capacitación Profesional",
+        oferta: {
+          folio: "-01-IEBEM-DCM-2025-84218",
+          clave: "C1720240154",
+          nombre: "Fundamentos de Inclusión de Género y Aprendizajes Éticos para la Educación Básica",
+          tipo: "Curso",
+          duracionHrs: 200,
+          estatus: "CONCLUIDO"
+        },
+        pdfPath: "pdf/Adriana_v2-pdf.pdf"
       }
     ];
 
@@ -617,11 +635,13 @@
       if(!persona){
         renderNoEncontrado();
       }else{
-        // ✅ URL ABSOLUTA correcta al PDF, aun si estas en resultado.html?curp=...
-        // - persona.pdfPath ya incluye "pdf/..."
-        // - new URL(ruta, window.location.origin + window.location.pathname) evita errores raros con ?curp=
+        // URL ABSOLUTA correcta al PDF, aun si estas en resultado.html?curp=...
         const baseUrl = window.location.origin + window.location.pathname; // .../resultado.html
         const pdfUrl = new URL(persona.pdfPath, baseUrl).toString();
+
+        // Si alguna vez ves PDFs "viejos" por caché, puedes activar esto:
+        // const pdfFinal = pdfUrl + "?v=" + Date.now();
+        // btnPdf.href = pdfFinal;
 
         btnPdf.href = pdfUrl;
         btnPdf.style.display = "inline-flex";
